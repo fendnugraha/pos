@@ -11,10 +11,10 @@
                             <a class="nav-link active" id="desposit-tab" data-bs-toggle="tab" href="#desposit" role="tab" aria-controls="desposit" aria-selected="true">Desposit</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="kaskeluar-tab" data-bs-toggle="tab" href="#kaskeluar" role="tab" aria-controls="kaskeluar" aria-selected="false">Kas Keluar</a>
+                            <a class="nav-link" id="kasmasuk-tab" data-bs-toggle="tab" href="#kasmasuk" role="tab" aria-controls="kasmasuk" aria-selected="false">Kas Masuk</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="setting-tab" data-bs-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="false">Setting</a>
+                            <a class="nav-link" id="kaskeluar-tab" data-bs-toggle="tab" href="#kaskeluar" role="tab" aria-controls="kaskeluar" aria-selected="false">Kas Keluar</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -70,12 +70,29 @@
                                     <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm">
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Input Kas Keluar</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="setting" role="tabpanel" aria-labelledby="setting-tab">
-                            <form action="<?= base_url('home/update_setting'); ?>" method="post">
+                        <div class="tab-pane fade" id="kasmasuk" role="tabpanel" aria-labelledby="kasmasuk-tab">
+                            <form action="<?= base_url('home'); ?>" method="post">
+                                <div class="mb-3">
+                                    <!-- <label for="keterangan" class="form-label">Keterangan</label> -->
+                                    <input type="text" name="kasmasuk" id="kasmasuk" class="form-control form-control-sm" value=1 hidden readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jumlah" class="form-label">Jumlah</label>
+                                    <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm">
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-sm btn-success">Input Kas Masuk</button>
+                                </div>
+                            </form>
+                            <!-- <form action="<?= base_url('home/update_setting'); ?>" method="post">
                                 <div class="mb-3">
                                     <label for="namakonter" class="form-label">Nama Konter</label>
                                     <input type="text" name="namakonter" id="namakonter" class="form-control form-control-sm" value="<?= $setting['namakonter']; ?>">
@@ -99,7 +116,7 @@
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-sm btn-success">Update</button>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
                     </div>
 

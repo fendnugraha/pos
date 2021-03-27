@@ -36,7 +36,9 @@ class Home extends CI_Controller
             $this->load->view('home/home', $data);
             $this->load->view('include/footer');
         } else {
-            if ($this->input->post('kaskeluar') == 1) {
+            if ($this->input->post('kasmasuk') == 1) {
+                $this->_kasmasuk();
+            } elseif ($this->input->post('kaskeluar') == 1) {
                 $this->_kaskeluar();
             } else {
                 $this->_inputDeposit();
@@ -70,6 +72,7 @@ class Home extends CI_Controller
             'id' => null,
             'idagen' => $cekid['name'],
             'jumlah' => $this->input->post('jumlah'),
+            'status' => 'Out',
             'produk' => $produk,
             'tujuan' => $tujuan,
             'kasir' => $kasir,
@@ -89,6 +92,27 @@ class Home extends CI_Controller
             'id' => null,
             'idagen' => '---',
             'jumlah' => $this->input->post('jumlah'),
+            'status' => 'Out',
+            'produk' => '---',
+            'tujuan' => '---',
+            'kasir' => $kasir,
+            'waktu' => date('Y-m-d H:i:s'),
+            'keterangan' => $this->input->post('keterangan')
+        ];
+
+        $this->db->insert('deposit', $data);
+        redirect('home');
+    }
+
+    private function _kasmasuk()
+    {
+        $kasir = $this->session->userdata('uname');
+
+        $data = [
+            'id' => null,
+            'idagen' => '---',
+            'jumlah' => $this->input->post('jumlah'),
+            'status' => 'In',
             'produk' => '---',
             'tujuan' => '---',
             'kasir' => $kasir,

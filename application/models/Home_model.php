@@ -29,20 +29,6 @@ class Home_model extends CI_Model
         return $setSaldoAwal - $totInputKas['sAwal'];
     }
 
-    public function saldoAkhir()
-    {
-        $hariini = date('Y-m-d');
-        // $dateAkhir = $this->input->post('dateAkhir');
-        $setSaldoAwal = $this->db->get_where('setting', ['id' => 1])->row_array();
-        $setSaldoAwal = $setSaldoAwal['saldoawal'];
-
-        $totInputKas = $this->db->query("SELECT SUM(jumlah) as sAwal
-        FROM deposit
-        WHERE date(waktu) BETWEEN '0000-00-00' and '$hariini'")->row_array();
-
-        return $setSaldoAwal - $totInputKas['sAwal'];
-    }
-
     public function kasMasuk()
     {
         $hariini = date('Y-m-d');
@@ -63,5 +49,22 @@ class Home_model extends CI_Model
         WHERE status = 'Out' and date(waktu) = '$hariini'")->row_array();
 
         return $totKasMasuk['sAwal'];
+    }
+
+    public function saldoAkhir()
+    {
+        $hariini = date('Y-m-d');
+        // $dateAkhir = $this->input->post('dateAkhir');
+        $setSaldoAwal = $this->db->get_where('setting', ['id' => 1])->row_array();
+        $setSaldoAwal = $setSaldoAwal['saldoawal'];
+
+        $totInputKas = $this->db->query("SELECT SUM(jumlah) as sAwal
+        FROM deposit
+        WHERE date(waktu) BETWEEN '0000-00-00' and '$hariini'")->row_array();
+
+        $kasmasuk = $this->home_model->kasMasuk();
+        $kaskeluar = $this->home_model->kasKeluar();
+
+        return $setSaldoAwal + $kasmasuk - $kaskeluar;
     }
 }
