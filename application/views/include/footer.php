@@ -1,5 +1,6 @@
 <script src="<?= base_url('assets/js/'); ?>bootstrap.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>jquery-1.12.4.js"></script>
+<script src="<?= base_url('assets/js/'); ?>jquery-ui.js"></script>
 <script src="<?= base_url('assets/js/'); ?>jquery-3.4.1.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>all.js"></script>
 <script src="<?= base_url('assets/js/'); ?>fontawesome.js"></script>
@@ -10,6 +11,10 @@
 <script>
     $(document).ready(function() {
         $('table.display').DataTable();
+    });
+
+    $(document).ready(function() {
+        $(".datepicker").datepicker();
     });
 
     $('.cetak_struk').on('click', function(e) {

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>fontawesome.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>datatables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>jquery-ui.css">
 </head>
 
 <body>

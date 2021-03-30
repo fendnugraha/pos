@@ -21,9 +21,14 @@ class Home extends CI_Controller
 		JOIN inv_location c ON c.id = b.location_id
         WHERE a.uname='$uname'";
 
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $data['dep_recap'] = $this->home_model->depositRecap();
+        $data['dep_recap'] = $this->home_model->depositRecap($tanggal);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 
@@ -351,5 +356,22 @@ class Home extends CI_Controller
         $printer->close();
 
         redirect('home');
+    }
+
+    public function sendMessage($chatID, $messaggio, $token)
+    {
+        echo "sending message to " . $chatID . "\n";
+
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID;
+        $url = $url . "&text=" . urlencode($messaggio);
+        $ch = curl_init();
+        $optArray = array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true
+        );
+        curl_setopt_array($ch, $optArray);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
     }
 }
