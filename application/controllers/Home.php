@@ -16,10 +16,7 @@ class Home extends CI_Controller
     public function index()
     {
         $uname = $this->session->userdata('uname');
-        $sql = "SELECT a.*,b.location_id,c.prefix_code,c.name as loc_name,c.cash_account FROM user a
-		JOIN location_access b ON b.user_id = a.id
-		JOIN inv_location c ON c.id = b.location_id
-        WHERE a.uname='$uname'";
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
 
         if (null !== $this->input->post('tanggal')) {
             $tanggal = $this->input->post('tanggal');
@@ -149,7 +146,7 @@ class Home extends CI_Controller
         $this->db->set($data);
         $this->db->where('id', 1);
         $this->db->update('setting');
-        redirect('home');
+        redirect('home/setting');
     }
 
     public function userProfile()
@@ -373,5 +370,24 @@ class Home extends CI_Controller
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
+    }
+
+    public function setting()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+
+        $data['title'] = 'GSM - Setting';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/setting', $data);
+        $this->load->view('include/footer');
     }
 }
