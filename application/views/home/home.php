@@ -158,49 +158,33 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                    <hr>
                     <div class="row mb-2 mt-2">
+
                         <div class="col">
-                            <div class="card bg-primary text-white">
-                                <div class="card-body">
-                                    <h6 class="card-title">
-                                        Saldo Awal
-                                    </h6>
-                                    <p class="card-text text-end" style="font-size: 0.6rem;"><?= number_format($this->home_model->saldoAwal()); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card bg-success text-white">
-                                <div class="card-body">
-                                    <h6 class="card-title">
-                                        Kas Masuk
-                                    </h6>
-                                    <p class="card-text text-end" style="font-size: 0.6rem;"><?= number_format($this->home_model->kasMasuk()); ?></p>
-                                </div>
-                            </div>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>Saldo Awal</td>
+                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->saldoAwal()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Masuk</td>
+                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keluar</td>
+                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Saldo Akhir</td>
+                                        <td class="text-end fw-bold"><?= number_format($this->home_model->saldoAkhir()); ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                         </div>
-                    </div>
-                    <div class="row mb-2">
                         <div class="col">
-                            <div class="card bg-dark text-white">
-                                <div class="card-body">
-                                    <h6 class="card-title">
-                                        Saldo Akhir
-                                    </h6>
-                                    <p class="card-text text-end" style="font-size: 0.6rem;"><?= number_format($this->home_model->saldoAkhir()); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card bg-danger text-white">
-                                <div class="card-body">
-                                    <h6 class="card-title">
-                                        Kas Keluar
-                                    </h6>
-                                    <p class="card-text text-end" style="font-size: 0.6rem;"><?= number_format($this->home_model->kasKeluar()); ?></p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= base_url('home'); ?>">Home</a>
                     </li>
@@ -42,6 +42,8 @@
                         </ul>
                     </li> -->
                 </ul>
+                <span class="navbar-text">
+                    User currently logged in is <strong><?= $user['name']; ?></strong></span>
             </div>
         </div>
     </nav>

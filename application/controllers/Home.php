@@ -250,7 +250,8 @@ class Home extends CI_Controller
         $id = $this->input->post('transferId');
 
         $deprecap = $this->home_model->depositRecapByID($id);
-        // echo $deprecap['kasir'];
+        $kasir = $this->db->get_where('user', ['uname' => $deprecap['kasir']])->row_array();
+        $kasir = $kasir['name'];
         $set_struk = $this->db->get_where('setting', ['id' => 1])->row_array();
 
         //membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
@@ -338,7 +339,7 @@ class Home extends CI_Controller
         $printer->text("Note : " . $deprecap['keterangan'] . "\n");
         $printer->text("----------------------------------------\n");
         // $printer->text(buatBaris4Kolom('', "Total", number_format($deprecap['jumlah'])));
-        $printer->text("Kasir : " . $deprecap['kasir'] . "\n");
+        $printer->text("Kasir : " . $kasir . "\n");
         $printer->text("\n");
 
         // Pesan penutup
