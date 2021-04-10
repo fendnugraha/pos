@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 03, 2021 at 07:26 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Host: localhost
+-- Generation Time: Apr 10, 2021 at 01:50 PM
+-- Server version: 10.3.15-MariaDB
+-- PHP Version: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -1241,6 +1242,7 @@ CREATE TABLE `deposit` (
   `id` int(11) NOT NULL,
   `idagen` varchar(160) NOT NULL,
   `jumlah` int(11) NOT NULL,
+  `metode` int(1) NOT NULL,
   `status` varchar(5) NOT NULL,
   `produk` varchar(160) NOT NULL,
   `tujuan` varchar(15) NOT NULL,
@@ -1253,22 +1255,8 @@ CREATE TABLE `deposit` (
 -- Dumping data for table `deposit`
 --
 
-INSERT INTO `deposit` (`id`, `idagen`, `jumlah`, `status`, `produk`, `tujuan`, `kasir`, `waktu`, `keterangan`) VALUES
-(1, '148 (UMICELL)', 200000, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-03-28 06:47:58', ''),
-(2, 'KONSUMEN', 5000, 'Out', 's5', '082119749909', 'fend', '2021-03-30 06:48:50', ''),
-(3, '---', 40000000, 'Out', '---', '---', 'fend', '2021-04-01 06:49:53', 'Setor ke bank'),
-(4, 'ID0098 DOA IBU', 1000000, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-01 07:06:34', ''),
-(5, 'ID0548 KAMALUDIN', 500000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 07:11:54', ''),
-(6, 'ID0179 DIANA ANHARI', 200000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 07:28:17', ''),
-(7, 'ID0023 NURAENI', 100000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 07:29:46', ''),
-(8, 'MANG DODONG', 300000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 07:30:20', ''),
-(9, 'ID0183 DERONI', 200000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 12:31:46', ''),
-(10, 'ID0232 PEHUL CELL', 200000, 'Out', 'Isi Saldo Deposit', '-', 'narayan', '2021-04-01 12:43:09', ''),
-(11, 'ID0202 ULI CELL', 300000, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-02 09:48:23', ''),
-(12, 'ID0333 OWNER GSM', 500000, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-02 09:48:49', ''),
-(13, 'KONSUMEN', 102000, 'Out', 'S100', '082119749909', 'fend', '2021-04-02 10:01:58', ''),
-(14, '---', 20000, 'Out', '---', '---', 'fend', '2021-04-02 10:13:12', 'uang bensin'),
-(15, '---', 922000, 'Out', '---', '---', 'fend', '2021-04-02 10:15:56', 'Setor ke bank');
+INSERT INTO `deposit` (`id`, `idagen`, `jumlah`, `metode`, `status`, `produk`, `tujuan`, `kasir`, `waktu`, `keterangan`) VALUES
+(18, '---', 50000, 1, 'Out', '---', '---', 'fend', '2021-04-10 18:38:23', 'uang makan karyawan');
 
 -- --------------------------------------------------------
 
@@ -1282,6 +1270,7 @@ CREATE TABLE `setting` (
   `alamat` varchar(160) NOT NULL,
   `telepon` varchar(20) NOT NULL,
   `saldoawal` int(11) NOT NULL,
+  `kasawal` int(11) NOT NULL,
   `akhirkata` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1289,8 +1278,8 @@ CREATE TABLE `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `namakonter`, `alamat`, `telepon`, `saldoawal`, `akhirkata`) VALUES
-(1, 'DOA IBU Inc.', 'Jl. Bhayangkara No. 327 Ciwidey', '082119749909', 50000000, 'TERIMA KASIH SUDAH BERKUNJUNG');
+INSERT INTO `setting` (`id`, `namakonter`, `alamat`, `telepon`, `saldoawal`, `kasawal`, `akhirkata`) VALUES
+(1, 'DOA IBU Inc.', 'Jl. Bhayangkara No. 327 Ciwidey', '082119749909', 1000000, 0, 'TERIMA KASIH SUDAH BERKUNJUNG');
 
 -- --------------------------------------------------------
 
@@ -1316,7 +1305,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `uname`, `image`, `password`, `role_id`, `is_active`, `date_created`, `last_login`) VALUES
 (1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1616487167),
-(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1617424977),
+(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1618052697),
 (26, 'Narayan Sangkar', 'narayan', 'default.jpg', '$2y$10$GNtWfCFB72fh0alo3ecgIOpsAktJgQen0O9zRzHL.ovJyTg5cEcQK', 2, 1, 1617251697, 1617255093);
 
 --
@@ -1361,7 +1350,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `setting`
