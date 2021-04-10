@@ -222,7 +222,7 @@
                                         <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk()); ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Pengeluaran</td>
+                                        <td>Biaya</td>
                                         <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar()); ?></td>
                                     </tr>
                                     <tr>
