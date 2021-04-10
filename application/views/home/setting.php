@@ -22,6 +22,10 @@
                             <input type="number" name="saldoawal" id="saldoawal" class="form-control form-control-sm" value="<?= $setting['saldoawal']; ?>">
                         </div>
                         <div class="mb-3">
+                            <label for="saldoawal" class="form-label">Kas Awal</label>
+                            <input type="number" name="kasawal" id="kasawal" class="form-control form-control-sm" value="<?= $setting['kasawal']; ?>">
+                        </div>
+                        <div class="mb-3">
                             <label for="akhirkata" class="form-label">Akhir Kata</label>
                             <input type="text" name="akhirkata" id="akhirkata" class="form-control form-control-sm" value="<?= $setting['akhirkata']; ?>">
                         </div>

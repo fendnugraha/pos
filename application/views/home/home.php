@@ -65,6 +65,18 @@
                             <label for="keterangan" class="form-label">Keterangan</label>
                             <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm">
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodek" id="metodek1" value=0>
+                            <label class="form-check-label" for="metodek1">
+                                Saldo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodek" id="metodek2" value=1 checked>
+                            <label class="form-check-label" for="metodek2">
+                                Kas/Tunai
+                            </label>
+                        </div>
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
                             <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm">
@@ -83,6 +95,18 @@
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
                             <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodem" id="metodem1" value=0 checked>
+                            <label class="form-check-label" for="metodem1">
+                                Saldo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodem" id="metodem2" value=1>
+                            <label class="form-check-label" for="metodem2">
+                                Kas/Tunai
+                            </label>
                         </div>
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
@@ -162,6 +186,7 @@
                     <div class="row mb-2 mt-2">
 
                         <div class="col">
+                            <h4>Saldo</h4>
                             <table class="table table-sm">
                                 <tbody>
                                     <tr>
@@ -170,11 +195,11 @@
                                     </tr>
                                     <tr>
                                         <td>Masuk</td>
-                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk()); ?></td>
+                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->saldoMasuk()); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Keluar</td>
-                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar()); ?></td>
+                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->saldoKeluar()); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Saldo Akhir</td>
@@ -185,6 +210,27 @@
 
                         </div>
                         <div class="col">
+                            <h4>Kas</h4>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>Kas Awal</td>
+                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->kasAwal()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pendapatan</td>
+                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pengeluaran</td>
+                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar()); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kas Akhir</td>
+                                        <td class="text-end fw-bold"><?= number_format($this->home_model->kasAkhir()); ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

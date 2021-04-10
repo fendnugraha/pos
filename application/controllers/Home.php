@@ -74,6 +74,7 @@ class Home extends CI_Controller
             'id' => null,
             'idagen' => $cekid['name'],
             'jumlah' => $this->input->post('jumlah'),
+            'metode' => 0,
             'status' => 'Out',
             'produk' => $produk,
             'tujuan' => $tujuan,
@@ -94,6 +95,7 @@ class Home extends CI_Controller
             'id' => null,
             'idagen' => '---',
             'jumlah' => $this->input->post('jumlah'),
+            'metode' => $this->input->post('metodek'),
             'status' => 'Out',
             'produk' => '---',
             'tujuan' => '---',
@@ -114,6 +116,7 @@ class Home extends CI_Controller
             'id' => null,
             'idagen' => '---',
             'jumlah' => $this->input->post('jumlah'),
+            'metode' => $this->input->post('metodem'),
             'status' => 'In',
             'produk' => '---',
             'tujuan' => '---',
@@ -140,6 +143,7 @@ class Home extends CI_Controller
             'alamat' => $this->input->post('alamat'),
             'telepon' => $this->input->post('telepon'),
             'saldoawal' => $this->input->post('saldoawal'),
+            'kasawal' => $this->input->post('kasawal'),
             'akhirkata' => $this->input->post('akhirkata')
         ];
 
@@ -147,102 +151,6 @@ class Home extends CI_Controller
         $this->db->where('id', 1);
         $this->db->update('setting');
         redirect('home/setting');
-    }
-
-    public function userProfile()
-    {
-        $uname = $this->session->userdata('uname');
-        $sql = "SELECT a.*,b.location_id,c.prefix_code,c.name as loc_name,c.cash_account,d.name as namauser,d.phone,d.email,d.type FROM user a
-        JOIN location_access b ON b.user_id = a.id
-        JOIN inv_location c ON c.id = b.location_id
-        JOIN contact d ON d.id = a.name
-        WHERE a.uname='$uname'";
-
-        $data['logtrack'] = $this->db->get_where('logtrack', ['user' => $this->session->userdata['user_id']])->result_array();
-
-        $data['user'] = $this->db->query($sql)->row_array();
-
-
-        $oldpassword = $this->input->post('oldpassword');
-        $newpassword = $this->input->post('newpassword');
-        $cnewpassword = $this->input->post('cnewpassword');
-
-        $this->form_validation->set_rules('oldpassword', 'Old Password', 'required');
-        $this->form_validation->set_rules('newpassword', 'New Password', 'required|min_length[8]');
-        $this->form_validation->set_rules('cnewpassword', 'Confirm New Password', 'required|matches[newpassword]');
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'GSM - Profile';
-            $this->load->view('include/header', $data);
-            $this->load->view('content/profile', $data);
-            $this->load->view('include/footer');
-        } else {
-            $user_id = $this->session->userdata['user_id'];
-            $datauser = $this->db->get_where('user', ['id' => $user_id])->row_array();
-
-            if (password_verify($oldpassword, $datauser['password'])) {
-                $user_id = $this->session->userdata['user_id'];
-                $newpassword = $this->input->post('newpassword');
-                if ($this->db->where('id', $user_id)->update('user', ['password' => password_hash($newpassword, PASSWORD_DEFAULT)])) {
-                    $logtrack = [
-                        'id' => null,
-                        'invoice' => '----------',
-                        'waktu' => time(),
-                        'deskripsi' => 'Mengganti password login',
-                        'user' => $this->session->userdata('user_id')
-                    ];
-                    $this->db->insert('logtrack', $logtrack);
-                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <strong>Success!</strong> Password successfully changed.
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <i class="ik ik-x"></i>
-                                            </button>
-                                        </div>');
-                    redirect('home/userprofile');
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Failed to change password. Please try again !.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="ik ik-x"></i>
-                </button>
-            </div>');
-                    redirect('home/userprofile');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Old password is incorrect !.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="ik ik-x"></i>
-                </button>
-            </div>');
-                redirect('home/userprofile');
-            }
-        }
-    }
-
-    public function editProfile()
-    {
-        $contact_id = $this->session->userdata('contact_id');
-        $data = [
-            'name' => $this->input->post('nama'),
-            'email' => $this->input->post('email'),
-            'phone' => $this->input->post('phone')
-        ];
-
-        $this->form_validation->set_rules('nama', 'Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'valid_email');
-        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
-
-        if ($this->form_validation->run() == true) {
-            $this->db->where('id', $contact_id)->update('contact', $data);
-        }
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Profile updated !.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="ik ik-x"></i>
-                </button>
-            </div>');
-        redirect('home/userprofile');
     }
 
     public function faktur_print()
