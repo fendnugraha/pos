@@ -80,7 +80,11 @@ class Home_model extends CI_Model
         FROM deposit
         WHERE status = 'Out' and metode=1 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
 
-        return $setKasAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
+        $totSaldoMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
+                        FROM deposit
+                        WHERE status = 'Out' and metode=0 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
+
+        return $setKasAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'] + $totSaldoMasuk['sAwal'];
     }
 
     public function kasMasuk()

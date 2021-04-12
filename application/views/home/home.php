@@ -8,7 +8,7 @@
                 <div class="card-body"> -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="desposit-tab" data-bs-toggle="tab" href="#desposit" role="tab" aria-controls="desposit" aria-selected="true">Desposit</a>
+                    <a class="nav-link active" id="desposit-tab" data-bs-toggle="tab" href="#desposit" role="tab" aria-controls="desposit" aria-selected="true">Transaksi</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="kasmasuk-tab" data-bs-toggle="tab" href="#kasmasuk" role="tab" aria-controls="kasmasuk" aria-selected="false">Kas Masuk</a>
@@ -20,37 +20,51 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="desposit" role="tabpanel" aria-labelledby="desposit-tab">
                     <form action="<?= base_url('home'); ?>" method="post">
-                        <div class="mb-3">
-                            <label for="idagen" class="form-label">ID Agen/Kode</label>
-                            <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
-                            <select name="idagen" id="idagen" class="form-select">
-                                <option value="">Select ID</option>
-                                <?php foreach ($kontak as $k) { ?>
-                                    <option value="<?= $k['id']; ?>"><?= $k['name']; ?></option>
-                                <?php }; ?>
-                            </select>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4">
-                                <label for="produk" class="form-label">Produk</label>
-                                <input type="text" name="produk" id="produk" class="form-control form-control-sm">
-                            </div>
-                            <div class="col">
-                                <label for="tujuan" class="form-label">Tujuan</label>
-                                <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm">
+                        <h4>Deposit</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="idagen" class="form-label">ID Agen/Kode</label>
+                                    <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
+                                    <select name="idagen" id="idagen" class="form-select">
+                                        <option value="">Select ID</option>
+                                        <?php foreach ($kontak as $k) { ?>
+                                            <option value="<?= $k['id']; ?>"><?= $k['name']; ?></option>
+                                        <?php }; ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="jumlah" class="form-label">Jumlah</label>
-                            <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm">
+                        <h4 class="mt-2">Pulsa & Data</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <label for="produk" class="form-label">Produk</label>
+                                        <input type="text" name="produk" id="produk" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="col">
+                                        <label for="tujuan" class="form-label">Tujuan</label>
+                                        <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Jumlah & Keterangan</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="jumlah" class="form-label">Jumlah</label>
+                                    <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm" placeholder="Harus diisi">
+                                </div>
+                                <!-- <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm" placeholder="Opsional">
+                                </div> -->
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm">
-                        </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-primary mt-2">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -161,7 +175,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dep_recap as $d) {; ?>
+                            <?php foreach ($dep_recap as $d) {;
+                            ?>
                                 <tr>
                                     <td class="align-middle text-center"><?= $d['id']; ?></td>
                                     <td><?= $d['waktu']; ?></td>
