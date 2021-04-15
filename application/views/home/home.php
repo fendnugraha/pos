@@ -136,7 +136,7 @@
             <!-- </div>
             </div> -->
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
                     Saldo & Transaksi

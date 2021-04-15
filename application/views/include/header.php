@@ -26,6 +26,9 @@
                         <a class="nav-link active" aria-current="page" href="<?= base_url('home'); ?>">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('home/report'); ?>">Report</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/setting'); ?>">Setting</a>
                     </li>
                     <li class="nav-item">

@@ -12,6 +12,16 @@ class Home_model extends CI_Model
         return $this->db->get_where('deposit', ['id' => $id])->row_array();
     }
 
+    public function recapNonDeposit($tanggal, $status)
+    {
+        $data = [
+            'date(waktu)' => $tanggal,
+            'metode' => 1,
+            'status' => $status
+        ];
+        return $this->db->get_where('deposit', $data)->result_array();
+    }
+
     public function saldoAwal()
     {
         $hariini = date('Y-m-d');

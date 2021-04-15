@@ -299,4 +299,24 @@ class Home extends CI_Controller
         $this->load->view('home/setting', $data);
         $this->load->view('include/footer');
     }
+
+    public function report()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+        $data['nonDepIn'] = $this->home_model->recapNonDeposit($tanggal, 'In');
+        $data['nonDepOut'] = $this->home_model->recapNonDeposit($tanggal, 'Out');
+        $data['title'] = 'GSM - Report';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/report', $data);
+        $this->load->view('include/footer');
+    }
 }
