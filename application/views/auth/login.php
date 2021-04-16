@@ -11,6 +11,12 @@
     <style>
         body {
             padding-top: 5%;
+            background-color: darkorange;
+        }
+
+        .card {
+            background-color: rgba(245, 245, 245, 1);
+            opacity: .8;
         }
 
         @media (max-width: 991.98px) {
