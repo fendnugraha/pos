@@ -56,7 +56,7 @@ class Home extends CI_Controller
         } else {
             $idagen = $this->input->post('idagen');
         };
-        $cekid = $this->db->get_where('contact', ['id' => $idagen])->row_array();
+        $cekid = $this->db->get_where('contact', ['idagen' => $idagen])->row_array();
 
         if (empty($this->input->post('tujuan'))) {
             $tujuan = "-";
@@ -70,9 +70,11 @@ class Home extends CI_Controller
             $produk = $this->input->post('produk');
         };
 
+        $konsumen = $idagen . "-" . $cekid['name'];
+
         $data = [
             'id' => null,
-            'idagen' => $cekid['name'],
+            'idagen' => $konsumen,
             'jumlah' => $this->input->post('jumlah'),
             'metode' => 0,
             'status' => 'Out',

@@ -20,38 +20,46 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="desposit" role="tabpanel" aria-labelledby="desposit-tab">
                     <form action="<?= base_url('home'); ?>" method="post">
-                        <h4>Deposit</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="idagen" class="form-label">ID Agen/Kode</label>
-                                    <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
-                                    <select name="idagen" id="idagen" class="form-select">
-                                        <option value="">Select ID</option>
-                                        <?php foreach ($kontak as $k) { ?>
-                                            <option value="<?= $k['id']; ?>"><?= $k['name']; ?></option>
-                                        <?php }; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <h4 class="mt-2">Pulsa & Data</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-4">
-                                        <label for="produk" class="form-label">Produk</label>
-                                        <input type="text" name="produk" id="produk" class="form-control form-control-sm">
-                                    </div>
-                                    <div class="col">
-                                        <label for="tujuan" class="form-label">Tujuan</label>
-                                        <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Deposit
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="mb-3">
+                                            <label for="idagen" class="form-label">ID Agen/Kode</label>
+                                            <input type="text" name="idagen" id="idagen" class="form-control form-control-sm">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Pulsa & Data
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row mb-3">
+                                            <div class="col-4">
+                                                <label for="produk" class="form-label">Produk</label>
+                                                <input type="text" name="produk" id="produk" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col">
+                                                <label for="tujuan" class="form-label">Tujuan</label>
+                                                <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <h4 class="mt-2">Jumlah & Keterangan</h4>
-                        <div class="card">
+                        <div class="card mt-3">
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="jumlah" class="form-label">Jumlah</label>
