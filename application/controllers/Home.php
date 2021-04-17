@@ -312,6 +312,7 @@ class Home extends CI_Controller
         } else {
             $tanggal = date('Y-m-d');
         };
+        $data['tanggal'] = $tanggal;
         $data['user'] = $this->db->query($sql)->row_array();
         $data['setting'] = $this->db->get('setting')->row_array();
         $data['nonDepIn'] = $this->home_model->recapNonDeposit($tanggal, 'In');

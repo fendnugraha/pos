@@ -1,5 +1,22 @@
 <div class="container">
-    <h4 class="display-4 mb-5">Laporan Non Deposit</h4>
+    <h4 class="display-4 mb-5">Laporan Non Deposit <?= $tanggal; ?></h4>
+    <form action="<?= base_url('home/report'); ?>" method="post" class="mb-3">
+        <div class="row">
+            <div class="col">
+                <div class="mb3">
+                    <input type="date" name="tanggal" id="tanggal" class="form-control form-control-sm" value="<?= date('Y-m-d'); ?>" autocomplete="off">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb3">
+                    <button type="submit" class="btn btn-sm btn-primary mr-3">View</button>
+                    <a href="<?= base_url('home'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
     <div class="row">
         <div class="col">
             <h4 class="text-success">Kas Masuk</h4>
