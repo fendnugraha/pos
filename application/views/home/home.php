@@ -174,7 +174,7 @@
 
 
                     </form>
-                    <table class="table table-sm table-hover display" id="mytable" style="font-size: 0.6em;">
+                    <table class="table table-sm table-hover display table-responsive" id="mytable" style="font-size: 0.6em;">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>

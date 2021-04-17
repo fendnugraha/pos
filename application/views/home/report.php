@@ -18,8 +18,8 @@
 
     </form>
     <h4 class="text-success">Kas Masuk</h4>
-    <table class="table table-sm display table-primary table-stripped">
-        <thead>
+    <table class="table table-sm display table-primary table-stripped table-responsive">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Waktu</th>
