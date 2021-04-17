@@ -10,7 +10,7 @@
             <div class="col">
                 <div class="mb3">
                     <button type="submit" class="btn btn-sm btn-primary mr-3">View</button>
-                    <a href="<?= base_url('home'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
+                    <a href="<?= base_url('home/report'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
                 </div>
             </div>
         </div>
