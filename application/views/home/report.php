@@ -1,3 +1,8 @@
+<style>
+    td {
+        font-size: 0.8rem;
+    }
+</style>
 <div class="container">
     <h4 class="display-5 mb-5">Laporan Non Deposit <?= $tanggal; ?></h4>
     <form action="<?= base_url('home/report'); ?>" method="post" class="mb-3">

@@ -58,7 +58,7 @@ class Home_model extends CI_Model
 
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and metode=0 and date(waktu) = '$hariini'")->row_array();
+        WHERE status = 'Out' and metode=0 or metode=3 and date(waktu) = '$hariini'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
