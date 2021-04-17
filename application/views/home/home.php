@@ -33,6 +33,12 @@
                                             <label for="idagen" class="form-label">ID Agen/Kode</label>
                                             <input type="text" name="idagen" id="idagen" class="form-control form-control-sm">
                                         </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="cash" name="cash" value=3 checked>
+                                            <label class="form-check-label" for="cash" id="label-cash">
+                                                Cash/Tunai
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

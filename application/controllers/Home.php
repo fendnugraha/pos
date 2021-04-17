@@ -70,13 +70,19 @@ class Home extends CI_Controller
             $produk = $this->input->post('produk');
         };
 
+        if (null !== $this->input->post('cash')) {
+            $metode = 0;
+        } else {
+            $metode = 3;
+        }
+
         $konsumen = $idagen . "-" . $cekid['name'];
 
         $data = [
             'id' => null,
             'idagen' => $konsumen,
             'jumlah' => $this->input->post('jumlah'),
-            'metode' => 0,
+            'metode' => $metode,
             'status' => 'Out',
             'produk' => $produk,
             'tujuan' => $tujuan,
@@ -317,6 +323,7 @@ class Home extends CI_Controller
         $data['setting'] = $this->db->get('setting')->row_array();
         $data['nonDepIn'] = $this->home_model->recapNonDeposit($tanggal, 'In');
         $data['nonDepOut'] = $this->home_model->recapNonDeposit($tanggal, 'Out');
+        $data['nonDepBon'] = $this->db->get_where('deposit', ['date(waktu)' => $tanggal, 'metode' => 3])->result_array();
         $data['title'] = 'GSM - Report';
         $this->load->view('include/header', $data);
         $this->load->view('home/report', $data);
