@@ -99,9 +99,10 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Nama</th>
                 <th>Username</th>
-                <th>Login</th>
-                <th>Logout</th>
+                <th>Waktu Login</th>
+                <th>Waktu Logout</th>
                 <th>Sisa Saldo</th>
                 <th>Sisa Kas</th>
             </tr>
@@ -111,6 +112,7 @@
             foreach ($userlogin as $n) { ?>
                 <tr>
                     <td><?= $n['id']; ?></td>
+                    <td><?= strtoupper($n['name']); ?></td>
                     <td><?= $n['uname']; ?></td>
                     <td><?= date('Y-m-d H:i:s', $n['last_login']); ?></td>
                     <td><?= date('Y-m-d H:i:s', $n['last_logout']); ?></td>

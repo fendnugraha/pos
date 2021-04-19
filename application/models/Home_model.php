@@ -22,10 +22,9 @@ class Home_model extends CI_Model
         return $this->db->get_where('deposit', $data)->result_array();
     }
 
-    public function saldoAwal()
+    public function saldoAwal($tanggal)
     {
-        $hariini = date('Y-m-d');
-        $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($hariini)));
+        $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($tanggal)));
         // $dateAkhir = $this->input->post('dateAkhir');
         $setSaldoAwal = $this->db->get_where('setting', ['id' => 1])->row_array();
         $setSaldoAwal = $setSaldoAwal['saldoawal'];
@@ -41,43 +40,36 @@ class Home_model extends CI_Model
         return $setSaldoAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
     }
 
-    public function saldoMasuk()
+    public function saldoMasuk($tanggal)
     {
-        $hariini = date('Y-m-d');
-
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'In' and metode=0 and date(waktu) = '$hariini'")->row_array();
+        WHERE status = 'In' and metode=0 and date(waktu) = '$tanggal'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
 
-    public function saldoKeluar()
+    public function saldoKeluar($tanggal)
     {
-        $hariini = date('Y-m-d');
-
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and metode=0 and date(waktu) = '$hariini' or status = 'Out' and metode=3 and date(waktu) = '$hariini'")->row_array();
+        WHERE status = 'Out' and metode=0 and date(waktu) = '$tanggal' or status = 'Out' and metode=3 and date(waktu) = '$tanggal'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
 
-    public function saldoAkhir()
+    public function saldoAkhir($tanggal)
     {
-        $hariini = date('Y-m-d');
-
-        $setSaldoAwal = $this->home_model->saldoAwal();
-        $kasmasuk = $this->home_model->saldoMasuk();
-        $kaskeluar = $this->home_model->saldoKeluar();
+        $setSaldoAwal = $this->home_model->saldoAwal($tanggal);
+        $kasmasuk = $this->home_model->saldoMasuk($tanggal);
+        $kaskeluar = $this->home_model->saldoKeluar($tanggal);
 
         return $setSaldoAwal + $kasmasuk - $kaskeluar;
     }
 
-    public function kasAwal()
+    public function kasAwal($tanggal)
     {
-        $hariini = date('Y-m-d');
-        $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($hariini)));
+        $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($tanggal)));
         // $dateAkhir = $this->input->post('dateAkhir');
         $setKasAwal = $this->db->get_where('setting', ['id' => 1])->row_array();
         $setKasAwal = $setKasAwal['kasawal'];
@@ -97,39 +89,33 @@ class Home_model extends CI_Model
         return $setKasAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'] + $totSaldoMasuk['sAwal'];
     }
 
-    public function kasMasuk()
+    public function kasMasuk($tanggal)
     {
-        $hariini = date('Y-m-d');
-
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'In' and metode=1 and date(waktu) = '$hariini'")->row_array();
+        WHERE status = 'In' and metode=1 and date(waktu) = '$tanggal'")->row_array();
 
         $totSaldoMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
                                             FROM deposit
-                                            WHERE status = 'Out' and metode=0 and date(waktu) = '$hariini'")->row_array();
+                                            WHERE status = 'Out' and metode=0 and date(waktu) = '$tanggal'")->row_array();
 
         return $totSaldoMasuk['sAwal'] + $totKasMasuk['sAwal'];
     }
 
-    public function kasKeluar()
+    public function kasKeluar($tanggal)
     {
-        $hariini = date('Y-m-d');
-
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and metode=1 and date(waktu) = '$hariini'")->row_array();
+        WHERE status = 'Out' and metode=1 and date(waktu) = '$tanggal'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
 
-    public function kasAkhir()
+    public function kasAkhir($tanggal)
     {
-        $hariini = date('Y-m-d');
-
-        $setKasAwal = $this->home_model->kasAwal();
-        $kasmasuk = $this->home_model->kasMasuk();
-        $kaskeluar = $this->home_model->kasKeluar();
+        $setKasAwal = $this->home_model->kasAwal($tanggal);
+        $kasmasuk = $this->home_model->kasMasuk($tanggal);
+        $kaskeluar = $this->home_model->kasKeluar($tanggal);
 
         return $setKasAwal + $kasmasuk - $kaskeluar;
     }

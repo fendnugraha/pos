@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>datatables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>jquery-ui.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>mycss.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
             <a class="navbar-brand" href="<?= base_url('home'); ?>"><?= $setting['namakonter']; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +47,7 @@
                     </li> -->
                 </ul>
                 <span class="navbar-text">
-                    User currently logged in is <strong><?= $user['name']; ?></strong></span>
+                    User currently logged in is <strong><?= ucwords($user['name']); ?></strong></span>
             </div>
         </div>
     </nav>

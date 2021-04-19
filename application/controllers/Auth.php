@@ -63,9 +63,10 @@ class Auth extends CI_Controller
 
     public function logout()
     {
+        $tanggal = date('Y-m-d');
         $uname = $this->session->userdata('uname');
-        $sisasaldo = $this->home_model->saldoAkhir();
-        $kasakhir = $this->home_model->kasAkhir();
+        $sisasaldo = $this->home_model->saldoAkhir($tanggal);
+        $kasakhir = $this->home_model->kasAkhir($tanggal);
         $this->db->where('uname', $uname)->update(
             'user',
             [

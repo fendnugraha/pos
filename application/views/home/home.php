@@ -151,31 +151,30 @@
             <!-- </div>
             </div> -->
         </div>
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-header">
-                    Saldo & Transaksi
+        <div class="col-sm-9">
+            <form action="<?= base_url('home'); ?>" method="post" class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb3">
+                            <input type="date" name="tanggal" id="tanggal" class="form-control form-control-sm" value="<?= date('Y-m-d'); ?>" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb3">
+                            <button type="submit" class="btn btn-sm btn-primary mr-3">View</button>
+                            <a href="<?= base_url('home'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
+                        </div>
+                    </div>
                 </div>
+            </form>
+            <div class="card">
+                <!-- <div class="card-header">
+                    Saldo & Transaksi
+                </div> -->
+
                 <div class="card-body">
                     <h5 class="card-title">Rekap Input Deposit & Transaksi</h5>
-                    <form action="<?= base_url('home'); ?>" method="post" class="mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb3">
-                                    <input type="date" name="tanggal" id="tanggal" class="form-control form-control-sm" value="<?= date('Y-m-d'); ?>" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb3">
-                                    <button type="submit" class="btn btn-sm btn-primary mr-3">View</button>
-                                    <a href="<?= base_url('home'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </form>
-                    <table class="table table-sm table-hover display table-responsive" id="mytable" style="font-size: 0.6em;">
+                    <table class="table table-sm table-hover display table-responsive" id="mytable" style="font-size: 0.7em;">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
@@ -185,14 +184,14 @@
                                 <th>Tujuan</th>
                                 <th>Kasir</th>
                                 <th>Jumlah</th>
-                                <th>Sisa Saldo</th>
+                                <th>Saldo Akhir</th>
                                 <th>I/O</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sisasaldo = $this->home_model->saldoAwal();
+                            $sisasaldo = $this->home_model->saldoAwal($tanggal);
                             foreach ($dep_recap as $d) {;
                                 if ($d['status'] == "In" && $d['metode'] == 0) {
                                     $sisasaldo += $d['jumlah'];
@@ -226,23 +225,23 @@
 
                         <div class="col">
                             <h4>Saldo</h4>
-                            <table class="table table-sm">
+                            <table class="table table-sm table-dark">
                                 <tbody>
                                     <tr>
                                         <td>Saldo Awal</td>
-                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->saldoAwal()); ?></td>
+                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->saldoAwal($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Masuk</td>
-                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->saldoMasuk()); ?></td>
+                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->saldoMasuk($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Keluar</td>
-                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->saldoKeluar()); ?></td>
+                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->saldoKeluar($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Saldo Akhir</td>
-                                        <td class="text-end fw-bold"><?= number_format($this->home_model->saldoAkhir()); ?></td>
+                                        <td class="text-end fw-bold"><?= number_format($this->home_model->saldoAkhir($tanggal)); ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -250,23 +249,23 @@
                         </div>
                         <div class="col">
                             <h4>Kas</h4>
-                            <table class="table table-sm">
+                            <table class="table table-sm table-success">
                                 <tbody>
                                     <tr>
                                         <td>Kas Awal</td>
-                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->kasAwal()); ?></td>
+                                        <td class="text-end text-primary fw-bold"><?= number_format($this->home_model->kasAwal($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Pendapatan</td>
-                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk()); ?></td>
+                                        <td class="text-end text-success fw-bold"><?= number_format($this->home_model->kasMasuk($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Biaya</td>
-                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar()); ?></td>
+                                        <td class="text-end text-danger fw-bold"><?= number_format($this->home_model->kasKeluar($tanggal)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Kas Akhir</td>
-                                        <td class="text-end fw-bold"><?= number_format($this->home_model->kasAkhir()); ?></td>
+                                        <td class="text-end fw-bold"><?= number_format($this->home_model->kasAkhir($tanggal)); ?></td>
                                     </tr>
                                 </tbody>
                             </table>

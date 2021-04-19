@@ -17,15 +17,16 @@ class Home extends CI_Controller
     {
         $uname = $this->session->userdata('uname');
         $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        // $data['tanggal'] = date('Y-m-d');
 
         if (null !== $this->input->post('tanggal')) {
-            $tanggal = $this->input->post('tanggal');
+            $data['tanggal'] = $this->input->post('tanggal');
         } else {
-            $tanggal = date('Y-m-d');
+            $data['tanggal'] = date('Y-m-d');
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $data['dep_recap'] = $this->home_model->depositRecap($tanggal);
+        $data['dep_recap'] = $this->home_model->depositRecap($data['tanggal']);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 
