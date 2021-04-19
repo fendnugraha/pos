@@ -6,7 +6,7 @@
 <script src="<?= base_url('assets/js/'); ?>fontawesome.js"></script>
 <script src="<?= base_url('assets/js/'); ?>datatables.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>jquery.dataTables.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/js/'); ?>dataTables.bootstrap5.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>popper.min.js"></script>
 <script>
     $(document).ready(function() {
