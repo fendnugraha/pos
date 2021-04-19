@@ -19,8 +19,6 @@
                 </div>
             </div>
         </div>
-
-
     </form>
     <h4 class="text-success">Kas Masuk</h4>
     <table class="table table-sm display table-primary table-stripped table-responsive">
@@ -96,3 +94,30 @@
         </tbody>
     </table>
     <h5 class="text-end">Total: <?= number_format($totalBon); ?></h5>
+    <h4 class="text-primary">User</h4>
+    <table class="table table-sm display table-stripped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Login</th>
+                <th>Logout</th>
+                <th>Sisa Saldo</th>
+                <th>Sisa Kas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($userlogin as $n) { ?>
+                <tr>
+                    <td><?= $n['id']; ?></td>
+                    <td><?= $n['uname']; ?></td>
+                    <td><?= date('Y-m-d H:i:s', $n['last_login']); ?></td>
+                    <td><?= date('Y-m-d H:i:s', $n['last_logout']); ?></td>
+                    <td class="text-end"><?= number_format($n['sisasaldo']); ?></td>
+                    <td class="text-end"><?= number_format($n['kasakhir']); ?></td>
+                </tr>
+            <?php }; ?>
+        </tbody>
+    </table>
+</div>

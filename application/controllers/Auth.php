@@ -8,6 +8,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('home_model');
     }
 
     public function index()
@@ -62,13 +63,22 @@ class Auth extends CI_Controller
 
     public function logout()
     {
+        $uname = $this->session->userdata('uname');
+        $sisasaldo = $this->home_model->saldoAkhir();
+        $kasakhir = $this->home_model->kasAkhir();
+        $this->db->where('uname', $uname)->update(
+            'user',
+            [
+                'last_logout' => time(),
+                'sisasaldo' => $sisasaldo,
+                'kasakhir' => $kasakhir
+            ]
+        );
         $this->session->unset_userdata('uname');
         $this->session->unset_userdata('role_id');
         // $this->session->set_flashdata('message', '<span class="text-success">See ya !</span>');
         redirect('auth');
     }
-
-
 
     public function register()
     {
@@ -87,6 +97,9 @@ class Auth extends CI_Controller
             'is_active' => 1,
             'date_created' => time(),
             'last_login' => 0,
+            'last_logout' => 0,
+            'sisasaldo' => 0,
+            'kasakhir' => 0
         ];
 
         if ($this->form_validation->run() == false) {

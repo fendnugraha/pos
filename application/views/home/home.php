@@ -83,6 +83,7 @@
                     </form>
                 </div>
                 <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
+                <?= $this->session->flashdata('message'); ?>
                 <div class="tab-pane fade" id="kaskeluar" role="tabpanel" aria-labelledby="kaskeluar-tab">
                     <form action="<?= base_url('home'); ?>" method="post">
                         <div class="mb-3">
@@ -184,12 +185,20 @@
                                 <th>Tujuan</th>
                                 <th>Kasir</th>
                                 <th>Jumlah</th>
+                                <th>Sisa Saldo</th>
                                 <th>I/O</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dep_recap as $d) {;
+                            <?php
+                            $sisasaldo = $this->home_model->saldoAwal();
+                            foreach ($dep_recap as $d) {;
+                                if ($d['status'] == "In" && $d['metode'] == 0) {
+                                    $sisasaldo += $d['jumlah'];
+                                } elseif ($d['status'] == "Out" && $d['metode'] == 0) {
+                                    $sisasaldo -= $d['jumlah'];
+                                }
                             ?>
                                 <tr>
                                     <td class="align-middle text-center"><?= $d['id']; ?></td>
@@ -199,6 +208,7 @@
                                     <td><?= $d['tujuan']; ?></td>
                                     <td><?= $d['kasir']; ?></td>
                                     <td class="text-end"><?= number_format($d['jumlah']); ?></td>
+                                    <td class="text-end"><?= number_format($sisasaldo); ?></td>
                                     <td class="text-center"><?php if ($d['status'] == "In") {
                                                                 echo '<span class="text-success"><i class="fas fa-backward"></i></span>';
                                                             } else {

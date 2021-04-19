@@ -92,6 +92,10 @@ class Home extends CI_Controller
         ];
 
         $this->db->insert('deposit', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Deposit sudah terinput.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
         redirect('home');
     }
 
@@ -324,6 +328,7 @@ class Home extends CI_Controller
         $data['nonDepIn'] = $this->home_model->recapNonDeposit($tanggal, 'In');
         $data['nonDepOut'] = $this->home_model->recapNonDeposit($tanggal, 'Out');
         $data['nonDepBon'] = $this->db->get_where('deposit', ['date(waktu)' => $tanggal, 'metode' => 3])->result_array();
+        $data['userlogin'] = $this->db->get('user')->result_array();
         $data['title'] = 'GSM - Report';
         $this->load->view('include/header', $data);
         $this->load->view('home/report', $data);
