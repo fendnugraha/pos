@@ -195,7 +195,7 @@
                             foreach ($dep_recap as $d) {;
                                 if ($d['status'] == "In" && $d['metode'] == 0) {
                                     $sisasaldo += $d['jumlah'];
-                                } elseif ($d['status'] == "Out" && $d['metode'] == 0) {
+                                } elseif ($d['status'] == "Out" && $d['metode'] == 0 || $d['status'] == "Out" && $d['metode'] == 3) {
                                     $sisasaldo -= $d['jumlah'];
                                 }
                             ?>
