@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 05:46 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Apr 22, 2021 at 03:27 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -2793,119 +2792,46 @@ CREATE TABLE `deposit` (
 --
 
 INSERT INTO `deposit` (`id`, `idagen`, `jumlah`, `metode`, `status`, `produk`, `tujuan`, `kasir`, `waktu`, `keterangan`) VALUES
-(5, 'ID3675-YULI', 430000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', NULL),
-(6, 'id3946-ISYARATCELL', 350000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(7, 'id4021-MIMIN', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(8, 'ID8282-AYU', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(9, 'ID7469-NIACRISTI', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(10, 'ID4199- AAS SUSANTI', 500000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(11, 'id4905-KONTER SERVER', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(12, 'id5627-NENENG', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(13, 'id7751-TINA', 700000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(14, 'id3229-LAMHOT', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(15, 'id4298-SITINUR', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(16, 'id5660-NENG SRI HANDAYANI', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(17, 'id4905-KONTER SERVER', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(18, 'id3989-MIMIN', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(19, 'id8679-YASMIN', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(20, 'id7155-RIYA', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(21, 'id8355-IDA ROSIDA', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(22, 'id4851-AAY', 350000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(23, 'id3431-YANA', 162000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(24, 'id2958-NAZWA', 125000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(25, 'id3760-NADI PUTRA CELL', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(26, 'id3386-SB CELL', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(27, 'id4013-XUMIS', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(28, 'id8825-KEMBAR CELL', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(29, 'id3982-ERNA', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(30, 'id4523-AJANG HIDAYAT', 750000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(31, 'id9073-RESA', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(32, 'id5366-SHINTIA ASTRI PRATAMA ', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(33, 'id3488-LISNAWATI', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(34, 'id3764-BU ELIN', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(35, 'id3637-OLIVE', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(36, 'id0090-TAMA', 7000000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(37, 'id3564-WATI', 60000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(38, 'id8225-YANI', 650000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(39, 'id8459-YOGIOFFICIAL', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(40, 'id8606-ANDRI', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(41, 'id3760-NADI PUTRA CELL', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(42, 'id3386-SB CELL', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(43, 'id0004-HYPNOZE', 1000000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:15:12', ''),
-(45, '---', 200000, 0, 'In', '---', '---', 'vina', '2021-04-16 14:22:33', 'KALA bayar ke BCA'),
-(46, '---', 1005000, 0, 'In', '---', '---', 'vina', '2021-04-16 14:24:30', 'Tukar tunai mandiri'),
-(47, '---', 1005000, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:24:43', 'Tukar tunai mandiri'),
-(48, '---', 3850000, 0, 'In', '---', '---', 'vina', '2021-04-16 14:25:01', 'tukar tunai bri'),
-(49, '---', 3850000, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:25:09', 'tukar tunai bri'),
-(50, '---', 1500, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:27:10', 'desa'),
-(51, '---', 50000, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:32:15', 'ID3637 BON'),
-(52, '---', 7000000, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:32:32', 'id0090 BON'),
-(53, '---', 1000000, 1, 'Out', '---', '---', 'vina', '2021-04-16 14:32:42', 'id0004'),
-(54, 'id3388-INAYAH', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 14:59:35', NULL),
-(55, 'id3813-TITIN', 600000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:15:32', NULL),
-(56, 'id6750-M IHSAN', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:16:20', NULL),
-(57, 'id4442-SANIA', 500000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:16:33', NULL),
-(58, 'id7604-TEH', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:16:50', NULL),
-(59, 'id3487-RIAN', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:17:02', NULL),
-(60, 'id4029-MAWAR CEL', 700000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:18:05', NULL),
-(61, 'id3149-REHAN', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:18:45', NULL),
-(63, 'id8716-TANTRI', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:19:55', NULL),
-(65, '---', 109000, 1, 'Out', '---', '---', 'vina', '2021-04-16 15:29:26', 'tukar tunai edc bca'),
-(66, 'id3556-DR CELL', 90000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 15:57:05', NULL),
-(67, 'id8661- YUDI KAMALUDIN', 850000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 16:01:11', NULL),
-(68, 'id5438-FIKRI', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 16:05:24', NULL),
-(69, 'id3713-BUNGA', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 16:11:31', NULL),
-(70, '---', 9759000, 1, 'In', '---', '---', 'vina', '2021-04-16 16:51:33', 'pendapatan acc'),
-(71, '---', 14058500, 1, 'In', '---', '---', 'vina', '2021-04-16 16:52:25', 'okelink'),
-(72, '---', 50000, 1, 'Out', '---', '---', 'vina', '2021-04-16 16:53:35', 'bon buki kurang setoran'),
-(73, '---', 1400000, 1, 'Out', '---', '---', 'vina', '2021-04-16 16:59:13', 'Tukar tunai mandiri'),
-(74, '---', 300000, 1, 'Out', '---', '---', 'vina', '2021-04-16 16:59:27', 'Tukar tunai mandiri'),
-(75, '---', 10000, 1, 'Out', '---', '---', 'vina', '2021-04-16 17:05:46', 'atk konter'),
-(76, '---', 200000, 1, 'Out', '---', '---', 'vina', '2021-04-16 17:19:53', 'Tukar tunai bca'),
-(77, '---', 200000, 1, 'In', '---', '---', 'vina', '2021-04-16 17:20:22', 'KALA bayar ke BCA'),
-(78, '---', 1500000, 1, 'Out', '---', '---', 'vina', '2021-04-16 17:20:51', 'Tukar tunai mandiri'),
-(79, '---', 28150000, 1, 'Out', '---', '---', 'vina', '2021-04-16 17:25:43', 'pendapatan sift satu vina'),
-(80, 'id3374-AHMAD', 200000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 17:35:45', NULL),
-(81, 'id0064-DONA', 220000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 17:40:25', NULL),
-(82, 'id8165-SYAKIR', 500000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 17:40:51', NULL),
-(83, 'id3326-SUTIAWATI', 400000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 17:42:31', NULL),
-(84, 'id4486-NURI', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 17:47:55', NULL),
-(85, '---', 2000, 1, 'In', '---', '---', 'vina', '2021-04-16 17:56:37', 'admin edc bca'),
-(86, '---', 750000, 1, 'Out', '---', '---', 'vina', '2021-04-16 17:57:16', 'tarik tunai edc bca'),
-(87, '---', 30000, 1, 'In', '---', '---', 'vina', '2021-04-16 18:16:27', 'pendapatan hp deva'),
-(88, '1-KONSUMEN', 305000, 0, 'Out', 'bca300', '2820141329', 'vina', '2021-04-16 18:31:34', NULL),
-(89, 'id0040-UUS', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 18:37:26', NULL),
-(90, '1-KONSUMEN', 505000, 0, 'Out', 'MAN500', '1300019892754', 'vina', '2021-04-16 18:41:51', NULL),
-(91, '---', 2000, 1, 'In', '---', '---', 'vina', '2021-04-16 18:52:19', 'admin edc bca'),
-(92, '---', 100000, 1, 'Out', '---', '---', 'vina', '2021-04-16 18:53:08', 'tarik tunai edc bca'),
-(93, 'id1422-A-CELL', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 18:54:47', NULL),
-(94, '1-KONSUMEN', 155000, 0, 'Out', 'BCA150', '7411003845', 'vina', '2021-04-16 19:14:10', NULL),
-(95, 'id7023-CITRA DEWI', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 19:16:03', NULL),
-(96, 'id4150-RINA', 350000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 19:17:42', NULL),
-(97, 'id2988-IMAS', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'vina', '2021-04-16 19:28:12', NULL),
-(98, '---', 200000, 1, 'Out', '---', '---', 'vina', '2021-04-16 19:28:29', 'Tukar tunai mandiri'),
-(99, '---', 200000, 0, 'In', '---', '---', 'vina', '2021-04-16 19:38:32', 'Tukar tunai mandiri'),
-(100, '1-KONSUMEN', 355000, 0, 'Out', 'BNI350', '0698339572', 'ferdy0132', '2021-04-16 20:03:35', NULL),
-(101, '---', 300000, 0, 'In', '---', '---', 'ferdy0132', '2021-04-16 20:09:46', 'edc mandiri (VINA) blm di tembak'),
-(102, 'id3358-DIDI CEL', 55000, 0, 'Out', 'Isi Saldo Deposit', '-', 'ferdy0132', '2021-04-16 20:10:09', NULL),
-(103, '---', 5000000, 0, 'In', '---', '---', 'ferdy0132', '2021-04-16 20:13:31', 'id0090 bayar bon 5 jt via saldo'),
-(104, '---', 2000000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-16 20:13:58', 'id0090 bayar bon 2 jt via cash'),
-(105, 'id2863-ADEN 2 CELL', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'ferdy0132', '2021-04-16 20:16:43', NULL),
-(106, '1-KONSUMEN', 35000, 0, 'Out', 'd27h', '081286554626', 'ferdy0132', '2021-04-16 20:42:40', NULL),
-(107, '---', 5000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-16 20:43:30', 'admin edc mandiri'),
-(108, '---', 3400000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-16 21:00:36', 'pendapatan okelink'),
-(109, '---', 523500, 1, 'In', '---', '---', 'ferdy0132', '2021-04-16 21:01:13', 'pendapatan acc'),
-(110, 'ID0098-DOA IBU', 300000, 3, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-17 12:40:45', NULL),
-(111, 'ID2509-', 500000, 3, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-17 12:41:34', NULL),
-(112, '---', 300000, 1, 'In', '---', '---', 'fend', '2021-04-17 12:42:17', 'ID0098'),
-(113, 'ID0098-DOA IBU', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 21:56:19', NULL),
-(114, 'ID0009-LELA', 90000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 21:56:26', NULL),
-(115, '---', 10000000, 0, 'In', '---', '---', 'fend', '2021-04-19 22:00:52', 'Penambahan Saldo'),
-(116, '---', 30000, 1, 'Out', '---', '---', 'fend', '2021-04-19 22:01:47', 'Uang makan karyawan 2hari'),
-(117, 'OX0008-', 600000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 22:03:52', NULL),
-(118, 'id0007-', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 22:05:30', NULL),
-(119, 'ID0098-DOA IBU', 6000000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 22:10:02', NULL),
-(120, 'ID0098-DOA IBU', 900000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-19 22:11:44', NULL);
+(1, 'id8716-TANTRI', 100000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(2, 'id4150-RINA', 300000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(3, 'id8461-SISKA', 350000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(4, 'id7830-ERIK CELL', 300000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(5, 'id3692-AAN', 100000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(6, 'id3416-ENGKOS', 100000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(7, 'id4905-KONTER SERVER', 660000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(8, 'id9063-LIANI', 200000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(9, 'id7604-TEH', 100000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(10, 'id4299-D-CELL', 200000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(11, 'id3587-SITA SAFITRI', 200000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(12, 'id3633-WENDY CELL', 400000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(13, 'id4059-ELIDA', 500000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(14, 'id4202-IIN', 100000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(15, 'id4155-DENDY', 500000, 0, 'Out', 'Isi Saldo Deposit', '---', 'fend', '2021-04-21 18:38:56', ''),
+(17, '---', 5000000, 0, 'In', '---', '---', 'fend', '2021-04-21 18:41:39', 'penambahan saldo mandiri edc'),
+(18, '---', 5000000, 1, 'Out', '---', '---', 'fend', '2021-04-21 18:42:15', 'tarik tunai edc mandiri'),
+(19, 'ID2988-IMAS', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-21 18:45:12', NULL),
+(20, 'ID0097-SINAR TERANG', 200000, 3, 'Out', 'Isi Saldo Deposit', '-', 'fend', '2021-04-21 18:47:55', NULL),
+(21, '---', 15000, 1, 'In', '---', '---', 'fend', '2021-04-21 18:49:24', 'jasa tarik tunai EDC'),
+(22, '---', 5000000, 1, 'In', '---', '---', 'fend', '2021-04-21 18:49:43', 'id1643 bayar'),
+(23, 'Id8625-KRISTIHARDIYANTI', 350000, 0, 'Out', 'Isi Saldo Deposit', '-', 'Kuswani', '2021-04-21 18:58:41', NULL),
+(24, 'Id4013-XUMIS', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'Kuswani', '2021-04-21 19:09:48', NULL),
+(26, 'Id7268-YULINAR', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'Kuswani', '2021-04-21 19:19:52', NULL),
+(29, '---', 5000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 19:36:16', 'jasa tarik tunai EDC'),
+(30, 'id5979-NANI', 250000, 0, 'Out', 'Isi Saldo Deposit', '-', 'ferdy0132', '2021-04-21 20:21:47', NULL),
+(31, 'id3989-MIMIN', 300000, 0, 'Out', 'Isi Saldo Deposit', '-', 'ferdy0132', '2021-04-21 20:21:59', NULL),
+(32, '---', 200000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 20:22:44', 'id0097 bayar'),
+(34, '---', 1000000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 20:23:41', 'id5706 bayar'),
+(35, 'id2937-ATLANTIC CELLULAR', 8000000, 0, 'Out', 'Isi Saldo Deposit', '-', 'ferdy0132', '2021-04-21 20:57:41', NULL),
+(36, '---', 5000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 20:58:05', 'tarik tunai edc mandiri'),
+(37, '---', 15107000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 20:58:56', 'pendapatan okelink'),
+(38, '---', 5875000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 20:59:17', 'pendapatan acc'),
+(39, '---', 100000, 1, 'Out', '---', '---', 'ferdy0132', '2021-04-21 20:59:59', 'tarik tunai edc bca'),
+(40, '---', 13000, 1, 'In', '---', '---', 'ferdy0132', '2021-04-21 21:01:07', 'uang lebih'),
+(45, 'selisih saldo lebih-', 200000, 3, 'Out', 'Isi Saldo Deposit', '-', 'VINA ', '2021-04-22 07:49:33', NULL),
+(46, '---', 17310000, 0, 'In', '---', '---', 'VINA ', '2021-04-22 07:50:51', 'pembulatan sindy 3'),
+(47, 'id4903-YANTI', 150000, 0, 'Out', 'Isi Saldo Deposit', '-', 'VINA ', '2021-04-22 07:52:43', NULL),
+(48, 'id4021-MIMIN', 100000, 0, 'Out', 'Isi Saldo Deposit', '-', 'VINA ', '2021-04-22 07:52:56', NULL),
+(49, 'id4905-KONTER SERVER', 50000, 0, 'Out', 'Isi Saldo Deposit', '-', 'VINA ', '2021-04-22 07:53:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -2928,7 +2854,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `namakonter`, `alamat`, `telepon`, `saldoawal`, `kasawal`, `akhirkata`) VALUES
-(1, 'SINDY CELLULAR 3', 'Jl. Bhayangkara No. 327 Ciwidey', '022 5928765', 63064000, 0, 'TERIMA KASIH SUDAH BERKUNJUNG');
+(1, 'SINDY CELLULAR 3', 'Jl. Bhayangkara No. 327 Ciwidey', '022 5928765', 41200000, 0, 'TERIMA KASIH SUDAH BERKUNJUNG');
 
 -- --------------------------------------------------------
 
@@ -2957,11 +2883,13 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `uname`, `image`, `password`, `role_id`, `is_active`, `date_created`, `last_login`, `last_logout`, `sisasaldo`, `kasakhir`) VALUES
 (1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1616487167, 0, 0, 0),
-(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1618847100, 1618847093, 51182000, 17011500),
-(26, 'Narayan Sangkar', 'narayan', 'default.jpg', '$2y$10$GNtWfCFB72fh0alo3ecgIOpsAktJgQen0O9zRzHL.ovJyTg5cEcQK', 2, 1, 1617251697, 1617255093, 0, 0, 0),
-(27, 'vina', 'vina', 'default.jpg', '$2y$10$fx3YQpd/ErfcJM4lbXW2zuhk1dGERQknYIms8A2vQYHus0Xf1rsZG', 2, 1, 1618556722, 1618634061, 0, 0, 0),
-(28, 'ferdy', 'ferdy0132', 'default.jpg', '$2y$10$TpOAZbb3l1X0EBP2B3cKUO6hur9FT1HIFcxKMdGceO5DWMdBD91yK', 2, 1, 1618576948, 1618624751, 0, 0, 0),
-(29, 'KIKI', 'kikikalist', 'default.jpg', '$2y$10$Hd6Sha3XGromTKEopleKoOOelW0JMP8caummDK/chmbCftDhTg7FG', 2, 1, 1618625227, 1618625236, 0, 0, 0);
+(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1619006186, 1619006703, 41440000, 4575000),
+(30, 'Kuswani', 'Kuswani', 'default.jpg', '$2y$10$YX1EQ21VWmF81Japr2w.XOKni6c3ixkEF55/0YLReo76p8nFpzEMK', 2, 1, 1619006301, 1619006308, 0, 0, 0),
+(31, 'ferdy', 'ferdy0132', 'default.jpg', '$2y$10$c3rOIFLArRsiMRj8WXSNPud08/ONVm95LjInCCmzgelMoHKoDuGx2', 2, 1, 1619006734, 1619006747, 0, 0, 0),
+(32, 'Deni', 'Deni', 'default.jpg', '$2y$10$tmzKfM/8W6K5jLIYvdkX9.V32BL56mz8V8aJI6uOwmyD.KR59gA86', 2, 1, 1619011219, 1619011235, 0, 0, 0),
+(33, 'Deva ganteng', 'devas', 'default.jpg', '$2y$10$.OKbnvVq6P/cyN6u4Qf5hOOFLuM9t95yZ2u7BQm1bWY2N3apCxYm6', 2, 1, 1619011296, 1619011367, 0, 0, 0),
+(34, 'VINA LEVANI', 'VINA ', 'default.jpg', '$2y$10$IINc130wWtOQIWFk6VexXuUJAw.PPuaWxKkPmug6OMVxFMtYmHKq6', 2, 1, 1619051054, 1619053997, 0, 0, 0),
+(35, 'Novi thaus', 'Novi', 'default.jpg', '$2y$10$chB0s7Jj3Z9t.ABuVm0y7.ojXLvhgXwKDD01Fvk5XHfzA08KOxBLe', 2, 1, 1619054299, 1619054313, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -3005,7 +2933,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -3017,7 +2945,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
