@@ -35,7 +35,7 @@ class Home_model extends CI_Model
 
         $kaskeluar = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and metode=0 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
+        WHERE status = 'Out' and metode=0 and status = 'Out' and metode=3 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
 
         return $setSaldoAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
     }
