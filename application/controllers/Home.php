@@ -335,4 +335,122 @@ class Home extends CI_Controller
         $this->load->view('home/report', $data);
         $this->load->view('include/footer');
     }
+
+    public function dailyReport()
+    {
+        $tanggal = $this->input->post('tanggal');
+        $kasir = $this->session->userdata('uname');
+
+        //Kas
+        $totalKasAwal = $this->home_model->kasAwal($tanggal);
+        $totalKasMasuk = $this->home_model->kasMasuk($tanggal);
+        $totalKasKeluar = $this->home_model->kasKeluar($tanggal);
+        $totalKasAkhir = $this->home_model->kasAkhir($tanggal);
+
+        //saldo
+        $totalsaldoAwal = $this->home_model->saldoAwal($tanggal);
+        $totalsaldoMasuk = $this->home_model->saldoMasuk($tanggal);
+        $totalsaldoKeluar = $this->home_model->saldoKeluar($tanggal);
+        $totalsaldoAkhir = $this->home_model->saldoAkhir($tanggal);
+
+        //NonDeposit
+        $nonDepIn = $this->home_model->recapNonDeposit($tanggal, 'In');
+        $nonDepOut = $this->home_model->recapNonDeposit($tanggal, 'Out');
+        $nonDepBon = $this->db->get_where('deposit', ['date(waktu)' => $tanggal, 'metode' => 3])->result_array();
+
+        $set_struk = $this->db->get_where('setting', ['id' => 1])->row_array();
+
+        //membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
+        $connector = new Escpos\PrintConnectors\WindowsPrintConnector("tm_u220");
+
+        // membuat objek $printer agar dapat di lakukan fungsinya
+        $printer = new Escpos\Printer($connector);
+
+        // Membuat judul
+        $printer->initialize();
+        $printer->selectPrintMode(Escpos\Printer::MODE_DOUBLE_HEIGHT); // Setting teks menjadi lebih besar
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER); // Setting teks menjadi rata tengah
+        $printer->text($set_struk['namakonter'] . "\n");
+
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text($set_struk['alamat'] . "\n");
+        // $printer->text(date('dmY H:i:s', $deprecap['waktu']) . "\n");
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text($set_struk['telepon'] . "\n");
+
+        // Data Kas
+        $printer->initialize();
+        $printer->text("Kas\n");
+        $printer->text("----------------------------------------\n");
+        $printer->text(buatBaris4Kolom("Kas Awal", $totalKasAwal));
+        $printer->text(buatBaris4Kolom("Pendapatan", $totalKasMasuk));
+        $printer->text(buatBaris4Kolom("Biaya", $totalKasKeluar));
+        $printer->text(buatBaris4Kolom("Kas Akhir", $totalKasAkhir));
+        $printer->text("----------------------------------------\n");
+        // $printer->text("Waktu : " . $deprecap['date'] . "\n");
+
+        // Data Saldo
+        $printer->initialize();
+        $printer->text("Saldo\n");
+        $printer->text("----------------------------------------\n");
+        $printer->text(buatBaris4Kolom("Saldo Awal", $totalsaldoAwal));
+        $printer->text(buatBaris4Kolom("Penambahan", $totalsaldoMasuk));
+        $printer->text(buatBaris4Kolom("Transaksi", $totalsaldoKeluar));
+        $printer->text(buatBaris4Kolom("Saldo Akhir", $totalsaldoAkhir));
+        $printer->text("----------------------------------------\n");
+        // $printer->text("Waktu : " . $deprecap['date'] . "\n");
+
+        // Tabel Non Dep In
+        $totDepIn = 0;
+        $printer->initialize(); // Reset bentuk/jenis teks
+        $printer->text("----------------------------------------\n");
+        $printer->text(buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text("----------------------------------------\n");
+        foreach ($nonDepIn as $n) {
+            $totDepIn += $n['jumlah'];
+            $printer->text(buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+        }
+        $printer->text(buatBaris4Kolom("Total", number_format($totDepIn)));
+
+        // Tabel Non Dep Out
+        $totDepOut = 0;
+        $printer->initialize(); // Reset bentuk/jenis teks
+        $printer->text("----------------------------------------\n");
+        $printer->text(buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text("----------------------------------------\n");
+        foreach ($nonDepOut as $n) {
+            $totDepOut += $n['jumlah'];
+            $printer->text(buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+        }
+        $printer->text(buatBaris4Kolom("Total", number_format($totDepOut)));
+
+        // Tabel Non Dep Out
+        $totDepBon = 0;
+        $printer->initialize(); // Reset bentuk/jenis teks
+        $printer->text("----------------------------------------\n");
+        $printer->text(buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text("----------------------------------------\n");
+        foreach ($nonDepBon as $n) {
+            $totDepBon += $n['jumlah'];
+            $printer->text(buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+        }
+        $printer->text(buatBaris4Kolom("Total", number_format($totDepBon)));
+
+        // Pesan penutup
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text("----------------------------------------\n");
+        $printer->text($kasir . "\n");
+        $printer->text("----------------------------------------\n");
+        // $printer->text("http://www.gsm-tronik.com\n");
+
+        // $printer->feed(2); // mencetak 5 baris kosong, agar kertas terangkat ke atas
+
+        $printer->cut();
+        $printer->close();
+
+        redirect('home/report');
+    }
 }

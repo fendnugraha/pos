@@ -16,6 +16,7 @@
                 <div class="mb3">
                     <button type="submit" class="btn btn-sm btn-primary mr-3">View</button>
                     <a href="<?= base_url('home/report'); ?>" class="btn btn-sm btn-danger ml-3">Clear</a>
+                    <a href="#" data-id="<?= $tanggal; ?>" class="btn btn-sm btn-danger ml-3 cetak-laporan"><i class="fas fa-print"></i> Cetak Laporan</a>
                 </div>
             </div>
         </div>
