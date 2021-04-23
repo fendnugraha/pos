@@ -338,7 +338,11 @@ class Home extends CI_Controller
 
     public function dailyReport()
     {
-        $tanggal = $this->input->post('tanggal');
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
         $kasir = $this->session->userdata('uname');
 
         //Kas

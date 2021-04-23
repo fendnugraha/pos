@@ -49,18 +49,20 @@
         }
     });
     $('.cetak-laporan').on('click', function(e) {
-        const tanggal = $(this).data('tanggal');
+        const tanggal = $(this).data('id');
 
         e.preventDefault()
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/dailyReport'); ?>",
-            data: {
-                tanggal: tanggal,
-            },
-            success: function() {
-                document.location.href = "<?= base_url('home/report'); ?>";
-            }
-        });
+        if (confirm('Cetak laporan ' + tanggal + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/dailyReport'); ?>",
+                data: {
+                    tanggal: tanggal,
+                },
+                success: function() {
+                    document.location.href = "<?= base_url('home/report'); ?>";
+                }
+            });
+        }
     });
 </script>
