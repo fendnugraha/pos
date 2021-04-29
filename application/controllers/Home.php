@@ -29,8 +29,9 @@ class Home extends CI_Controller
         $data['dep_recap'] = $this->home_model->depositRecap($data['tanggal']);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
+        $data['lastRec'] = $this->home_model->depositLastByUser($uname);
 
-        // $this->form_validation->set_rules('idagen', 'ID Agen', 'required|trim');
+        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[6]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
@@ -81,7 +82,7 @@ class Home extends CI_Controller
 
         $data = [
             'id' => null,
-            'idagen' => $konsumen,
+            'idagen' => strtoupper($konsumen),
             'jumlah' => $this->input->post('jumlah'),
             'metode' => $metode,
             'status' => 'Out',

@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col-sm">
@@ -79,6 +80,10 @@
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-sm btn-primary mt-2">Submit</button>
+                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk btn btn-sm btn-success mt-2" <?php if (null == $lastRec['id']) {
+                                                                                                                            echo "disabled";
+                                                                                                                        }; ?>>
+                                <i class="fas fa-print"></i> Cetak <?= $lastRec['idagen']; ?></button>
                         </div>
                     </form>
                 </div>
@@ -180,8 +185,6 @@
                                 <th>ID</th>
                                 <th>Waktu</th>
                                 <th>ID Agen</th>
-                                <th>Produk</th>
-                                <th>Tujuan</th>
                                 <th>Kasir</th>
                                 <th>Jumlah</th>
                                 <th>Saldo Akhir</th>
@@ -201,10 +204,11 @@
                             ?>
                                 <tr>
                                     <td class="align-middle text-center"><?= $d['id']; ?></td>
-                                    <td><?= $d['waktu']; ?></td>
-                                    <td><?= $d['idagen']; ?><br><small style="font-style: italic;font-size:0.6rem">-<?= $d['keterangan']; ?>-</small></td>
-                                    <td><?= $d['produk']; ?></td>
-                                    <td><?= $d['tujuan']; ?></td>
+                                    <td class="align-middle"><?= $d['waktu']; ?></td>
+                                    <td class="align-middle"><?= $d['idagen']; ?>
+                                        <?= $d['produk'] . " " . $d['tujuan']; ?><br>
+                                        <small style="font-style: italic;font-size:0.6rem">-<?= $d['keterangan']; ?>-</small>
+                                    </td>
                                     <td><?= $d['kasir']; ?></td>
                                     <td class="text-end"><?= number_format($d['jumlah']); ?></td>
                                     <td class="text-end"><?= number_format($sisasaldo); ?></td>
@@ -214,7 +218,7 @@
                                                                 echo '<span class="text-danger"><i class="fas fa-forward"></i></span>';
                                                             }; ?></td>
                                     <td class="text-center align-middle">
-                                        <a href="#" data-id="<?= $d['id']; ?>" class="cetak_struk"><i class="fas fa-print"></i></a> <a href="#" class="hapus_record" data-id="<?= $d['id']; ?>"><i class="fas fa-minus-square"></i></a>
+                                        <a href="#" data-id="<?= $d['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i> Print</a> <a href="#" class="hapus_record btn btn-sm btn-danger" data-id="<?= $d['id']; ?>"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>
                             <?php } ?>
