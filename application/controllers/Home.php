@@ -168,7 +168,7 @@ class Home extends CI_Controller
     }
 
     // membuat fungsi untuk membuat 1 baris tabel, agar dapat dipanggil berkali-kali dgn mudah
-    function buatBaris4Kolom($kolom1, $kolom4)
+    private function buatBaris4Kolom($kolom1, $kolom4)
     {
         // Mengatur lebar setiap kolom (dalam satuan karakter)
         $lebar_kolom_1 = 25;
@@ -228,9 +228,7 @@ class Home extends CI_Controller
         $connector = new Escpos\PrintConnectors\WindowsPrintConnector("tm_u220");
 
         // membuat objek $printer agar dapat di lakukan fungsinya
-        $printer = new Escpos\Printer($connector);
-
-
+        $printer = new Escpos\Printer($connector);        
 
         // Membuat judul
         $printer->initialize();
