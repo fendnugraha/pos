@@ -314,6 +314,17 @@ class Home extends CI_Controller
         $this->load->view('include/footer');
     }
 
+    public function tambahagen()
+    {
+        $data = [
+            'id' => null,
+            'idagen' => $this->input->post('idagen'),
+            'name' => $this->input->post('namaagen')
+        ];
+        $this->db->insert('contact', $data);
+        redirect('home/setting');
+    }
+
     public function report()
     {
         $uname = $this->session->userdata('uname');

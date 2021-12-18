@@ -37,7 +37,24 @@
             </div>
         </div>
         <div class="col-sm-7">
-
+            <div class="card">
+                <h5 class="card-header">Tambah Agen</h5>
+                <div class="card-body">
+                    <form action="<?= base_url('home/tambahagen'); ?>" method="post">
+                        <div class="mb-3">
+                            <label for="idagen" class="form-label">ID Agen</label>
+                            <input type="text" name="idagen" id="idagen" class="form-control form-control-sm" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="namaagen" class="form-label">Nama Agen</label>
+                            <input type="text" name="namaagen" id="namaagen" class="form-control form-control-sm" value="">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
