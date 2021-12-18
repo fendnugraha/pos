@@ -31,7 +31,7 @@ class Home extends CI_Controller
         $data['setting'] = $this->db->get('setting')->row_array();
         $data['lastRec'] = $this->home_model->depositLastByUser($uname);
 
-        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[6]|trim');
+        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[4]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
@@ -56,7 +56,7 @@ class Home extends CI_Controller
         if (empty($this->input->post('idagen'))) {
             $idagen = 1;
         } else {
-            $idagen = $this->input->post('idagen');
+            $idagen = "ID" . $this->input->post('idagen');
         };
         $cekid = $this->db->get_where('contact', ['idagen' => $idagen])->row_array();
 
@@ -228,7 +228,7 @@ class Home extends CI_Controller
         $connector = new Escpos\PrintConnectors\WindowsPrintConnector("tm_u220");
 
         // membuat objek $printer agar dapat di lakukan fungsinya
-        $printer = new Escpos\Printer($connector);        
+        $printer = new Escpos\Printer($connector);
 
         // Membuat judul
         $printer->initialize();

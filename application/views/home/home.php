@@ -32,7 +32,11 @@
                                     <div class="accordion-body">
                                         <div class="mb-3">
                                             <label for="idagen" class="form-label">ID Agen/Kode</label>
-                                            <input type="text" name="idagen" id="idagen" class="form-control form-control-sm">
+                                            <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">ID</span>
+                                                <input type="text" class="form-control form-control-sm" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1">
+                                            </div>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="cash" name="cash" value=3 checked>
@@ -78,11 +82,11 @@
                                 </div> -->
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-grid gap-2">
                             <button type="submit" class="btn btn-sm btn-primary mt-2">Submit</button>
-                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk btn btn-sm btn-success mt-2" <?php if (null == $lastRec['id']) {
-                                                                                                                            echo "disabled";
-                                                                                                                        }; ?>>
+                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
+                                                                                                                    echo "disabled";
+                                                                                                                }; ?>>
                                 <i class="fas fa-print"></i> Cetak <?= $lastRec['idagen']; ?></button>
                         </div>
                     </form>
@@ -179,7 +183,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title">Rekap Input Deposit & Transaksi</h5>
-                    <table class="table table-sm table-hover display table-responsive" id="mytable" style="font-size: 0.7em;">
+                    <table class="table table-striped table-bordered table-dark display table-responsive" id="mytable" style="font-size: 0.7em;">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
@@ -209,14 +213,14 @@
                                         <?= $d['produk'] . " " . $d['tujuan']; ?><br>
                                         <small style="font-style: italic;font-size:0.6rem">-<?= $d['keterangan']; ?>-</small>
                                     </td>
-                                    <td><?= $d['kasir']; ?></td>
-                                    <td class="text-end"><?= number_format($d['jumlah']); ?></td>
-                                    <td class="text-end"><?= number_format($sisasaldo); ?></td>
-                                    <td class="text-center"><?php if ($d['status'] == "In") {
-                                                                echo '<span class="text-success"><i class="fas fa-backward"></i></span>';
-                                                            } else {
-                                                                echo '<span class="text-danger"><i class="fas fa-forward"></i></span>';
-                                                            }; ?></td>
+                                    <td class="align-middle text-center"><?= $d['kasir']; ?></td>
+                                    <td class="align-middle text-end"><?= number_format($d['jumlah']); ?></td>
+                                    <td class="align-middle text-end"><?= number_format($sisasaldo); ?></td>
+                                    <td class="align-middle text-center"><?php if ($d['status'] == "In") {
+                                                                                echo '<span class="text-success"><i class="fas fa-backward"></i></span>';
+                                                                            } else {
+                                                                                echo '<span class="text-danger"><i class="fas fa-forward"></i></span>';
+                                                                            }; ?></td>
                                     <td class="text-center align-middle">
                                         <a href="#" data-id="<?= $d['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i> Print</a> <a href="#" class="hapus_record btn btn-sm btn-danger" data-id="<?= $d['id']; ?>"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
