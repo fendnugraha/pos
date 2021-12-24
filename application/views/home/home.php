@@ -91,8 +91,6 @@
                         </div>
                     </form>
                 </div>
-                <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
-                <?= $this->session->flashdata('message'); ?>
                 <div class="tab-pane fade" id="kaskeluar" role="tabpanel" aria-labelledby="kaskeluar-tab">
                     <form action="<?= base_url('home'); ?>" method="post">
                         <div class="mb-3">

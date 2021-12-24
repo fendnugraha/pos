@@ -50,57 +50,6 @@ class Home extends CI_Controller
         }
     }
 
-    private function _inputDeposit()
-    {
-        $kasir = $this->session->userdata('uname');
-        if (empty($this->input->post('idagen'))) {
-            $idagen = 1;
-        } else {
-            $idagen = "ID" . $this->input->post('idagen');
-        };
-        $cekid = $this->db->get_where('contact', ['idagen' => $idagen])->row_array();
-
-        if (empty($this->input->post('tujuan'))) {
-            $tujuan = "-";
-        } else {
-            $tujuan = $this->input->post('tujuan');
-        };
-
-        if (empty($this->input->post('produk'))) {
-            $produk = "Isi Saldo Deposit";
-        } else {
-            $produk = $this->input->post('produk');
-        };
-
-        if (null !== $this->input->post('cash')) {
-            $metode = 0;
-        } else {
-            $metode = 3;
-        }
-
-        $konsumen = $idagen . "-" . $cekid['name'];
-
-        $data = [
-            'id' => null,
-            'idagen' => strtoupper($konsumen),
-            'jumlah' => $this->input->post('jumlah'),
-            'metode' => $metode,
-            'status' => 'Out',
-            'produk' => $produk,
-            'tujuan' => $tujuan,
-            'kasir' => $kasir,
-            'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
-        ];
-
-        $this->db->insert('deposit', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Deposit sudah terinput.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>');
-        redirect('home');
-    }
-
     private function _kaskeluar()
     {
         $kasir = $this->session->userdata('uname');
