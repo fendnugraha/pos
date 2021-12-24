@@ -107,10 +107,14 @@ class Transact extends CI_Controller
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
             'keterangan' => $this->input->post('keterangan'),
-            'jalur' => "KAS"
+            'jalur' => $this->input->post('jalur')
         ];
 
         $this->db->insert('deposit', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Deposit sudah terinput.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
         redirect('transact/kasmasuk');
     }
 
@@ -129,10 +133,14 @@ class Transact extends CI_Controller
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
             'keterangan' => $this->input->post('keterangan'),
-            'jalur' => "KAS"
+            'jalur' => $this->input->post('jalur')
         ];
 
         $this->db->insert('deposit', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Deposit sudah terinput.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
         redirect('transact/kaskeluar');
     }
 
@@ -150,7 +158,7 @@ class Transact extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alphanumericspace|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
@@ -177,7 +185,7 @@ class Transact extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alphanumericspace|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
