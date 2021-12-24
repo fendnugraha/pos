@@ -80,7 +80,8 @@ class Transact extends CI_Controller
             'tujuan' => $tujuan,
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
+            'keterangan' => $this->input->post('keterangan'),
+            'jalur' => $this->input->post('jalur')
         ];
 
         $this->db->insert('deposit', $data);
@@ -105,7 +106,8 @@ class Transact extends CI_Controller
             'tujuan' => '---',
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
+            'keterangan' => $this->input->post('keterangan'),
+            'jalur' => "KAS"
         ];
 
         $this->db->insert('deposit', $data);
@@ -126,7 +128,8 @@ class Transact extends CI_Controller
             'tujuan' => '---',
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
+            'keterangan' => $this->input->post('keterangan'),
+            'jalur' => "KAS"
         ];
 
         $this->db->insert('deposit', $data);

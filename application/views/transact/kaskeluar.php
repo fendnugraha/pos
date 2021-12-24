@@ -10,6 +10,8 @@
             </div>
         </div>
         <div class="col-sm">
+            <h1>Kas Keluar</h1>
+            <hr>
             <form action="<?= base_url('transact/kaskeluar'); ?>" method="post">
                 <div class="mb-3">
                     <!-- <label for="keterangan" class="form-label">Keterangan</label> -->

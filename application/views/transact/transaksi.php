@@ -25,7 +25,7 @@
                                     <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">ID</span>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-check">
@@ -33,6 +33,14 @@
                                     <label class="form-check-label" for="cash" id="label-cash">
                                         Cash/Tunai
                                     </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jalur" id="irs" value="IRS" checked>
+                                    <label class="form-check-label" for="irs">IRS</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jalur" id="okelink" value="OKELINK">
+                                    <label class="form-check-label" for="okelink">OKELINK</label>
                                 </div>
                             </div>
                         </div>
@@ -48,11 +56,11 @@
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         <label for="produk" class="form-label">Produk</label>
-                                        <input type="text" name="produk" id="produk" class="form-control form-control-sm">
+                                        <input type="text" name="produk" id="produk" class="form-control form-control-sm" autocomplete="off">
                                     </div>
                                     <div class="col">
                                         <label for="tujuan" class="form-label">Tujuan</label>
-                                        <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm">
+                                        <input type="number" name="tujuan" id="tujuan" class="form-control form-control-sm" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +72,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
-                            <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm" placeholder="Harus diisi">
+                            <input type="number" name="jumlah" id="jumlah" class="form-control form-control-sm" placeholder="Harus diisi" autocomplete="off">
                         </div>
                         <!-- <div class="mb-3">
                                         <label for="keterangan" class="form-label">Keterangan</label>
