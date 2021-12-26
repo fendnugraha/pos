@@ -18,11 +18,15 @@
                             <input type="text" name="telepon" id="telepon" class="form-control form-control-sm" value="<?= $setting['telepon']; ?>">
                         </div>
                         <div class="mb-3">
-                            <label for="saldoawal" class="form-label">Saldo Awal</label>
+                            <label for="saldoawal" class="form-label">Saldo Awal IRS</label>
                             <input type="number" name="saldoawal" id="saldoawal" class="form-control form-control-sm" value="<?= $setting['saldoawal']; ?>">
                         </div>
                         <div class="mb-3">
-                            <label for="saldoawal" class="form-label">Kas Awal</label>
+                            <label for="saldoawalok" class="form-label">Saldo Awal OKELINK</label>
+                            <input type="number" name="saldoawalok" id="saldoawalok" class="form-control form-control-sm" value="<?= $setting['saldoawalok']; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="kasawal" class="form-label">Kas Awal</label>
                             <input type="number" name="kasawal" id="kasawal" class="form-control form-control-sm" value="<?= $setting['kasawal']; ?>">
                         </div>
                         <div class="mb-3">

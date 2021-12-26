@@ -27,47 +27,51 @@ class Home_model extends CI_Model
         return $this->db->get_where('deposit', $data)->result_array();
     }
 
-    public function saldoAwal($tanggal)
+    public function saldoAwal($tanggal, $jalur)
     {
         $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($tanggal)));
         // $dateAkhir = $this->input->post('dateAkhir');
         $setSaldoAwal = $this->db->get_where('setting', ['id' => 1])->row_array();
-        $setSaldoAwal = $setSaldoAwal['saldoawal'];
+        if ($jalur = "IRS") {
+            $setSaldoAwal = $setSaldoAwal['saldoawal'];
+        } else {
+            $setSaldoAwal = $setSaldoAwal['saldoawalok'];
+        };
 
         $kasmasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'In' and metode=0 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
+        WHERE status = 'In' and metode=0 and date(waktu) BETWEEN '0000-00-00' and '$dateAwal' and jalur='$jalur'")->row_array();
 
         $kaskeluar = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and (metode=0 or metode=3) and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
+        WHERE status = 'Out' and (metode=0 or metode=3) and date(waktu) BETWEEN '0000-00-00' and '$dateAwal' and jalur='$jalur'")->row_array();
 
         return $setSaldoAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
     }
 
-    public function saldoMasuk($tanggal)
+    public function saldoMasuk($tanggal, $jalur)
     {
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'In' and metode=0 and date(waktu) = '$tanggal'")->row_array();
+        WHERE status = 'In' and metode=0 and date(waktu) = '$tanggal' and jalur='$jalur'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
 
-    public function saldoKeluar($tanggal)
+    public function saldoKeluar($tanggal, $jalur)
     {
         $totKasMasuk = $this->db->query("SELECT SUM(jumlah) as sAwal
         FROM deposit
-        WHERE status = 'Out' and metode=0 and date(waktu) = '$tanggal' or status = 'Out' and metode=3 and date(waktu) = '$tanggal'")->row_array();
+        WHERE status = 'Out' and metode=0 and date(waktu) = '$tanggal' or status = 'Out' and metode=3 and date(waktu) = '$tanggal' and jalur='$jalur'")->row_array();
 
         return $totKasMasuk['sAwal'];
     }
 
-    public function saldoAkhir($tanggal)
+    public function saldoAkhir($tanggal, $jalur)
     {
-        $setSaldoAwal = $this->home_model->saldoAwal($tanggal);
-        $kasmasuk = $this->home_model->saldoMasuk($tanggal);
-        $kaskeluar = $this->home_model->saldoKeluar($tanggal);
+        $setSaldoAwal = $this->home_model->saldoAwal($tanggal, $jalur);
+        $kasmasuk = $this->home_model->saldoMasuk($tanggal, $jalur);
+        $kaskeluar = $this->home_model->saldoKeluar($tanggal, $jalur);
 
         return $setSaldoAwal + $kasmasuk - $kaskeluar;
     }

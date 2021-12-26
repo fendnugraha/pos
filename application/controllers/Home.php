@@ -106,6 +106,7 @@ class Home extends CI_Controller
             'alamat' => $this->input->post('alamat'),
             'telepon' => $this->input->post('telepon'),
             'saldoawal' => $this->input->post('saldoawal'),
+            'saldoawalok' => $this->input->post('saldoawalok'),
             'kasawal' => $this->input->post('kasawal'),
             'akhirkata' => $this->input->post('akhirkata')
         ];
