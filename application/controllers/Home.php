@@ -28,6 +28,7 @@ class Home extends CI_Controller
 
         $data['dep_recapirs'] = $this->home_model->depositRecap($data['tanggal'], "IRS");
         $data['dep_recapoto'] = $this->home_model->depositRecap($data['tanggal'], "OKELINK");
+        $data['dep_recapkas'] = $this->home_model->recapKasTunai($data['tanggal']);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 

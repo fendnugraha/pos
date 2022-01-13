@@ -27,6 +27,14 @@ class Home_model extends CI_Model
         return $this->db->get_where('deposit', $data)->result_array();
     }
 
+    public function recapKasTunai($tanggal)
+    {
+        $data = [
+            'date(waktu)' => $tanggal,
+        ];
+        return $this->db->get_where('deposit', $data)->result_array();
+    }
+
     public function saldoAwal($tanggal, $jalur)
     {
         $dateAwal = date("Y-m-d", strtotime("-1 day", strtotime($tanggal)));
@@ -41,12 +49,11 @@ class Home_model extends CI_Model
         FROM deposit
         WHERE status = 'Out' and (metode=0 or metode=3) and jalur='$jalur' and date(waktu) BETWEEN '0000-00-00' and '$dateAwal'")->row_array();
 
-        if ($jalur = "OKELINK") {
-            $sAwal = $setSaldoAwal['saldoawalok'];
-        } elseif ($jalur = "IRS") {
-            $sAwal = $setSaldoAwal['saldoawal'];
+        if ($jalur == "OKELINK") {
+            return $setSaldoAwal['saldoawalok'] + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
+        } elseif ($jalur == "IRS") {
+            return $setSaldoAwal['saldoawal'] + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
         }
-        return $sAwal + $kasmasuk['sAwal'] - $kaskeluar['sAwal'];
     }
 
     public function saldoMasuk($tanggal, $jalur)

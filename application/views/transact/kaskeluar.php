@@ -3,7 +3,8 @@
     <div class="row mt-3">
         <div class="col-sm-3">
             <div class="list-group">
-                <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action">Deposit / Trx</a>
+                <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action">Deposit</a>
+                <a href="<?= base_url('transact/trxpulsa'); ?>" class="list-group-item list-group-item-action">Transaksi Pulsa</a>
                 <a href="<?= base_url('transact/kasmasuk'); ?>" class="list-group-item list-group-item-action">Kas Masuk</a>
                 <a href="<?= base_url('transact/kaskeluar'); ?>" class="list-group-item list-group-item-action active">Kas Keluar</a>
                 <a href="#" class="list-group-item list-group-item-action">Tukar Tunai</a>
