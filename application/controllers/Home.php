@@ -26,70 +26,15 @@ class Home extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $data['dep_recap'] = $this->home_model->depositRecap($data['tanggal']);
+        $data['dep_recapirs'] = $this->home_model->depositRecap($data['tanggal'], "IRS");
+        $data['dep_recapoto'] = $this->home_model->depositRecap($data['tanggal'], "OKELINK");
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
-        $data['lastRec'] = $this->home_model->depositLastByUser($uname);
 
-        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[4]|trim');
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'GSM - Home';
-            $this->load->view('include/header', $data);
-            $this->load->view('home/home', $data);
-            $this->load->view('include/footer');
-        } else {
-            if ($this->input->post('kasmasuk') == 1) {
-                $this->_kasmasuk();
-            } elseif ($this->input->post('kaskeluar') == 1) {
-                $this->_kaskeluar();
-            } else {
-                $this->_inputDeposit();
-            }
-        }
-    }
-
-    private function _kaskeluar()
-    {
-        $kasir = $this->session->userdata('uname');
-
-        $data = [
-            'id' => null,
-            'idagen' => '---',
-            'jumlah' => $this->input->post('jumlah'),
-            'metode' => $this->input->post('metodek'),
-            'status' => 'Out',
-            'produk' => '---',
-            'tujuan' => '---',
-            'kasir' => $kasir,
-            'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
-        ];
-
-        $this->db->insert('deposit', $data);
-        redirect('home');
-    }
-
-    private function _kasmasuk()
-    {
-        $kasir = $this->session->userdata('uname');
-
-        $data = [
-            'id' => null,
-            'idagen' => '---',
-            'jumlah' => $this->input->post('jumlah'),
-            'metode' => $this->input->post('metodem'),
-            'status' => 'In',
-            'produk' => '---',
-            'tujuan' => '---',
-            'kasir' => $kasir,
-            'waktu' => date('Y-m-d H:i:s'),
-            'keterangan' => $this->input->post('keterangan')
-        ];
-
-        $this->db->insert('deposit', $data);
-        redirect('home');
+        $data['title'] = 'GSM - Home';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/home', $data);
+        $this->load->view('include/footer');
     }
 
     public function hapus_record()
