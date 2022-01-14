@@ -41,7 +41,7 @@
                                 <tr>
                                     <td><?= $irs['id']; ?></td>
                                     <td><?= $irs['waktu']; ?></td>
-                                    <td><?= $irs['idagen']; ?><br><?= $irs['produk']; ?> / <?= $irs['tujuan']; ?></td>
+                                    <td><?= $irs['idagen']; ?><br><?= $irs['produk']; ?> / <?= $irs['tujuan']; ?> / <?= $irs['keterangan']; ?></td>
                                     <td><?= $irs['status']; ?></td>
                                     <td><?= number_format($irs['jumlah']); ?></td>
                                     <td><?= $irs['kasir']; ?></td>
@@ -84,7 +84,7 @@
                                 <tr>
                                     <td><?= $oto['id']; ?></td>
                                     <td><?= $oto['waktu']; ?></td>
-                                    <td><?= $oto['idagen']; ?><br><?= $oto['produk']; ?> / <?= $oto['tujuan']; ?></td>
+                                    <td><?= $oto['idagen']; ?><br><?= $oto['produk']; ?> / <?= $oto['tujuan']; ?> / <?= $oto['keterangan']; ?></td>
                                     <td><?= $oto['status']; ?></td>
                                     <td><?= number_format($oto['jumlah']); ?></td>
                                     <td><?= $oto['kasir']; ?></td>
@@ -127,7 +127,7 @@
                                 <tr>
                                     <td><?= $kas['id']; ?></td>
                                     <td><?= $kas['waktu']; ?></td>
-                                    <td><?= $kas['idagen']; ?><br><?= $kas['produk']; ?> / <?= $kas['tujuan']; ?></td>
+                                    <td><?= $kas['idagen']; ?><br><?= $kas['produk']; ?> / <?= $kas['tujuan']; ?> / <?= $kas['keterangan']; ?></td>
                                     <td><?= $kas['status']; ?></td>
                                     <td><?= number_format($kas['jumlah']); ?></td>
                                     <td><?= $kas['kasir']; ?></td>

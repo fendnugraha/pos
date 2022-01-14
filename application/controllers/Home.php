@@ -259,11 +259,11 @@ class Home extends CI_Controller
         $totalKasKeluar = $this->home_model->kasKeluar($tanggal);
         $totalKasAkhir = $this->home_model->kasAkhir($tanggal);
 
-        //saldo
-        $totalsaldoAwal = $this->home_model->saldoAwal($tanggal);
-        $totalsaldoMasuk = $this->home_model->saldoMasuk($tanggal);
-        $totalsaldoKeluar = $this->home_model->saldoKeluar($tanggal);
-        $totalsaldoAkhir = $this->home_model->saldoAkhir($tanggal);
+        //saldo irs
+        $totalsaldoAwal = $this->home_model->saldoAwal($tanggal, "IRS");
+        $totalsaldoMasuk = $this->home_model->saldoMasuk($tanggal, "IRS");
+        $totalsaldoKeluar = $this->home_model->saldoKeluar($tanggal, "IRS");
+        $totalsaldoAkhir = $this->home_model->saldoAkhir($tanggal, "IRS");
 
         //NonDeposit
         $nonDepIn = $this->home_model->recapNonDeposit($tanggal, 'In');
