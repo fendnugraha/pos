@@ -10,7 +10,9 @@
 <script src="<?= base_url('assets/js/'); ?>popper.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('table.display').DataTable();
+        $('table.display').DataTable({
+            "order": [[ 1, "desc" ]]
+        });
     });
 
     $(document).ready(function() {
