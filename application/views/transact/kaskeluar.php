@@ -19,6 +19,10 @@
                     <input type="text" name="kaskeluar" id="kaskeluar" class="form-control" value=1 hidden readonly>
                 </div>
                 <div class="mb-3">
+                    <label for="nobukti" class="form-label">Nomor Bukti</label>
+                    <input type="text" name="nobukti" id="nobukti" class="form-control" autocomplete="off">
+                </div>
+                <div class="mb-3">
                     <label for="keterangan" class="form-label">Keterangan</label>
                     <input type="text" name="keterangan" id="keterangan" class="form-control" autocomplete="off">
                 </div>

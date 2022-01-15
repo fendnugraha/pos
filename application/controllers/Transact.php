@@ -195,7 +195,7 @@ class Transact extends CI_Controller
             'metode' => $this->input->post('metodek'),
             'status' => 'Out',
             'produk' => '---',
-            'tujuan' => '---',
+            'tujuan' => $this->input->post('nobukti'),
             'kasir' => $kasir,
             'waktu' => date('Y-m-d H:i:s'),
             'keterangan' => $this->input->post('keterangan'),
@@ -252,6 +252,7 @@ class Transact extends CI_Controller
         $data['user'] = $this->db->query($sql)->row_array();
 
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim|min_length[5]');
+        $this->form_validation->set_rules('nobukti', 'Nomor Bukti', 'required|trim');
         $this->form_validation->set_rules('penerima', 'Penerima', 'alpha_numeric_spaces|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 

@@ -246,9 +246,8 @@ class Home extends CI_Controller
         $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text($set_struk['alamat'] . "\n");
         // $printer->text(date('dmY H:i:s', $deprecap['waktu']) . "\n");
-        $printer->initialize();
-        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text($set_struk['telepon'] . "\n");
+        $printer->text($deprecap['tujuan'] . "\n");
 
         // Data transaksi
         $printer->initialize();
