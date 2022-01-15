@@ -180,9 +180,17 @@ class Transact extends CI_Controller
             $jalur = "KAS";
         }
 
+        if ($this->input->post('penerima') == "") {
+            $penerima = "---";
+        } else {
+            $penerima = $this->input->post('penerima');
+        }
+
+        $data['lastRec'] = $this->home_model->kasOutLast();
+
         $data = [
             'id' => null,
-            'idagen' => '---',
+            'idagen' => $penerima,
             'jumlah' => $this->input->post('jumlah'),
             'metode' => $this->input->post('metodek'),
             'status' => 'Out',
@@ -243,7 +251,8 @@ class Transact extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim|min_length[5]');
+        $this->form_validation->set_rules('penerima', 'Penerima', 'alpha_numeric_spaces|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {

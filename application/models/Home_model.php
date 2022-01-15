@@ -17,6 +17,11 @@ class Home_model extends CI_Model
         return $this->db->order_by('id', 'DESC')->limit(1)->get_where('deposit', ['kasir' => $user])->row_array();
     }
 
+    public function kasOutLast()
+    {
+        return $this->db->order_by('id', 'DESC')->limit(1)->get_where('deposit', ['jalur' => "KAS", 'status' => "Out"])->row_array();
+    }
+
     public function recapNonDeposit($tanggal, $status)
     {
         $data = [

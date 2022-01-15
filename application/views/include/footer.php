@@ -11,7 +11,9 @@
 <script>
     $(document).ready(function() {
         $('table.display').DataTable({
-            "order": [[ 1, "desc" ]]
+            "order": [
+                [1, "desc"]
+            ]
         });
     });
 
@@ -36,6 +38,25 @@
             });
         }
     });
+
+    $('.cetak_kas_keluar').on('click', function(e) {
+        const transferId = $(this).data('id');
+
+        e.preventDefault()
+        if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/kas_keluar_cetak'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function() {
+                    document.location.href = "<?= base_url('home'); ?>";
+                }
+            });
+        }
+    });
+
     $('.hapus_record').on('click', function(e) {
         const transferId = $(this).data('id');
         e.preventDefault()

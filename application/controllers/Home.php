@@ -174,6 +174,83 @@ class Home extends CI_Controller
         redirect('home');
     }
 
+    public function kas_keluar_cetak()
+    {
+        $id = $this->input->post('transferId');
+
+        $deprecap = $this->home_model->depositRecapByID($id);
+        $kasir = $this->db->get_where('user', ['uname' => $deprecap['kasir']])->row_array();
+        $kasir = $kasir['name'];
+        $set_struk = $this->db->get_where('setting', ['id' => 1])->row_array();
+
+        //membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
+        $connector = new Escpos\PrintConnectors\WindowsPrintConnector("tm_u220");
+
+        // membuat objek $printer agar dapat di lakukan fungsinya
+        $printer = new Escpos\Printer($connector);
+
+        // Membuat judul
+        $printer->initialize();
+        $printer->selectPrintMode(Escpos\Printer::MODE_DOUBLE_HEIGHT); // Setting teks menjadi lebih besar
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER); // Setting teks menjadi rata tengah
+        $printer->text($set_struk['namakonter'] . "\n");
+
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text($set_struk['alamat'] . "\n");
+        // $printer->text(date('dmY H:i:s', $deprecap['waktu']) . "\n");
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text($set_struk['telepon'] . "\n");
+
+        // Data transaksi
+        $printer->initialize();
+        $printer->text("#" .  $deprecap['id'] . "\n");
+        $printer->text($this->buatBaris4Kolom($deprecap['waktu'], "No." . $deprecap['id']));
+        // $printer->text("Waktu : " . $deprecap['date'] . "\n");
+
+        // Membuat tabel
+        $printer->initialize(); // Reset bentuk/jenis teks
+        $printer->text("----------------------------------------\n");
+        $printer->text("BUKTI PENGELUARAN KAS\n");
+        $printer->text("----------------------------------------\n");
+        $printer->text(strtoupper($deprecap['keterangan']) . "\n");
+        $printer->text($this->buatBaris4Kolom($deprecap['idagen'], number_format($deprecap['jumlah'])));
+
+        // $printer->text("Note : " . $deprecap['keterangan'] . "\n");
+        $printer->text("----------------------------------------\n");
+        // $printer->text($this->buatBaris4Kolom('', "Total", number_format($deprecap['jumlah'])));
+        $printer->text("Kasir : " . $kasir . "\n");
+        $printer->text("\n");
+
+        //Sesi tanda tangan
+        $printer->initialize();
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->text($this->buatBaris4Kolom("Direktur", "Akunting"));
+        $printer->text("\n");
+        $printer->text("\n");
+        $printer->text($this->buatBaris4Kolom("Fendi", "Dwi"));
+        $printer->text("\n");
+        $printer->text($this->buatBaris4Kolom("Manager", "Kasir"));
+        $printer->text("\n");
+        $printer->text("\n");
+        $printer->text($this->buatBaris4Kolom("Fendi", $kasir));
+        // $printer->text("http://www.gsm-tronik.com\n");
+
+        // Pesan penutup
+        // $printer->initialize();
+        // $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        // $printer->text($set_struk['akhirkata'] . "\n");
+        // $printer->text("http://www.gsm-tronik.com\n");
+
+        // $printer->feed(2); // mencetak 5 baris kosong, agar kertas terangkat ke atas
+
+        $printer->cut();
+        $printer->close();
+
+        redirect('home');
+    }
+
     public function sendMessage($chatID, $messaggio, $token)
     {
         echo "sending message to " . $chatID . "\n";

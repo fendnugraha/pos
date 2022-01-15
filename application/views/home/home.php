@@ -131,7 +131,17 @@
                                     <td><?= $kas['status']; ?></td>
                                     <td><?= number_format($kas['jumlah']); ?></td>
                                     <td><?= $kas['kasir']; ?></td>
-                                    <td><button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                                    <td><?php
+                                        if ($kas['id'] == "KAS" && $kas['status'] == "Out") {
+                                        ?>
+                                            <button data-id="<?= $kas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                        <?php
+                                        }
+                                        ?> /
                                         <button data-id="<?= $kas['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
