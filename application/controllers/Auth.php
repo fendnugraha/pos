@@ -65,7 +65,7 @@ class Auth extends CI_Controller
     {
         $tanggal = date('Y-m-d');
         $uname = $this->session->userdata('uname');
-        $sisasaldo = $this->home_model->saldoAkhir($tanggal);
+        $sisasaldo = $this->home_model->saldoAkhir($tanggal, "IRS");
         $kasakhir = $this->home_model->kasAkhir($tanggal);
         $this->db->where('uname', $uname)->update(
             'user',
