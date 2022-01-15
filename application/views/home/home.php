@@ -132,7 +132,7 @@
                                     <td><?= number_format($kas['jumlah']); ?></td>
                                     <td><?= $kas['kasir']; ?></td>
                                     <td><?php
-                                        if ($kas['id'] == "KAS" && $kas['status'] == "Out") {
+                                        if ($kas['jalur'] == "KAS" && $kas['status'] == "Out") {
                                         ?>
                                             <button data-id="<?= $kas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                                         <?php

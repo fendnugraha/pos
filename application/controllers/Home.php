@@ -64,7 +64,7 @@ class Home extends CI_Controller
     }
 
     // membuat fungsi untuk membuat 1 baris tabel, agar dapat dipanggil berkali-kali dgn mudah
-    private function buatBaris4Kolom($kolom1, $kolom4)
+    private function buatBaris2Kolom($kolom1, $kolom4)
     {
         // Mengatur lebar setiap kolom (dalam satuan karakter)
         $lebar_kolom_1 = 25;
@@ -111,6 +111,53 @@ class Home extends CI_Controller
         return implode($hasilBaris, "\n") . "\n";
     }
 
+    private function buatBaris3Kolom($kolom1, $kolom2, $kolom3)
+    {
+        // Mengatur lebar setiap kolom (dalam satuan karakter)
+        $lebar_kolom_1 = 12;
+        $lebar_kolom_2 = 13;
+        $lebar_kolom_3 = 12;
+        // $lebar_kolom_4 = 12;
+
+        // Melakukan wordwrap(), jadi jika karakter teks melebihi lebar kolom, ditambahkan \n 
+        $kolom1 = wordwrap($kolom1, $lebar_kolom_1, "\n", true);
+        $kolom2 = wordwrap($kolom2, $lebar_kolom_2, "\n", true);
+        $kolom3 = wordwrap($kolom3, $lebar_kolom_3, "\n", true);
+        // $kolom4 = wordwrap($kolom4, $lebar_kolom_4, "\n", true);
+
+        // Merubah hasil wordwrap menjadi array, kolom yang memiliki 2 index array berarti memiliki 2 baris (kena wordwrap)
+        $kolom1Array = explode("\n", $kolom1);
+        $kolom2Array = explode("\n", $kolom2);
+        $kolom3Array = explode("\n", $kolom3);
+        // $kolom4Array = explode("\n", $kolom4);
+
+        // Mengambil jumlah baris terbanyak dari kolom-kolom untuk dijadikan titik akhir perulangan
+        // $jmlBarisTerbanyak = max(count($kolom1Array), count($kolom2Array), count($kolom3Array), count($kolom4Array));
+        $jmlBarisTerbanyak = max(count($kolom1Array), count($kolom2Array), count($kolom3Array));
+
+        // Mendeklarasikan variabel untuk menampung kolom yang sudah di edit
+        $hasilBaris = array();
+
+        // Melakukan perulangan setiap baris (yang dibentuk wordwrap), untuk menggabungkan setiap kolom menjadi 1 baris 
+        for ($i = 0; $i < $jmlBarisTerbanyak; $i++) {
+
+            // memberikan spasi di setiap cell berdasarkan lebar kolom yang ditentukan, 
+            $hasilKolom1 = str_pad((isset($kolom1Array[$i]) ? $kolom1Array[$i] : ""), $lebar_kolom_1, " ", STR_PAD_BOTH);
+            $hasilKolom2 = str_pad((isset($kolom2Array[$i]) ? $kolom2Array[$i] : ""), $lebar_kolom_2, " ", STR_PAD_BOTH);
+
+            // memberikan rata kanan pada kolom 3 dan 4 karena akan kita gunakan untuk harga dan total harga
+            $hasilKolom3 = str_pad((isset($kolom3Array[$i]) ? $kolom3Array[$i] : ""), $lebar_kolom_3, " ", STR_PAD_BOTH);
+            // $hasilKolom4 = str_pad((isset($kolom4Array[$i]) ? $kolom4Array[$i] : ""), $lebar_kolom_4, " ", STR_PAD_LEFT);
+
+            // Menggabungkan kolom tersebut menjadi 1 baris dan ditampung ke variabel hasil (ada 1 spasi disetiap kolom)
+            $hasilBaris[] = $hasilKolom1 . " " . $hasilKolom2 . " " . $hasilKolom3;
+            // $hasilBaris[] = $hasilKolom1 . " " . $hasilKolom2 . " " . $hasilKolom3 . " " . $hasilKolom4;
+        }
+
+        // Hasil yang berupa array, disatukan kembali menjadi string dan tambahkan \n disetiap barisnya.
+        return implode($hasilBaris, "\n") . "\n";
+    }
+
     public function faktur_print()
     {
         $id = $this->input->post('transferId');
@@ -143,20 +190,20 @@ class Home extends CI_Controller
         // Data transaksi
         $printer->initialize();
         $printer->text("#" .  $deprecap['id'] . "\n");
-        $printer->text($this->buatBaris4Kolom($deprecap['waktu'], "No." . $deprecap['id']));
+        $printer->text($this->buatBaris2Kolom($deprecap['waktu'], "No." . $deprecap['id']));
         // $printer->text("Waktu : " . $deprecap['date'] . "\n");
 
         // Membuat tabel
         $printer->initialize(); // Reset bentuk/jenis teks
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Barang", "Subtotal"));
+        $printer->text($this->buatBaris2Kolom("Barang", "Subtotal"));
         $printer->text("----------------------------------------\n");
         $printer->text(strtoupper($deprecap['produk']) . " " . $deprecap['tujuan'] . "\n");
-        $printer->text($this->buatBaris4Kolom($deprecap['idagen'], number_format($deprecap['jumlah'])));
+        $printer->text($this->buatBaris2Kolom($deprecap['idagen'], number_format($deprecap['jumlah'])));
 
         $printer->text("Note : " . $deprecap['keterangan'] . "\n");
         $printer->text("----------------------------------------\n");
-        // $printer->text($this->buatBaris4Kolom('', "Total", number_format($deprecap['jumlah'])));
+        // $printer->text($this->buatBaris2Kolom('', "Total", number_format($deprecap['jumlah'])));
         $printer->text("Kasir : " . $kasir . "\n");
         $printer->text("\n");
 
@@ -206,35 +253,37 @@ class Home extends CI_Controller
         // Data transaksi
         $printer->initialize();
         $printer->text("#" .  $deprecap['id'] . "\n");
-        $printer->text($this->buatBaris4Kolom($deprecap['waktu'], "No." . $deprecap['id']));
+        $printer->text($this->buatBaris2Kolom($deprecap['waktu'], "No." . $deprecap['id']));
         // $printer->text("Waktu : " . $deprecap['date'] . "\n");
 
         // Membuat tabel
         $printer->initialize(); // Reset bentuk/jenis teks
         $printer->text("----------------------------------------\n");
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text("BUKTI PENGELUARAN KAS\n");
         $printer->text("----------------------------------------\n");
+        $printer->initialize();
         $printer->text(strtoupper($deprecap['keterangan']) . "\n");
-        $printer->text($this->buatBaris4Kolom($deprecap['idagen'], number_format($deprecap['jumlah'])));
+        $printer->text($this->buatBaris2Kolom(strtoupper($deprecap['idagen']), number_format($deprecap['jumlah'])));
 
         // $printer->text("Note : " . $deprecap['keterangan'] . "\n");
         $printer->text("----------------------------------------\n");
-        // $printer->text($this->buatBaris4Kolom('', "Total", number_format($deprecap['jumlah'])));
+        // $printer->text($this->buatBaris2Kolom('', "Total", number_format($deprecap['jumlah'])));
         $printer->text("Kasir : " . $kasir . "\n");
         $printer->text("\n");
 
         //Sesi tanda tangan
         $printer->initialize();
-        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
-        $printer->text($this->buatBaris4Kolom("Direktur", "Akunting"));
+        $printer->text($this->buatBaris3Kolom("", "Mengetahui,", ""));
         $printer->text("\n");
         $printer->text("\n");
-        $printer->text($this->buatBaris4Kolom("Fendi", "Dwi"));
+        $printer->text($this->buatBaris3Kolom("Iyan AM", "Dwi", "Fendi"));
         $printer->text("\n");
-        $printer->text($this->buatBaris4Kolom("Manager", "Kasir"));
+        $printer->text($this->buatBaris3Kolom("Penerima", "", "Kasir"));
         $printer->text("\n");
         $printer->text("\n");
-        $printer->text($this->buatBaris4Kolom("Fendi", $kasir));
+        $printer->text($this->buatBaris3Kolom(ucwords($deprecap['idagen']), "", $kasir));
+        $printer->text("\n");
         // $printer->text("http://www.gsm-tronik.com\n");
 
         // Pesan penutup
@@ -373,10 +422,10 @@ class Home extends CI_Controller
         $printer->initialize();
         $printer->text("Kas\n");
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Kas Awal", number_format($totalKasAwal)));
-        $printer->text($this->buatBaris4Kolom("Pendapatan", number_format($totalKasMasuk)));
-        $printer->text($this->buatBaris4Kolom("Biaya", number_format($totalKasKeluar)));
-        $printer->text($this->buatBaris4Kolom("Kas Akhir", number_format($totalKasAkhir)));
+        $printer->text($this->buatBaris2Kolom("Kas Awal", number_format($totalKasAwal)));
+        $printer->text($this->buatBaris2Kolom("Pendapatan", number_format($totalKasMasuk)));
+        $printer->text($this->buatBaris2Kolom("Biaya", number_format($totalKasKeluar)));
+        $printer->text($this->buatBaris2Kolom("Kas Akhir", number_format($totalKasAkhir)));
         $printer->text("----------------------------------------\n");
         $printer->text("\n");
         // $printer->text("Waktu : " . $deprecap['date'] . "\n");
@@ -385,10 +434,10 @@ class Home extends CI_Controller
         $printer->initialize();
         $printer->text("Saldo\n");
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Saldo Awal", number_format($totalsaldoAwal)));
-        $printer->text($this->buatBaris4Kolom("Penambahan", number_format($totalsaldoMasuk)));
-        $printer->text($this->buatBaris4Kolom("Transaksi", number_format($totalsaldoKeluar)));
-        $printer->text($this->buatBaris4Kolom("Saldo Akhir", number_format($totalsaldoAkhir)));
+        $printer->text($this->buatBaris2Kolom("Saldo Awal", number_format($totalsaldoAwal)));
+        $printer->text($this->buatBaris2Kolom("Penambahan", number_format($totalsaldoMasuk)));
+        $printer->text($this->buatBaris2Kolom("Transaksi", number_format($totalsaldoKeluar)));
+        $printer->text($this->buatBaris2Kolom("Saldo Akhir", number_format($totalsaldoAkhir)));
         $printer->text("----------------------------------------\n");
         $printer->text("\n");
         // $printer->text("Waktu : " . $deprecap['date'] . "\n");
@@ -398,13 +447,13 @@ class Home extends CI_Controller
         $printer->initialize(); // Reset bentuk/jenis teks
         $printer->text("Kas Masuk (Non Deposit)\n");
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text($this->buatBaris2Kolom("Keterangan", "Jumlah"));
         $printer->text("----------------------------------------\n");
         foreach ($nonDepIn as $n) {
             $totDepIn += $n['jumlah'];
-            $printer->text($this->buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+            $printer->text($this->buatBaris2Kolom($n['keterangan'], number_format($n['jumlah'])));
         }
-        $printer->text($this->buatBaris4Kolom("Total", number_format($totDepIn)));
+        $printer->text($this->buatBaris2Kolom("Total", number_format($totDepIn)));
         $printer->text("\n");
 
         // Tabel Non Dep Out
@@ -412,13 +461,13 @@ class Home extends CI_Controller
         $printer->initialize(); // Reset bentuk/jenis teks
         $printer->text("Kas Keluar (Non Deposit)\n");
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text($this->buatBaris2Kolom("Keterangan", "Jumlah"));
         $printer->text("----------------------------------------\n");
         foreach ($nonDepOut as $n) {
             $totDepOut += $n['jumlah'];
-            $printer->text($this->buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+            $printer->text($this->buatBaris2Kolom($n['keterangan'], number_format($n['jumlah'])));
         }
-        $printer->text($this->buatBaris4Kolom("Total", number_format($totDepOut)));
+        $printer->text($this->buatBaris2Kolom("Total", number_format($totDepOut)));
         $printer->text("\n");
 
         // Tabel Non Dep Out
@@ -426,13 +475,13 @@ class Home extends CI_Controller
         $printer->initialize(); // Reset bentuk/jenis teks
         $printer->text("Bon Saldo\n");
         $printer->text("----------------------------------------\n");
-        $printer->text($this->buatBaris4Kolom("Keterangan", "Jumlah"));
+        $printer->text($this->buatBaris2Kolom("Keterangan", "Jumlah"));
         $printer->text("----------------------------------------\n");
         foreach ($nonDepBon as $n) {
             $totDepBon += $n['jumlah'];
-            $printer->text($this->buatBaris4Kolom($n['keterangan'], number_format($n['jumlah'])));
+            $printer->text($this->buatBaris2Kolom($n['keterangan'], number_format($n['jumlah'])));
         }
-        $printer->text($this->buatBaris4Kolom("Total", number_format($totDepBon)));
+        $printer->text($this->buatBaris2Kolom("Total", number_format($totDepBon)));
         $printer->text("\n");
 
         // Pesan penutup
