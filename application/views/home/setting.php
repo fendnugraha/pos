@@ -34,6 +34,10 @@
                             <input type="text" name="akhirkata" id="akhirkata" class="form-control form-control-sm" value="<?= $setting['akhirkata']; ?>">
                         </div>
                         <div class="mb-3">
+                            <label for="manager" class="form-label">Manager</label>
+                            <input type="text" name="manager" id="manager" class="form-control form-control-sm" value="<?= $setting['manager']; ?>">
+                        </div>
+                        <div class="mb-3">
                             <button type="submit" class="btn btn-sm btn-success">Update</button>
                         </div>
                     </form>

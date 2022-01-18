@@ -54,7 +54,8 @@ class Home extends CI_Controller
             'saldoawal' => $this->input->post('saldoawal'),
             'saldoawalok' => $this->input->post('saldoawalok'),
             'kasawal' => $this->input->post('kasawal'),
-            'akhirkata' => $this->input->post('akhirkata')
+            'akhirkata' => $this->input->post('akhirkata'),
+            'manager' => $this->input->post('manager')
         ];
 
         $this->db->set($data);
@@ -246,8 +247,7 @@ class Home extends CI_Controller
         $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text($set_struk['alamat'] . "\n");
         // $printer->text(date('dmY H:i:s', $deprecap['waktu']) . "\n");
-        $printer->text($set_struk['telepon'] . "\n");
-        $printer->text($deprecap['tujuan'] . "\n");
+        $printer->text($set_struk['telepon'] . "\n");        
 
         // Data transaksi
         $printer->initialize();
@@ -257,6 +257,7 @@ class Home extends CI_Controller
 
         // Membuat tabel
         $printer->initialize(); // Reset bentuk/jenis teks
+        $printer->text($deprecap['tujuan'] . "\n");
         $printer->text("----------------------------------------\n");
         $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text("BUKTI PENGELUARAN KAS\n");
@@ -276,7 +277,7 @@ class Home extends CI_Controller
         $printer->text($this->buatBaris3Kolom("", "Mengetahui,", ""));
         $printer->text("\n");
         $printer->text("\n");
-        $printer->text($this->buatBaris3Kolom("Iyan AM", "Dwi", "Fendi"));
+        $printer->text($this->buatBaris3Kolom("Iyan AM", "Dwi", $set_struk['manager']));
         $printer->text("\n");
         $printer->text($this->buatBaris3Kolom("Penerima", "", "Kasir"));
         $printer->text("\n");
