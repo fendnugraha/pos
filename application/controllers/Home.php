@@ -247,7 +247,7 @@ class Home extends CI_Controller
         $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text($set_struk['alamat'] . "\n");
         // $printer->text(date('dmY H:i:s', $deprecap['waktu']) . "\n");
-        $printer->text($set_struk['telepon'] . "\n");        
+        $printer->text($set_struk['telepon'] . "\n");
 
         // Data transaksi
         $printer->initialize();
@@ -367,6 +367,26 @@ class Home extends CI_Controller
         $data['title'] = 'GSM - Report';
         $this->load->view('include/header', $data);
         $this->load->view('home/report', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function thr()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
+        $data['tanggal'] = $tanggal;
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+        $data['tb_thr'] = $this->db->get('tb_thr')->result_array();
+        $data['title'] = 'GSM - Report';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/thragen', $data);
         $this->load->view('include/footer');
     }
 

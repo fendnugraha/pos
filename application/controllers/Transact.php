@@ -186,8 +186,6 @@ class Transact extends CI_Controller
             $penerima = $this->input->post('penerima');
         }
 
-        $data['lastRec'] = $this->home_model->kasOutLast();
-
         $data = [
             'id' => null,
             'idagen' => $penerima,
@@ -250,6 +248,8 @@ class Transact extends CI_Controller
             $data['tanggal'] = date('Y-m-d');
         };
         $data['user'] = $this->db->query($sql)->row_array();
+
+        $data['lastRec'] = $this->home_model->kasOutLastByUser($uname);
 
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim|min_length[5]');
         $this->form_validation->set_rules('nobukti', 'Nomor Bukti', 'required|trim');

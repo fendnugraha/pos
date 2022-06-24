@@ -33,6 +33,9 @@
                         <a class="nav-link" href="<?= base_url('home/report'); ?>">Report</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('home/thr'); ?>">THR Agen</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/setting'); ?>">Setting</a>
                     </li>
                     <li class="nav-item">
