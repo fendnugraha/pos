@@ -56,9 +56,9 @@
                 </div>
                 <div class="mb-3 d-grid gap-2">
                     <button type="submit" class="btn btn-sm btn-primary mt-2">Submit</button>
-                    <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
-                                                                                                            echo "disabled";
-                                                                                                        }; ?>>
+                    <button data-id="<?= $lastRec['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
+                                                                                                                    echo "disabled";
+                                                                                                                }; ?>>
                         <i class="fas fa-print"></i> Cetak <?= $lastRec['tujuan']; ?></button>
                 </div>
             </form>
@@ -66,5 +66,4 @@
             <?= $this->session->flashdata('message'); ?>
         </div>
     </div>
-    <?= $lastRec['id']; ?>
 </div>
