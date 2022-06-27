@@ -9,8 +9,11 @@
                 <a href="<?= base_url('transact/kaskeluar'); ?>" class="list-group-item list-group-item-action">Kas Keluar</a>
                 <a href="#" class="list-group-item list-group-item-action">Tukar Tunai</a>
             </div>
+            <br>
+            <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
+            <?= $this->session->flashdata('message'); ?>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-4">
             <div class="card mt-3">
                 <div class="card-body">
                     <h2>FORM DEPOSIT</h2>
@@ -48,17 +51,30 @@
                                     </div> -->
                         <div class="mb-3 d-grid gap-2">
                             <button type="submit" class="btn btn-sm btn-primary mt-2">Submit</button>
-                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
-                                                                                                                    echo "disabled";
-                                                                                                                }; ?>>
+                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk_form btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
+                                                                                                                            echo "disabled";
+                                                                                                                        }; ?>>
                                 <i class="fas fa-print"></i> Cetak <?= $lastRec['idagen']; ?></button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
-            <?= $this->session->flashdata('message'); ?>
+        </div>
+        <div class="col-sm">
+            <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
+                <div class="card mt-3 bg-dark text-warning">
+                    <div class="card-body">
+                        <h2 class="text-center"><em>"<?= $lastRec['produk']; ?>"</em></h2>
+                        <h6>- <?= $lastRec['idagen']; ?> -</h6>
+                        <h4 class="text-success text-end">Rp. <?= number_format($lastRec['jumlah']); ?></h4>
+                    </div>
+                    <div class="card-footer">
+                        <h2 class="text-center text-primary"><?= "TL." . substr($lastRec['idagen'], 0, 6) . "." . $lastRec['jumlah'] . ".1";
+                                                                ?></h2>
+                    </div>
+                <?php }; ?>
+                </div>
         </div>
     </div>
 

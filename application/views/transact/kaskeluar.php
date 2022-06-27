@@ -9,8 +9,11 @@
                 <a href="<?= base_url('transact/kaskeluar'); ?>" class="list-group-item list-group-item-action active">Kas Keluar</a>
                 <a href="#" class="list-group-item list-group-item-action">Tukar Tunai</a>
             </div>
+            <br>
+            <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
+            <?= $this->session->flashdata('message'); ?>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-4">
             <h1>Kas Keluar</h1>
             <hr>
             <form action="<?= base_url('transact/kaskeluar'); ?>" method="post">
@@ -62,8 +65,15 @@
                         <i class="fas fa-print"></i> Cetak <?= $lastRec['tujuan']; ?></button>
                 </div>
             </form>
-            <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
-            <?= $this->session->flashdata('message'); ?>
+        </div>
+        <div class="col-sm">
+            <div class="card mt-3 bg-dark text-warning">
+                <div class="card-body">
+                    <h2 class="text-center"><em>"<?= $lastRec['keterangan']; ?>"</em></h2>
+                    <h6>- <?= $lastRec['idagen']; ?> -</h6>
+                    <h4 class="text-success text-end">Rp. <?= number_format($lastRec['jumlah']); ?></h4>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -39,6 +39,24 @@
         }
     });
 
+    $('.cetak_struk_form').on('click', function(e) {
+        const transferId = $(this).data('id');
+
+        e.preventDefault()
+        if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/faktur_print'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function() {
+                    document.location.href = "<?= base_url('transact'); ?>";
+                }
+            });
+        }
+    });
+
     $('.cetak_kas_keluar').on('click', function(e) {
         const transferId = $(this).data('id');
 
