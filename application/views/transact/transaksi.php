@@ -13,7 +13,7 @@
             <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
             <?= $this->session->flashdata('message'); ?>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm">
             <div class="card mt-3">
                 <div class="card-body">
                     <h2>FORM DEPOSIT</h2>

@@ -29,7 +29,7 @@ class Transact extends CI_Controller
 
         $data['lastRec'] = $this->home_model->depositLastByUser($uname);
 
-        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[4]|trim');
+        $this->form_validation->set_rules('idagen', 'ID Agen', 'exact_length[5]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {

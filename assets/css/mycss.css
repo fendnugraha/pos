@@ -1,6 +1,6 @@
-/* body{
-    background-color: rgb(202, 202, 202);
-} */
+html, body{
+    background-color: rgb(228, 83, 83);
+}
 .card {
     border-radius: 20px;
     padding: 10px;
