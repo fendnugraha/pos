@@ -70,7 +70,7 @@
                         <h4 class="text-success text-end">Rp. <?= number_format($lastRec['jumlah']); ?></h4>
                     </div>
                     <div class="card-footer">
-                        <h2 class="text-center text-primary"><?= "TL." . substr($lastRec['idagen'], 0, 6) . "." . $lastRec['jumlah'] . ".1";
+                        <h2 class="text-center text-primary"><?= "TL." . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7) ) . "." . $lastRec['jumlah'] . ".1";
                                                                 ?></h2>
                     </div>
                 <?php }; ?>
