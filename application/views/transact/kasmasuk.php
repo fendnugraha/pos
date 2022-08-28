@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-sm-3">
-            <div class="list-group">
+            <div class="list-group list-group-flush">
                 <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action">Deposit</a>
                 <a href="<?= base_url('transact/trxpulsa'); ?>" class="list-group-item list-group-item-action">Transaksi Pulsa</a>
                 <a href="<?= base_url('transact/kasmasuk'); ?>" class="list-group-item list-group-item-action active">Kas Masuk</a>

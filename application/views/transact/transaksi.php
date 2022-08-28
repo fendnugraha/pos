@@ -2,7 +2,8 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-sm-3">
-            <div class="list-group">
+
+            <div class="list-group list-group-flush submenu-list">
                 <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action active">Deposit</a>
                 <a href="<?= base_url('transact/trxpulsa'); ?>" class="list-group-item list-group-item-action">Transaksi Pulsa</a>
                 <a href="<?= base_url('transact/kasmasuk'); ?>" class="list-group-item list-group-item-action">Kas Masuk</a>
@@ -14,9 +15,9 @@
             <?= $this->session->flashdata('message'); ?>
         </div>
         <div class="col-sm">
+            <h2>FORM DEPOSIT</h2>
             <div class="card mt-3">
                 <div class="card-body">
-                    <h2>FORM DEPOSIT</h2>
                     <form action="<?= base_url('transact'); ?>" method="post">
                         <div class="mb-3">
                             <label for="idagen" class="form-label">ID Agen/Kode</label>
@@ -25,6 +26,10 @@
                                 <span class="input-group-text" id="basic-addon1">ID</span>
                                 <input type="text" class="form-control form-control-sm" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off">
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah Deposit</label>
+                            <input type="number" name="jumlah" id="jumlah" class="form-control" placeholder="Bade ngisina sabaraha??" autocomplete="off">
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="cash" name="cash" value=3 checked>
@@ -41,10 +46,6 @@
                             <label class="form-check-label" for="okelink">OKELINK</label>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="jumlah" class="form-label">Jumlah Deposit</label>
-                            <input type="number" name="jumlah" id="jumlah" class="form-control" placeholder="Bade ngisina sabaraha??" autocomplete="off">
-                        </div>
                         <!-- <div class="mb-3">
                                         <label for="keterangan" class="form-label">Keterangan</label>
                                         <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm" placeholder="Opsional">
@@ -59,9 +60,6 @@
                     </form>
                 </div>
             </div>
-
-        </div>
-        <div class="col-sm">
             <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
                 <div class="card mt-3 bg-dark text-warning">
                     <div class="card-body">
@@ -70,11 +68,15 @@
                         <h4 class="text-success text-end">Rp. <?= number_format($lastRec['jumlah']); ?></h4>
                     </div>
                     <div class="card-footer">
-                        <h2 class="text-center text-primary"><?= "TL." . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7) ) . "." . $lastRec['jumlah'] . ".1";
+                        <h2 class="text-center text-primary"><?= "TL." . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
                                                                 ?></h2>
                     </div>
                 <?php }; ?>
                 </div>
+
+        </div>
+        <div class="col-sm">
+
         </div>
     </div>
 

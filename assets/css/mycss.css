@@ -5,3 +5,25 @@
     border-radius: 20px;
     padding: 10px;
 }
+
+/* .submenu-dropdown {
+    display: none;
+    visibility: hidden;
+}
+
+.submenu-list {
+    display: block;
+    visibility: visible;
+}
+
+@media (max-width: 992px) {
+    .submenu-dropdown {
+        display: block;
+        visibility: visible;
+    }
+
+    .submenu-list {
+        display: none;
+        visibility: hidden;
+    }
+} */

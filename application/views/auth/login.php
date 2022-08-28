@@ -20,7 +20,7 @@
         }
 
         .login-form {
-            width: 25vw;
+            width: 30vw;
             /* background-color: rgba(245, 245, 245, 1); */
             opacity: .8;
             /* border-radius: 2rem; */
@@ -28,7 +28,7 @@
         }
 
         .logo-login {
-            height: 150px;
+            height: 15%;
         }
 
         input[type=password],
@@ -47,7 +47,7 @@
 
         @media (max-width: 991.98px) {
             .logo-login {
-                display: none;
+                height: 10%;
             }
 
             .login-form {
@@ -63,8 +63,8 @@
     <div class="container d-flex justify-content-center align-items-center flex-column">
         <img class="logo-login mb-0" src="<?= base_url('assets/img/'); ?>login-logo.png" alt="login-logo">
         <div class="login-form mt-0">
-            <!-- <h4 class="card-title text-center mb-3 mt-3">Account Login</h4> -->
-            <form action="<?= base_url('auth'); ?>" method="post" class="mt-5">
+            <h4 class="text-center">MEMBER LOGIN</h4>
+            <form action="<?= base_url('auth'); ?>" method="post" class="mt-2">
                 <div class="mb-3">
                     <input type="text" class="form-control" id="uname" name="uname" placeholder="Username">
                 </div>
