@@ -47,9 +47,8 @@ a {
 
 .side-menu-trx {
     height: 60vh;
-    /* justify-content: space-around; */
-    gap: 0.5rem;
-    top: 4rem;
+    justify-content: space-evenly;
+    gap: 0.3rem;
 }
 
 .side-menu-trx a {
