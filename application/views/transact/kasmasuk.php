@@ -1,14 +1,20 @@
 <?php error_reporting(0); ?>
 <div class="container">
     <div class="row mt-3">
-        <div class="col-sm-3">
-            <div class="list-group list-group-flush">
-                <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action">Deposit</a>
-                <a href="<?= base_url('transact/trxpulsa'); ?>" class="list-group-item list-group-item-action">Transaksi Pulsa</a>
-                <a href="<?= base_url('transact/kasmasuk'); ?>" class="list-group-item list-group-item-action active">Kas Masuk</a>
-                <a href="<?= base_url('transact/kaskeluar'); ?>" class="list-group-item list-group-item-action">Kas Keluar</a>
-                <a href="#" class="list-group-item list-group-item-action">Tukar Tunai</a>
-            </div>
+        <div class="col-sm-3 d-flex flex-column side-menu-trx">
+
+            <!-- <div class="list-group list-group-flush submenu-list">
+    <a href="<?= base_url('transact'); ?>" class="list-group-item list-group-item-action active"><i class="fa-solid fa-money-bill-transfer"></i> Deposit</a>
+    <a href="<?= base_url('transact/trxpulsa'); ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-mobile-retro"></i> Transaksi Pulsa</a>
+    <a href="<?= base_url('transact/kasmasuk'); ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-cash-register"></i> Kas Masuk</a>
+    <a href="<?= base_url('transact/kaskeluar'); ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a>
+    <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-money-bills"></i> Tukar Tunai</a>
+</div> -->
+            <a href="<?= base_url('transact'); ?>" class=" "><i class="fa-solid fa-money-bill-transfer"></i> Deposit</a>
+            <a href="<?= base_url('transact/trxpulsa'); ?>" class=""><i class="fa-solid fa-mobile-retro"></i> Transaksi Pulsa</a>
+            <a href="<?= base_url('transact/kasmasuk'); ?>" class="active"><i class="fa-solid fa-cash-register"></i> Kas Masuk</a>
+            <a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a>
+            <a href="#" class=""><i class="fa-solid fa-money-bills"></i> Tukar Tunai</a>
         </div>
         <div class="col-sm">
             <h1>Kas Masuk</h1>

@@ -12,9 +12,9 @@
         body {
             /* padding-top: 5%; */
             display: flex;
-            /* background: rgb(255, 255, 255);
-            background: linear-gradient(234deg, rgba(255, 255, 255, 1) 0%, rgba(21, 219, 168, 1) 100%, rgba(0, 212, 255, 1) 100%); */
-            background-color: rgba(201, 104, 0, 1);
+            background: rgb(195, 150, 34);
+            background: linear-gradient(0deg, rgba(195, 150, 34, 1) 0%, rgba(253, 97, 45, 1) 100%);
+            /* background-color: rgba(201, 104, 0, 1); */
             height: 100vh;
             width: 100vw;
         }
