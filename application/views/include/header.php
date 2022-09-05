@@ -17,12 +17,12 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="<?= base_url('home'); ?>"><?= $setting['namakonter']; ?></a>
+            <a class="navbar-brand fw-bold" href="<?= base_url('home'); ?>"><?= $setting['namakonter']; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ms-auto me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= base_url('home'); ?>">Home</a>
                     </li>
@@ -32,15 +32,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/report'); ?>">Report</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/thr'); ?>">THR Agen</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/setting'); ?>">Setting</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('auth/logout'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown link
@@ -52,8 +52,15 @@
                         </ul>
                     </li> -->
                 </ul>
-                <span class="navbar-text">
-                    User currently logged in is, <strong class="text-primary"><i class="fa-solid fa-user"></i> <?= ucwords($user['name']); ?></strong></span>
+                <span class="navbar-text dropdown">
+                    <!-- User currently logged in is, <strong class="text-primary"><i class="fa-solid fa-user"></i> <?= ucwords($user['name']); ?></strong> -->
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong><i class="fa-solid fa-user"></i> <?= ucwords($user['name']); ?></strong>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </span>
             </div>
         </div>
     </nav>

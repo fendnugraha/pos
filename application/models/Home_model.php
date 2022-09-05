@@ -14,7 +14,7 @@ class Home_model extends CI_Model
 
     public function depositLastByUser($user)
     {
-        return $this->db->order_by('id', 'DESC')->limit(1)->get_where('deposit', ['kasir' => $user])->row_array();
+        return $this->db->order_by('id', 'DESC')->limit(1)->get_where('deposit', ['kasir' => $user, 'produk' => 'Isi Saldo Deposit'])->row_array();
     }
 
     public function kasOutLast()
@@ -144,5 +144,25 @@ class Home_model extends CI_Model
         $kaskeluar = $this->home_model->kasKeluar($tanggal);
 
         return $setKasAwal + $kasmasuk - $kaskeluar;
+    }
+
+    public function nomorbukti()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        // $data['tanggal'] = date('Y-m-d');
+        $setting = $this->db->get('setting')->row_array();
+        $user = $this->db->query($sql)->row_array();
+
+        $querycode = "SELECT MAX(RIGHT(tujuan,3)) AS kd_max FROM deposit
+                    WHERE kasir = '$uname' and jalur = 'KAS'";
+        $q = $this->db->query($querycode);
+        if ($q->num_rows() > 0) {
+            $k = $q->row_array();
+            $tmp = ((int) $k['kd_max']) + 1;
+            return str_replace(' ', '.', $setting['namakonter']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . sprintf("%03s", $tmp);
+        } else {
+            return str_replace(' ', '.', $setting['namakonter']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . "001";
+        }
     }
 }
