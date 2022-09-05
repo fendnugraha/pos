@@ -77,7 +77,12 @@ class Transact extends CI_Controller
     private function _inputDeposit()
     {
         $kasir = $this->session->userdata('uname');
-        $idagen = "ID" . $this->input->post('idagen');
+        if ($this->input->post('jalur') == "IRS") {
+            $awalan = "ID";
+        } else {
+            $awalan = "OX";
+        }
+        $idagen = $awalan . $this->input->post('idagen');
         $cekid = $this->db->get_where('contact', ['idagen' => $idagen])->row_array();
 
         if (null !== $this->input->post('cash')) {
