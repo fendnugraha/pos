@@ -64,10 +64,16 @@
                 <?php }; ?>
             </div>
         </div>
-        <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
+        <?php if ($lastRec['produk'] == "Isi Saldo Deposit") {
+            if ($lastRec['jalur'] == "IRS") {
+                $awalan = "TL.";
+            } else {
+                $awalan = "ADD.";
+            }
+        ?>
             <div class="card mt-3 bg-dark text-warning">
                 <div class="card-body p-1">
-                    <h2 class="text-center text-warning"><?= "TL." . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
+                    <h2 class="text-center text-warning"><?= $awalan . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
                                                             ?></h2>
                 </div>
             </div>
