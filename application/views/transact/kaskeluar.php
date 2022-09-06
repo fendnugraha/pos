@@ -9,7 +9,7 @@
     </div>
     <div class="mid-content mt-3">
         <h4>Kas Keluar</h4>
-        <div class="card mt-3">
+        <div class="card">
             <div class="card-body">
                 <form action="<?= base_url('transact/kaskeluar'); ?>" method="post">
                     <div class="mb-3">
