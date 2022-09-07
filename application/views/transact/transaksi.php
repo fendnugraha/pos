@@ -81,15 +81,20 @@
     </div>
     <div class="side-menu-notif mt-3">
         <h4>Recent updates</h4>
-        <?php foreach ($recentdep as $rdep) { ?>
+        <?php foreach ($recentdep as $rdep) {
+            if ($rdep['jalur'] == "IRS") {
+                $awalan = "TL.";
+            } else {
+                $awalan = "ADD.";
+            } ?>
             <div class="notification-input d-flex mb-1">
                 <div class="card-notif">
                     <small class="text-muted"><?= $rdep['waktu'] ?> <?= ucwords($rdep['idagen']) ?></small>
                     <p class="mb-0"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " Rp. " . number_format($rdep['jumlah']) . " (" . $rdep['kasir'] . ")"; ?></p>
-                    <small class="text-muted"><?= "TL." . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
+                    <small class="text-muted"><?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
                                                 ?> </small>
                 </div>
-                <button data-id="<?= $rdep['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success btn-notif" <?php if (null == $rdep['id']) {
+                <button data-id="<?= $rdep['id']; ?>" class="cetak_struk_form btn btn-sm btn-success btn-notif" <?php if (null == $rdep['id']) {
                                                                                                                     echo "disabled";
                                                                                                                 }; ?>>
                     <i class="fas fa-print"></i>

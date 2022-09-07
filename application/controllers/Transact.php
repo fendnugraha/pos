@@ -28,7 +28,7 @@ class Transact extends CI_Controller
         $data['user'] = $this->db->query($sql)->row_array();
 
         $data['lastRec'] = $this->home_model->depositLastByUser($uname);
-        $data['recentdep'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur' => 'IRS'])->result_array();
+        $data['recentdep'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
 
         $this->form_validation->set_rules('idagen', 'ID Agen', 'max_length[5]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
