@@ -1,11 +1,24 @@
 <?php error_reporting(0); ?>
 <div class="container container-satu">
     <div class="side-menu-trx mt-3">
-        <a href="<?= base_url('transact'); ?>" class="active"><i class="fa-solid fa-money-bill-transfer"></i> Deposit</a>
-        <a href="<?= base_url('transact/trxpulsa'); ?>" class=""><i class="fa-solid fa-mobile-retro"></i> Transaksi Pulsa</a>
-        <a href="<?= base_url('transact/kasmasuk'); ?>" class=""><i class="fa-solid fa-cash-register"></i> Kas Masuk</a>
-        <a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a>
-        <a href="#" class=""><i class="fa-solid fa-money-bills"></i> Tukar Tunai</a>
+        <h4>Side Menu</h4>
+        <ul class="list-menu-trx">
+            <li>
+                <a href="<?= base_url('transact'); ?>" class="active"><i class="fa-solid fa-money-bill-transfer"></i> Deposit</a>
+            </li>
+            <li>
+                <a href="<?= base_url('transact/trxpulsa'); ?>" class=""><i class="fa-solid fa-mobile-retro"></i> Transaksi Pulsa</a>
+            </li>
+            <li>
+                <a href="<?= base_url('transact/kasmasuk'); ?>" class=""><i class="fa-solid fa-cash-register"></i> Kas Masuk</a>
+            </li>
+            <li>
+                <a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a>
+            </li>
+            <li>
+                <a href="#" class=""><i class="fa-solid fa-money-bills"></i> Tukar Tunai</a>
+            </li>
+        </ul>
     </div>
     <div class="mid-content mt-3">
         <h4>Input Deposit Agen</h4>
