@@ -4,96 +4,96 @@ $(document).ready(function () {
             [1, "desc"]
         ]
     });
-});
 
-$(document).ready(function () {
+
     $(".datepicker").datepicker();
-});
 
-$('.cetak_struk').on('click', function (e) {
-    const transferId = $(this).data('id');
 
-    e.preventDefault()
-    if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/faktur_print'); ?>",
-            data: {
-                transferId: transferId,
-            },
-            success: function () {
-                document.location.href = "<?= base_url('home'); ?>";
-            }
-        });
-    }
-});
+    $('.cetak_struk').on('click', function (e) {
+        const transferId = $(this).data('id');
 
-$('.cetak_struk_form').on('click', function (e) {
-    const transferId = $(this).data('id');
+        e.preventDefault()
+        if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/faktur_print'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function () {
+                    document.location.href = "<?= base_url('home'); ?>";
+                }
+            });
+        }
+    });
 
-    e.preventDefault()
-    if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/faktur_print'); ?>",
-            data: {
-                transferId: transferId,
-            },
-            success: function () {
-                document.location.href = "<?= base_url('transact'); ?>";
-            }
-        });
-    }
-});
+    $('.cetak_struk_form').on('click', function (e) {
+        const transferId = $(this).data('id');
 
-$('.cetak_kas_keluar').on('click', function (e) {
-    const transferId = $(this).data('id');
+        e.preventDefault()
+        if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/faktur_print'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function () {
+                    document.location.href = "<?= base_url('transact'); ?>";
+                }
+            });
+        }
+    });
 
-    e.preventDefault()
-    if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/kas_keluar_cetak'); ?>",
-            data: {
-                transferId: transferId,
-            },
-            success: function () {
-                document.location.href = "<?= base_url('home'); ?>";
-            }
-        });
-    }
-});
+    $('.cetak_kas_keluar').on('click', function (e) {
+        const transferId = $(this).data('id');
 
-$('.hapus_record').on('click', function (e) {
-    const transferId = $(this).data('id');
-    e.preventDefault()
-    if (confirm('Hapus transaksi ID ' + transferId + ' ?')) {
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/hapus_record'); ?>",
-            data: {
-                transferId: transferId,
-            },
-            success: function () {
-                document.location.href = "<?= base_url('home'); ?>";
-            }
-        });
-    }
-});
-$('.cetak-laporan').on('click', function (e) {
-    const tanggal = $(this).data('id');
+        e.preventDefault()
+        if (confirm('Cetak transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/kas_keluar_cetak'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function () {
+                    document.location.href = "<?= base_url('home'); ?>";
+                }
+            });
+        }
+    });
 
-    e.preventDefault()
-    if (confirm('Cetak laporan ' + tanggal + ' ?')) {
-        $.ajax({
-            type: 'post',
-            url: "<?= base_url('home/dailyReport'); ?>",
-            data: {
-                tanggal: tanggal,
-            },
-            success: function () {
-                document.location.href = "<?= base_url('home/report'); ?>";
-            }
-        });
-    }
+    $('.hapus_record').on('click', function (e) {
+        const transferId = $(this).data('id');
+        e.preventDefault()
+        if (confirm('Hapus transaksi ID ' + transferId + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/hapus_record'); ?>",
+                data: {
+                    transferId: transferId,
+                },
+                success: function () {
+                    document.location.href = "<?= base_url('home'); ?>";
+                }
+            });
+        }
+    });
+    $('.cetak-laporan').on('click', function (e) {
+        const tanggal = $(this).data('id');
+
+        e.preventDefault()
+        if (confirm('Cetak laporan ' + tanggal + ' ?')) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('home/dailyReport'); ?>",
+                data: {
+                    tanggal: tanggal,
+                },
+                success: function () {
+                    document.location.href = "<?= base_url('home/report'); ?>";
+                }
+            });
+        }
+    });
 });
