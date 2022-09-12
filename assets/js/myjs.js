@@ -1,12 +1,12 @@
 $(document).ready(function () {
     $('table.display').DataTable({
-        "order": [
+        order: [
             [1, "desc"]
         ]
     });
 
 
-    $(".datepicker").datepicker();
+    // $(".datepicker").datepicker();
 
 
     $('.cetak_struk').on('click', function (e) {

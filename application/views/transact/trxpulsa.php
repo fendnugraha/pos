@@ -70,22 +70,23 @@
         </form>
     </div>
     <div class="side-menu-notif mt-3">
-        <h2>Recent updates</h2>
-        <?php foreach ($recentpulsa as $rpul) { ?>
-            <div class="notification-input d-flex mb-1">
+        <h4>Recent updates</h4>
+        <div class="notification-input d-flex flex-column">
+            <?php foreach ($recentpulsa as $rpul) { ?>
                 <div class="card-notif">
-                    <small class="text-muted"><?= $rpul['tujuan'] ?></small>
-                    <p class="mb-0"><span class="fw-bold"><?= $rpul['waktu'] ?></span><?= ucwords($rpul['produk']) . " Rp. " . number_format($rpul['jumlah']); ?></p>
-                    <small class="text-muted">Penerima: <?= ucwords($rpul['idagen']) ?> Kasir: <?= ucwords($rpul['kasir']) ?></small>
+                    <div class="card-notif-body">
+                        <small class="text-muted"><?= $rpul['tujuan'] ?></small>
+                        <p class="mb-0"><span class="fw-bold"><?= $rpul['waktu'] ?></span><?= ucwords($rpul['produk']) . " Rp. " . number_format($rpul['jumlah']); ?></p>
+                        <small class="text-muted">Penerima: <?= ucwords($rpul['idagen']) ?> Kasir: <?= ucwords($rpul['kasir']) ?></small>
+                    </div>
+                    <button data-id="<?= $rpul['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success btn-notif" <?php if (null == $rpul['id']) {
+                                                                                                                        echo "disabled";
+                                                                                                                    }; ?>>
+                        <i class="fas fa-print"></i>
+                    </button>
                 </div>
-                <button data-id="<?= $rpul['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success btn-notif" <?php if (null == $rpul['id']) {
-                                                                                                                    echo "disabled";
-                                                                                                                }; ?>>
-                    <i class="fas fa-print"></i>
-                </button>
-            </div>
-        <?php } ?>
-
+            <?php } ?>
+        </div>
         <br>
         <?= validation_errors('<small class="text-danger pl-2">*', '</small>'); ?>
         <?= $this->session->flashdata('message'); ?>
