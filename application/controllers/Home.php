@@ -38,6 +38,50 @@ class Home extends CI_Controller
         $this->load->view('include/footer');
     }
 
+    public function okelink()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        // $data['tanggal'] = date('Y-m-d');
+
+        if (null !== $this->input->post('tanggal')) {
+            $data['tanggal'] = $this->input->post('tanggal');
+        } else {
+            $data['tanggal'] = date('Y-m-d');
+        };
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['dep_recapirs'] = $this->home_model->depositRecap($data['tanggal'], "OKELINK");
+        $data['kontak'] = $this->db->get('contact')->result_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+
+        $data['title'] = 'GSM - Home';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/okelink', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function kastunai()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        // $data['tanggal'] = date('Y-m-d');
+
+        if (null !== $this->input->post('tanggal')) {
+            $data['tanggal'] = $this->input->post('tanggal');
+        } else {
+            $data['tanggal'] = date('Y-m-d');
+        };
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['dep_recapirs'] = $this->home_model->recapKasTunai($data['tanggal']);
+        $data['kontak'] = $this->db->get('contact')->result_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+
+        $data['title'] = 'GSM - Home';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/kastunai', $data);
+        $this->load->view('include/footer');
+    }
+
     public function hapus_record()
     {
         $id = $this->input->post('transferId');

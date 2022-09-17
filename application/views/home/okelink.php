@@ -1,10 +1,10 @@
 <div class="container mt-4 dashboard-home">
     <div class="menu-sources">
         <ul class="menu-sources-tab">
-            <li class="menu-sources-item"><a href="<?= base_url('home'); ?>" class="active">
+            <li class="menu-sources-item"><a href="<?= base_url('home'); ?>">
                     <h2>IRS</h2>
                 </a></li>
-            <li class="menu-sources-item"><a href="<?= base_url('home/okelink'); ?>">
+            <li class="menu-sources-item"><a href="<?= base_url('home/okelink'); ?>" class="active">
                     <h2>OKELINK</h2>
                 </a></li>
             <li class="menu-sources-item"><a href="<?= base_url('home/kastunai'); ?>">
@@ -14,16 +14,16 @@
     </div>
     <div class="info-saldo">
         <div class="card">
-            <h5>SALDO AWAL</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoAwal(date("Y-m-d"), "IRS")); ?></h1>
+            <h5>SALDO AWAL</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoAwal(date("Y-m-d"), "OKELINK")); ?></h1>
         </div>
         <div class="card">
-            <h5>PENAMBAHAN</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoMasuk(date("Y-m-d"), "IRS")); ?></h1>
+            <h5>PENAMBAHAN</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoMasuk(date("Y-m-d"), "OKELINK")); ?></h1>
         </div>
         <div class="card">
-            <h5>TRANSFER SALDO</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "IRS")); ?></h1>
+            <h5>TRANSFER SALDO</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "OKELINK")); ?></h1>
         </div>
         <div class="card">
-            <h5>SALDO AKHIR</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "IRS")); ?></h1>
+            <h5>SALDO AKHIR</h5>Rp. <h1 class="text-end"><?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "OKELINK")); ?></h1>
         </div>
     </div>
     <div class="table-rekap">
