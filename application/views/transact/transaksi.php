@@ -59,10 +59,10 @@
                                         <input type="text" name="keterangan" id="keterangan" class="form-control form-control-sm" placeholder="Opsional">
                                     </div> -->
                     <div class="mb-3 row">
-                        <div class="col-sm d-grid gap-2">
+                        <div class="col-sm d-grid">
                             <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                         </div>
-                        <div class="col-sm-3 d-grid gap-2">
+                        <div class="col-sm-3 d-grid">
                             <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk_form btn btn-sm btn-success" <?php if (null == $lastRec['id']) {
                                                                                                                             echo "disabled";
                                                                                                                         }; ?>>
@@ -84,11 +84,14 @@
                 $awalan = "ADD.";
             }
         ?>
-            <div class="card mt-3 bg-dark text-warning">
+            <div class="card bg-dark text-warning mt-1">
                 <div class="card-body p-1">
-                    <h2 class="text-center text-warning"><?= $awalan . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
-                                                            ?></h2>
+                    <h2 class="text-center text-warning" id="text"><?= $awalan . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
+                                                                    ?></h2>
                 </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-sm btn-warning btn-block" id="btn-copy" onclick="copyToClipboard('#text')"><i class="fa-solid fa-clipboard"></i> Click to Copy</button>
             </div>
         <?php }; ?>
     </div>

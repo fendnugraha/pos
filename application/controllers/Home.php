@@ -93,6 +93,7 @@ class Home extends CI_Controller
     {
         $data = [
             'namakonter' => $this->input->post('namakonter'),
+            'prefik' => $this->input->post('prefik'),
             'alamat' => $this->input->post('alamat'),
             'telepon' => $this->input->post('telepon'),
             'saldoawal' => $this->input->post('saldoawal'),

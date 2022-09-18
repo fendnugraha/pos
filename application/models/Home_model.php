@@ -160,9 +160,9 @@ class Home_model extends CI_Model
         if ($q->num_rows() > 0) {
             $k = $q->row_array();
             $tmp = ((int) $k['kd_max']) + 1;
-            return str_replace(' ', '.', $setting['namakonter']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . sprintf("%03s", $tmp);
+            return str_replace(' ', '.', $setting['prefik']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . sprintf("%03s", $tmp);
         } else {
-            return str_replace(' ', '.', $setting['namakonter']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . "001";
+            return str_replace(' ', '.', $setting['prefik']) . ".BK." . date('dmy') . "."  . $user["id"] . "."  . "001";
         }
     }
 }

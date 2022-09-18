@@ -5,9 +5,15 @@
                 <h5 class="card-header">Setting Cetak Struk</h5>
                 <div class="card-body">
                     <form action="<?= base_url('home/update_setting'); ?>" method="post">
-                        <div class="mb-3">
-                            <label for="namakonter" class="form-label">Nama Konter</label>
-                            <input type="text" name="namakonter" id="namakonter" class="form-control form-control-sm" value="<?= $setting['namakonter']; ?>">
+                        <div class="row mb-3">
+                            <div class="col-sm">
+                                <label for="namakonter" class="form-label">Nama Konter</label>
+                                <input type="text" name="namakonter" id="namakonter" class="form-control form-control-sm" value="<?= $setting['namakonter']; ?>">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="prefik" class="form-label">Kode</label>
+                                <input type="text" name="prefik" id="prefik" class="form-control form-control-sm" value="<?= $setting['prefik']; ?>">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat</label>

@@ -9,3 +9,12 @@
 <script src="<?= base_url('assets/js/'); ?>dataTables.bootstrap5.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>popper.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>myjs.js"></script>
+<script>
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+</script>
