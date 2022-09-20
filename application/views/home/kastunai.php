@@ -53,7 +53,17 @@
                         <td><span class="text-warning"><?= $irs['idagen']; ?></span><br><?= $irs['produk']; ?> / <?= $irs['tujuan']; ?> / <?= $irs['keterangan']; ?></td>
                         <td><?= number_format($irs['jumlah']); ?></td>
                         <td><?= $irs['kasir']; ?></td>
-                        <td><button data-id="<?= $irs['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                        <td><?php
+                            if ($kas['jalur'] == "KAS" && $kas['status'] == "Out") {
+                            ?>
+                                <button data-id="<?= $kas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                            <?php
+                            } else {
+                            ?>
+                                <button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                            <?php
+                            }
+                            ?> /
                             <button data-id="<?= $irs['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>

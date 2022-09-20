@@ -74,9 +74,9 @@
                         <p class="mb-0"><span class="fw-bold"><?= $rkas['waktu'] ?></span><?= ucwords($rkas['keterangan']) . " Rp. " . number_format($rkas['jumlah']); ?></p>
                         <small class="text-muted">Penerima: <?= ucwords($rkas['idagen']) ?> Kasir: <?= ucwords($rkas['kasir']) ?></small>
                     </div>
-                    <button data-id="<?= $rkas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success btn-notif" <?php if (null == $rkas['id']) {
-                                                                                                                        echo "disabled";
-                                                                                                                    }; ?>>
+                    <button data-id="<?= $rkas['id']; ?>" class="cetak_struk btn btn-sm btn-success btn-notif" <?php if (null == $rkas['id']) {
+                                                                                                                    echo "disabled";
+                                                                                                                }; ?>>
                         <i class="fas fa-print"></i>
                     </button>
                 </div>
