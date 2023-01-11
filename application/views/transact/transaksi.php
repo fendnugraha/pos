@@ -29,8 +29,8 @@
                         <label for="idagen" class="form-label">ID Agen/Kode</label>
                         <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">ID</span>
-                            <input type="text" class="form-control form-control-sm" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off">
+                            <span class="input-group-text" id="basic-addon1">ID Agen</span>
+                            <input type="text" class="form-control" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off" maxlength="5">
                         </div>
                     </div>
                     <div class="mb-3 row">

@@ -235,7 +235,7 @@ class Home extends CI_Controller
 
         // Data transaksi
         $printer->initialize();
-        $printer->text("#" .  $deprecap['id'] . "\n");
+        // $printer->text("#" .  $deprecap['id'] . "\n");
         $printer->text($this->buatBaris2Kolom($deprecap['waktu'], "No." . $deprecap['id']));
         // $printer->text("Waktu : " . $deprecap['date'] . "\n");
 
