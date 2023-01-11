@@ -18,6 +18,13 @@
         $temp.remove();
     }
 
+    $("button#btn-copy").click(function() {
+        $(this).html("<i class='fa-solid fa-clipboard'></i> Text Copied!");
+        $(this).addClass("btn-success");
+        $(this).removeClass("btn-warning");
+        // console.log("berhasil");
+    });
+
     $('.cetak_struk').on('click', function(e) {
         const transferId = $(this).data('id');
 
