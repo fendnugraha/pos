@@ -54,13 +54,13 @@
                         <td><?= number_format($irs['jumlah']); ?></td>
                         <td><?= $irs['kasir']; ?></td>
                         <td><?php
-                            if ($kas['jalur'] == "KAS" && $kas['status'] == "Out") {
+                            if ($irs['jalur'] == "KAS" && $irs['status'] == "Out") {
                             ?>
-                                <button data-id="<?= $kas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                <button data-id="<?= $irs['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                             <?php
                             } else {
                             ?>
-                                <button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                <button data-id="<?= $irs['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                             <?php
                             }
                             ?> /
