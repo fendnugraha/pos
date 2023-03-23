@@ -25,21 +25,31 @@
         <div class="card">
             <div class="card-body">
                 <h5>Input Deposit Agen</h5>
+                <hr>
                 <form action="<?= base_url('transact'); ?>" method="post">
-                    <div class="mb-3">
-                        <label for="idagen" class="form-label">ID Agen/Kode</label>
-                        <!-- <input type="text" name="idagen" id="idagen" class="form-control form-control-sm"> -->
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">ID Agen</span>
-                            <input type="text" class="form-control" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off" maxlength="5">
-                        </div>
-                    </div>
                     <div class="mb-3 row">
+                        <div class="col-sm-4">
+                            <label for="idagen" class="form-label">ID Agen/Kode</label>
+                            <input type="text" name="idagen" id="idagen" placeholder="Angkanya saja!" class="form-control" autocomplete="off" maxlength="5">
+                            <!-- <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">ID Agen</span>
+                                <input type="text" class="form-control" placeholder="Input Angkanya saja!" aria-label="Input Angkanya saja!" name="idagen" id="idagen" aria-describedby="basic-addon1" autocomplete="off" maxlength="5">
+                            </div> -->
+                        </div>
+                        <div class="col-sm">
+                            <label for="jumlah" class="form-label">Jumlah Deposit (Rp)</label>
+                            <div class="col-sm">
+                                <input type="number" name="jumlah" id="jumlah" class="form-control" placeholder="Bade ngisina sabaraha??" autocomplete="off">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="mb-3 row">
                         <label for="jumlah" class="form-label col-sm-5 col-form-label">Jumlah Deposit (Rp)</label>
                         <div class="col-sm">
                             <input type="number" name="jumlah" id="jumlah" class="form-control" placeholder="Bade ngisina sabaraha??" autocomplete="off">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="cash" name="cash" value=3 checked>
                         <label class="form-check-label" for="cash" id="label-cash">

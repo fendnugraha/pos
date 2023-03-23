@@ -50,17 +50,22 @@ body {
 .navbar {
   transition: all 300ms ease;
 }
-.navbar .container .navbar-nav {
+.navbar .container {
   background-color: var(--color-white);
+  padding: 0px 20px 0px 20px;
+  border-radius: var(--border-radius-3);
+  box-shadow: 0 1px 2px var(--color-light);
+}
+.navbar .container .navbar-nav {
   padding: 2px 20px 2px 20px;
   border-radius: var(--border-radius-3);
-  background-color: var(--color-white);
+  background-color: var(--color-warning);
   box-shadow: 0 1px 2px var(--color-light);
 }
 .navbar .container .navbar-nav .nav-link {
   margin-left: 10px;
+  color: var(--color-white);
 }
-
 div.dataTables_wrapper {
   width: 100%;
   margin: 0 auto;
