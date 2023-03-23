@@ -1,7 +1,8 @@
 <?php error_reporting(0); ?>
 <div class="container container-satu">
     <div class="side-menu-trx mt-3">
-        <h4>Side Menu</h4>
+        <h4 class="text-center">Side Menu</h4>
+        <hr>
         <ul class="list-menu-trx">
             <li>
                 <a href="<?= base_url('transact'); ?>" class="active"><i class="fa-solid fa-money-bill-transfer"></i> Deposit</a>
@@ -21,9 +22,9 @@
         </ul>
     </div>
     <div class="mid-content mt-3">
-        <h4>Input Deposit Agen</h4>
         <div class="card">
             <div class="card-body">
+                <h5>Input Deposit Agen</h5>
                 <form action="<?= base_url('transact'); ?>" method="post">
                     <div class="mb-3">
                         <label for="idagen" class="form-label">ID Agen/Kode</label>
@@ -84,7 +85,7 @@
                 $awalan = "ADD.";
             }
         ?>
-            <div class="card bg-dark text-warning mt-1">
+            <div class="card bg-secondary text-warning mt-1">
                 <div class="card-body p-1">
                     <h2 class="text-center text-warning" id="text"><?= $awalan . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
                                                                     ?></h2>
@@ -96,7 +97,7 @@
         <?php }; ?>
     </div>
     <div class="side-menu-notif mt-3">
-        <h4>Recent updates</h4>
+        <h5>Recent updates</h5>
         <div class="notification-input d-flex flex-column">
             <?php foreach ($recentdep as $rdep) {
                 if ($rdep['jalur'] == "IRS") {

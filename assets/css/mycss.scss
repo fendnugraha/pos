@@ -32,23 +32,53 @@
 html,
 body {
     // background-color: #ececec;
-    background: rgb(241, 241, 241);
-    // background: linear-gradient(0deg, rgba(195, 150, 34, 1) 0%, rgba(253, 97, 45, 1) 100%);
+    // background: rgb(241, 241, 241);
+    background: linear-gradient(162deg, rgba(255, 255, 255, 1), rgba(209, 209, 209, 0.7));
     /* background-color: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(236, 236, 236, 1) 100%); */
-    font-size: 14px;
+    font-family: 'poppins', 'sans-serif';
+    font-size: 0.85rem;
     height: 100vh;
     width: 100vw;
 }
 
+.bg-color-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-color-warning {
+    background-color: var(--color-warning);
+}
+
+.bg-color-success {
+    background-color: var(--color-success);
+}
+
 .navbar {
-    background: rgba(255, 255, 255, .6);
+    // background: rgba(255, 255, 255, .6);
+    // background: var(--color-warning);
     transition: all 300ms ease;
 
+    .container {
+        .navbar-nav {
+            background-color: var(--color-white);
+            padding: 2px 20px 2px 20px;
+            border-radius: var(--border-radius-3);
+            background-color: var(--color-white);
+            box-shadow: 0 1px 2px var(--color-light);
+
+            .nav-link {
+                margin-left: 10px;
+                // color: var(--color-primary);
+            }
+        }
+    }
+
 }
 
-.navbar:hover {
-    box-shadow: 0 1px 2px var(--color-light);
-}
+// .navbar:hover {
+// height: 3.3rem;
+// box-shadow: 0 1px 2px var(--color-light);
+// }
 
 div.dataTables_wrapper {
     width: 100%;
@@ -170,6 +200,13 @@ ul {
 
 .container-satu {
     .side-menu-trx {
+        background-color: var(--color-primary);
+        padding: 20px;
+        border-radius: var(--border-radius-3);
+
+        h4 {
+            color: var(--color-warning);
+        }
 
         ul {
             display: flex;
@@ -181,8 +218,8 @@ ul {
             li {
                 a {
                     display: flex;
-                    color: var(--color-warning);
-                    background: var(--color-dark);
+                    color: var(--color-white);
+                    // background: var(--color-dark);
                     gap: 0.5rem;
                     /* justify-content: center; */
                     padding: 0.5rem 1rem 0.5rem 1rem;
@@ -244,7 +281,7 @@ ul {
 
 @media only screen and (min-width: 768px) {
     .navbar {
-        height: 3rem;
+        // height: 3rem;
     }
 
     .container.dashboard-home {

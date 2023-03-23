@@ -18,6 +18,25 @@
         $temp.remove();
     }
 
+    $(document).ready(function() {
+        $("#idagen").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "<?php echo base_url('transact/cariAgen'); ?>",
+                    data: {
+                        term: request.term
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2
+        });
+    });
+
+
     $("button#btn-copy").click(function() {
         $(this).html("<i class='fa-solid fa-clipboard'></i> Text Copied!");
         $(this).addClass("btn-success");

@@ -27,20 +27,38 @@
 
 html,
 body {
-  background: rgb(241, 241, 241);
+  background: linear-gradient(162deg, rgb(255, 255, 255), rgba(209, 209, 209, 0.7));
   /* background-color: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(236, 236, 236, 1) 100%); */
-  font-size: 14px;
+  font-family: "poppins", "sans-serif";
+  font-size: 0.85rem;
   height: 100vh;
   width: 100vw;
 }
 
-.navbar {
-  background: rgba(255, 255, 255, 0.6);
-  transition: all 300ms ease;
+.bg-color-primary {
+  background-color: var(--color-primary);
 }
 
-.navbar:hover {
+.bg-color-warning {
+  background-color: var(--color-warning);
+}
+
+.bg-color-success {
+  background-color: var(--color-success);
+}
+
+.navbar {
+  transition: all 300ms ease;
+}
+.navbar .container .navbar-nav {
+  background-color: var(--color-white);
+  padding: 2px 20px 2px 20px;
+  border-radius: var(--border-radius-3);
+  background-color: var(--color-white);
   box-shadow: 0 1px 2px var(--color-light);
+}
+.navbar .container .navbar-nav .nav-link {
+  margin-left: 10px;
 }
 
 div.dataTables_wrapper {
@@ -140,6 +158,14 @@ ul {
   box-shadow: var(--box-shadow);
 }
 
+.container-satu .side-menu-trx {
+  background-color: var(--color-primary);
+  padding: 20px;
+  border-radius: var(--border-radius-3);
+}
+.container-satu .side-menu-trx h4 {
+  color: var(--color-warning);
+}
 .container-satu .side-menu-trx ul {
   display: flex;
   flex-direction: row;
@@ -149,8 +175,7 @@ ul {
 }
 .container-satu .side-menu-trx ul li a {
   display: flex;
-  color: var(--color-warning);
-  background: var(--color-dark);
+  color: var(--color-white);
   gap: 0.5rem;
   /* justify-content: center; */
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -192,9 +217,6 @@ ul {
 }
 
 @media only screen and (min-width: 768px) {
-  .navbar {
-    height: 3rem;
-  }
   .container.dashboard-home {
     height: 80vh;
     width: 100%;

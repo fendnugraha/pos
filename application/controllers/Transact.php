@@ -11,6 +11,7 @@ class Transact extends CI_Controller
         is_logged_in();
         $this->load->library('form_validation');
         $this->load->model('home_model');
+        $this->load->model('transact_model');
     }
 
     public function index()
@@ -279,5 +280,13 @@ class Transact extends CI_Controller
         } else {
             $this->_kaskeluar();
         }
+    }
+
+    public function cariAgen()
+    {
+        $idagen = $this->input->get('idagen');
+        $data = $this->db->query("SELECT * FROM contact WHERE idagen like '%$idagen%'")->result_array();
+
+        echo json_encode($data);
     }
 }
