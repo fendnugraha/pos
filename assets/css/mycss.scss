@@ -261,7 +261,7 @@ ul {
                 .card-notif-body {
                     border-radius: var(--border-radius-3) 0px 0px var(--border-radius-3);
                     padding: 10px;
-                    background: var(--card-backgroud-color);
+                    // background: var(--card-backgroud-color);
                     flex: 6;
                 }
 
@@ -288,6 +288,27 @@ ul {
 @media only screen and (min-width: 768px) {
     .navbar {
         // height: 3rem;
+    }
+
+    .container.list-stok-barang {
+        h2 {
+            font-size: 3rem;
+        }
+
+        .card-list-stok-barang {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+
+            .card-stok-barang {
+                width: 15rem;
+                height: 18rem;
+
+                h1.jumlah-stok-barang {
+                    font-size: 3.5rem;
+                }
+            }
+        }
     }
 
     .container.dashboard-home {

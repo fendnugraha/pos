@@ -435,6 +435,61 @@ class Home extends CI_Controller
         $this->load->view('include/footer');
     }
 
+    public function stokbarang()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+
+        if (null !== $this->input->post('tanggal')) {
+            $tanggal = $this->input->post('tanggal');
+        } else {
+            $tanggal = date('Y-m-d');
+        };
+
+        $data['provider'] = $this->db->get('provider')->result_array();
+
+        $data['tanggal'] = $tanggal;
+        $data['title'] = 'GSM - Stok Barang';
+        $this->load->view('include/header', $data);
+        $this->load->view('home/stokbarang', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function addItems()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+
+        $this->form_validation->set_rules('item_code', 'Item Code', 'required|is_unique[inventory.item_code]|exact_length[7]|alpha_numeric');
+        $this->form_validation->set_rules('item_name', 'Item Name', 'required|is_unique[inventory.item_name]|max_length[120]');
+        $this->form_validation->set_rules('provider', 'Provider', 'required');
+        $this->form_validation->set_rules('type', 'Type', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'GSM - Stok Barang - Add Items';
+            $this->load->view('include/header', $data);
+            $this->load->view('home/additem', $data);
+            $this->load->view('include/footer');
+        } else {
+            $data = [
+                'id' => null,
+                'item_code' => $this->input->post('item_code'),
+                'item_name' => $this->input->post('item_name'),
+                'provider' => $this->input->post('provider'),
+                'type' => $this->input->post('type'),
+                'instock' => $this->input->post('instock'),
+                'last_update' => time()
+            ];
+
+            $this->db->insert('inventory', $data);
+            redirect('home/addItems');
+        }
+    }
+
     public function dailyReport()
     {
         if (null !== $this->input->post('tanggal')) {

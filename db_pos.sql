@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 07:36 AM
+-- Host: localhost
+-- Generation Time: Mar 31, 2023 at 10:44 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -4330,7 +4330,60 @@ INSERT INTO `deposit` (`id`, `idagen`, `jumlah`, `metode`, `status`, `produk`, `
 (13, 'ID0098-DOA IBU', 200000, 0, 'Out', 'Isi Saldo Deposit', '--', 'fend', '2022-02-25 21:35:34', NULL, 'IRS'),
 (14, 'ID0098-DOA IBU', 1200000, 0, 'Out', 'Isi Saldo Deposit', '--', 'fend', '2022-04-18 19:56:08', NULL, 'IRS'),
 (15, 'asdsadas', 12132131, 1, 'Out', '---', 'adsadsadsa', 'fend', '2022-06-24 11:01:17', 'asdasdasdas', 'KAS'),
-(16, 'fend', 200000, 1, 'Out', '---', 'BA01', 'fend', '2022-06-24 11:19:13', 'Uang makan', 'KAS');
+(16, 'fend', 200000, 1, 'Out', '---', 'BA01', 'fend', '2022-06-24 11:19:13', 'Uang makan', 'KAS'),
+(17, 'ID0098-DOA IBU', 500000, 0, 'Out', 'Isi Saldo Deposit', '--', 'fend', '2023-01-11 23:09:27', NULL, 'IRS'),
+(18, 'abah', 200000, 1, 'Out', '---', 'SD3.BK.140123.6', 'fend', '2023-01-14 15:13:19', 'sampah masarakat', 'KAS'),
+(19, '---', 200000, 0, 'In', '---', '---', 'fend', '2023-01-14 15:16:58', 'bayar bon', 'IRS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `id` int(11) NOT NULL,
+  `item_code` varchar(20) NOT NULL,
+  `item_name` varchar(120) NOT NULL,
+  `provider` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `instock` int(11) NOT NULL,
+  `last_update` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `item_code`, `item_name`, `provider`, `type`, `instock`, `last_update`) VALUES
+(1, 'VF00013', 'VCR AIGO 1.5GB 5H (2.5GB)', 'AXIS', 'Voucher Fisik', 1200, 1679763349),
+(2, 'VF00037', 'VCR SIMPATI 1.5GB 3HARI', 'SIMPATI', 'Voucher Fisik', 150, 1679763439),
+(3, 'VF00073', 'VCR SIMPATI 2.5GB 5HARI', 'SIMPATI', 'Voucher Fisik', 0, 1679764386),
+(4, 'VF00012', 'VCR INDOSAT 2.5GB 5HARI', 'INDOSAT', 'Voucher Fisik', 200, 1679764415),
+(5, 'VF00089', 'VCR AIGO 2.5GB 7HARI', 'AXIS', 'Voucher Fisik', 60, 1679764452);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `provider`
+--
+
+CREATE TABLE `provider` (
+  `id` int(11) NOT NULL,
+  `provider` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `provider`
+--
+
+INSERT INTO `provider` (`id`, `provider`) VALUES
+(1, 'AXIS'),
+(2, 'INDOSAT'),
+(3, 'SIMPATI'),
+(4, 'SMARTFREN'),
+(5, 'THREE'),
+(6, 'XL');
 
 -- --------------------------------------------------------
 
@@ -4341,6 +4394,7 @@ INSERT INTO `deposit` (`id`, `idagen`, `jumlah`, `metode`, `status`, `produk`, `
 CREATE TABLE `setting` (
   `id` int(11) NOT NULL,
   `namakonter` varchar(50) NOT NULL,
+  `prefik` varchar(3) NOT NULL,
   `alamat` varchar(160) NOT NULL,
   `telepon` varchar(20) NOT NULL,
   `saldoawal` int(11) NOT NULL,
@@ -4354,8 +4408,8 @@ CREATE TABLE `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `namakonter`, `alamat`, `telepon`, `saldoawal`, `saldoawalok`, `kasawal`, `akhirkata`, `manager`) VALUES
-(1, 'SINDY CELLULAR 3', 'Jl. Bhayangkara No. 327 Ciwidey', '022 5928765', 50000000, 0, 0, 'TERIMA KASIH SUDAH BERKUNJUNG', 'Fend');
+INSERT INTO `setting` (`id`, `namakonter`, `prefik`, `alamat`, `telepon`, `saldoawal`, `saldoawalok`, `kasawal`, `akhirkata`, `manager`) VALUES
+(1, 'SINDY CELLULAR 3', 'SD3', 'Jl. Bhayangkara No. 327 Ciwidey', '022 5928765', 50000000, 0, 0, 'TERIMA KASIH SUDAH BERKUNJUNG', 'Fend');
 
 -- --------------------------------------------------------
 
@@ -4370,6 +4424,25 @@ CREATE TABLE `tb_thr` (
   `status` int(5) NOT NULL,
   `lokasi` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `id` int(11) NOT NULL,
+  `type` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `type`) VALUES
+(1, 'Kartu Perdana'),
+(2, 'Voucher Fisik');
 
 -- --------------------------------------------------------
 
@@ -4397,8 +4470,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `uname`, `image`, `password`, `role_id`, `is_active`, `date_created`, `last_login`, `last_logout`, `sisasaldo`, `kasakhir`) VALUES
-(1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1616487167, 0, 0, 0),
-(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1656048799, 1619006703, 41440000, 4575000),
+(1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1676702225, 1676702330, 47900000, -10292131),
+(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1680251510, 1673684630, 47900000, -10292131),
 (30, 'Kuswani', 'Kuswani', 'default.jpg', '$2y$10$YX1EQ21VWmF81Japr2w.XOKni6c3ixkEF55/0YLReo76p8nFpzEMK', 2, 1, 1619006301, 1619006308, 0, 0, 0),
 (31, 'ferdy', 'ferdy0132', 'default.jpg', '$2y$10$c3rOIFLArRsiMRj8WXSNPud08/ONVm95LjInCCmzgelMoHKoDuGx2', 2, 1, 1619006734, 1619006747, 0, 0, 0),
 (32, 'Deni', 'Deni', 'default.jpg', '$2y$10$tmzKfM/8W6K5jLIYvdkX9.V32BL56mz8V8aJI6uOwmyD.KR59gA86', 2, 1, 1619011219, 1619011235, 0, 0, 0),
@@ -4423,6 +4496,18 @@ ALTER TABLE `deposit`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `provider`
+--
+ALTER TABLE `provider`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setting`
 --
 ALTER TABLE `setting`
@@ -4432,6 +4517,12 @@ ALTER TABLE `setting`
 -- Indexes for table `tb_thr`
 --
 ALTER TABLE `tb_thr`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4454,7 +4545,19 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `provider`
+--
+ALTER TABLE `provider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -4467,6 +4570,12 @@ ALTER TABLE `setting`
 --
 ALTER TABLE `tb_thr`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
