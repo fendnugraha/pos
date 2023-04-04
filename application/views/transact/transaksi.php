@@ -84,7 +84,7 @@
                 </form>
                 <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
                     <small class="text-muted"><?= $lastRec['waktu']; ?></small>
-                    <h6><?= $lastRec['idagen']; ?> Rp. <?= number_format($lastRec['jumlah']); ?></h6>
+                    <h4><?= $lastRec['idagen']; ?> Rp. <?= number_format($lastRec['jumlah']); ?></h4>
                 <?php }; ?>
             </div>
         </div>
@@ -97,8 +97,8 @@
         ?>
             <div class="card bg-secondary text-warning mt-1">
                 <div class="card-body p-1">
-                    <h2 class="text-center text-warning" id="text"><?= $awalan . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "." . $lastRec['jumlah'] . ".1";
-                                                                    ?></h2>
+                    <h1 class="text-center text-warning fw-bold" id="text"><?= $awalan . "<span class='text-light'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
+                                                                            ?></h1>
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">

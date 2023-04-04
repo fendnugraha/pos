@@ -12,8 +12,8 @@
         body {
             /* padding-top: 5%; */
             display: flex;
-            background: rgb(195, 150, 34);
-            background: linear-gradient(0deg, rgba(195, 150, 34, 1) 0%, rgba(253, 97, 45, 1) 100%);
+            background: rgb(255, 233, 156);
+            background: linear-gradient(180deg, rgba(255, 233, 156, 1) 35%, rgba(255, 255, 255, 1) 100%);
             /* background-color: rgba(201, 104, 0, 1); */
             height: 100vh;
             width: 100vw;
@@ -33,14 +33,14 @@
 
         input[type=password],
         input[type="text"] {
-            background-color: rgba(64, 56, 47, .6);
+            /* background-color: rgba(64, 56, 47, .6); */
             border: none;
             color: beige;
         }
 
         input[type=password]:focus,
         input[type="text"]:focus {
-            background-color: rgba(64, 56, 47, 1);
+            /* background-color: rgba(64, 56, 47, 1); */
             border: none;
             color: beige;
         }
@@ -61,9 +61,10 @@
 
 <body>
     <div class="container d-flex justify-content-center align-items-center flex-column">
-        <img class="logo-login mb-0" src="<?= base_url('assets/img/'); ?>login-logo.png" alt="login-logo">
+        <!-- <img class="logo-login mb-0" src="<?= base_url('assets/img/'); ?>login-logo.png" alt="login-logo"> -->
+        <h1 class="display-1">S N D Y C L L</h1>
         <div class="login-form mt-0">
-            <h4 class="text-center">MEMBER LOGIN</h4>
+            <h6 class="text-center">MEMBER LOGIN</h6>
             <form action="<?= base_url('auth'); ?>" method="post" class="mt-2">
                 <div class="mb-3">
                     <input type="text" class="form-control" id="uname" name="uname" placeholder="Username">
@@ -78,8 +79,10 @@
 
                 </div>
             </form>
-            <p class="text-light">Tidak punya akun? Daftar <a href="<?= base_url('auth/register'); ?>">disini!</a></p>
+            <p class="text-dark">Tidak punya akun? Daftar <a href="<?= base_url('auth/register'); ?>">disini!</a></p>
         </div>
+        <br>
+        <p class="text-center text-dark">&copy 2012 - 2025 <img src="<?= base_url('assets/img/'); ?>dna-logo.svg" alt="DNA" class="dev-logo-cpy" height="15rem"> DNA Network | All rights reserved.</p>
     </div>
 
 </body>
