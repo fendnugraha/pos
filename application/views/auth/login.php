@@ -35,14 +35,14 @@
         input[type="text"] {
             /* background-color: rgba(64, 56, 47, .6); */
             border: none;
-            color: beige;
+            /* color: beige; */
         }
 
         input[type=password]:focus,
         input[type="text"]:focus {
             /* background-color: rgba(64, 56, 47, 1); */
             border: none;
-            color: beige;
+            /* color: beige; */
         }
 
         @media (max-width: 991.98px) {
