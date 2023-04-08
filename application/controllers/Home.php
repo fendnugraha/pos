@@ -425,14 +425,37 @@ class Home extends CI_Controller
         } else {
             $tanggal = date('Y-m-d');
         };
+
         $data['tanggal'] = $tanggal;
         $data['user'] = $this->db->query($sql)->row_array();
         $data['setting'] = $this->db->get('setting')->row_array();
-        $data['tb_thr'] = $this->db->get('tb_thr')->result_array();
-        $data['title'] = 'GSM - Report';
+        $data['tb_thr'] = $this->db->query("SELECT a.*,b.name FROM tb_thr a LEFT JOIN contact b ON b.idagen = a.id_agen")->result_array();
+
+        $data['title'] = 'GSM - THR AGEN 2023';
         $this->load->view('include/header', $data);
         $this->load->view('home/thragen', $data);
         $this->load->view('include/footer');
+    }
+
+    public function changestatusthr()
+    {
+        $idagen = $this->input->post('idagen');
+
+        $thr = $this->db->get_where('tb_thr', ['id_agen' => $idagen])->row_array();
+        if ($thr['status'] == 0) {
+            $newstatus = 1;
+            $waktu = time();
+        } else {
+            $newstatus = 0;
+            $waktu = "";
+        }
+
+        $data = [
+            'status' => $newstatus,
+            'diambil' => $waktu
+        ];
+        $this->db->where('id_agen', $idagen);
+        $this->db->update('tb_thr',  $data);
     }
 
     public function stokbarang()

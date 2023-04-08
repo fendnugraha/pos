@@ -34,6 +34,27 @@
             },
             minLength: 2
         });
+
+
+    });
+
+    $('.status_thr').on('click', function() {
+        // console.log('ok');
+        const idagen = $(this).data('idagen');
+
+        $.ajax({
+            url: '<?= base_url('home/changestatusthr'); ?>',
+            type: 'post',
+            data: {
+                idagen: idagen,
+            },
+
+            success: function() {
+                // alert('Access has been changed !');
+                document.location.href = "<?= base_url('home/thr/'); ?>";
+
+            }
+        });
     });
 
 
