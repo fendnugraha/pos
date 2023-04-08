@@ -11,7 +11,7 @@
                         <th>Nama</th>
                         <th>Paket</th>
                         <th>Lokasi</th>
-                        <th>Status</th>
+                        <th>Diambil</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,12 +35,12 @@
                             <td><?= $t['id']; ?></td>
                             <td><?= $t['id_agen']; ?></td>
                             <td><?= $t['name']; ?></td>
-                            <td><?= $t['paket']; ?></td>
+                            <td><?= $t['paket']; ?><br><small class="text-muted"><?= $diambil; ?></small></td>
                             <td><?= $t['lokasi']; ?></td>
                             <td class="text-center">
                                 <div class="form-check">
                                     <input class="form-check-input status_thr js-single" type="checkbox" value="" id="defaultCheck1" <?= $checked; ?> data-idagen="<?= $t['id_agen']; ?>">
-                                    <label class="form-check-label" for="defaultCheck1"><?= $diambil; ?>
+                                    <label class="form-check-label" for="defaultCheck1">
                                     </label>
                                 </div>
                             </td>

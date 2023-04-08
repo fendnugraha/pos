@@ -90,10 +90,14 @@
                     $id_agen = substr($lastRec['idagen'], 0, 6);
                     $datathr = $this->db->get_where('tb_thr', ['id_agen' => $id_agen]);
                     if ($datathr->num_rows() == 0) {
-                        $dapat = "Maaf, <strong>Tidak dapat apa-apa</strong>, mungkin tahun depan <span class='text-danger fst-italic'>(kalo memaksa kasih Orson saja)</span>";
+                        $dapat = "Maaf, <strong>Tidak dapat apa-apa <i class='fa-regular fa-face-frown'></i></strong>, mungkin tahun depan <span class='text-danger fst-italic'>(kalo maksa kasih Orson saja !!)</span>";
                     } else {
                         $datathr = $datathr->row_array();
-                        $dapat = "Selamat!! Anda mendapatkan <strong class='text-danger'>" . $datathr['paket'] . "</strong> di <strong class='text-danger'>" . $datathr['lokasi'] . "</strong>";
+                        if ($datathr['status'] == 1) {
+                            $dapat = "<strong class='text-danger'><i class='fa-solid fa-gifts'></i> " . $datathr['paket'] . "</strong>-nya sudah diambil pada " . date('Y-m-d H:i:s', $datathr['diambil']) . " di <strong class='text-danger'>" . $datathr['lokasi'] . "</strong>.";
+                        } else {
+                            $dapat = "<strong>Selamat!!</strong> Anda mendapatkan <strong class='text-danger'><i class='fa-solid fa-gifts'></i> " . $datathr['paket'] . "</strong> di <strong class='text-danger'>" . $datathr['lokasi'] . "</strong>";
+                        }
                     }
                     ?>
                     <p class="text-center mt-3">"<?= $dapat; ?>"</p>
