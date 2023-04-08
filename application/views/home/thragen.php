@@ -3,8 +3,6 @@
     <h1>THR AGEN</h1>
     <div class="card">
         <div class="card-body">
-
-
             <table class="table display">
                 <thead>
                     <tr>
@@ -39,13 +37,13 @@
                             <td><?= $t['name']; ?></td>
                             <td><?= $t['paket']; ?></td>
                             <td><?= $t['lokasi']; ?></td>
-                            <<td class="text-center">
+                            <td class="text-center">
                                 <div class="form-check">
                                     <input class="form-check-input status_thr js-single" type="checkbox" value="" id="defaultCheck1" <?= $checked; ?> data-idagen="<?= $t['id_agen']; ?>">
                                     <label class="form-check-label" for="defaultCheck1"><?= $diambil; ?>
                                     </label>
                                 </div>
-                                </td>
+                            </td>
                         </tr>
                     <?php }; ?>
                 </tbody>
