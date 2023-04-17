@@ -132,7 +132,7 @@
                     $awalan = "ADD.";
                 } ?>
                 <div class="card-notif">
-                    <div class="card-notif-body bg-color-success">
+                    <div class="card-notif-body bg-light">
                         <small class="text-muted"><?= $rdep['waktu'] ?> <?= ucwords($rdep['idagen']) ?></small>
                         <p class="mb-0"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " Rp. " . number_format($rdep['jumlah']) . " (" . $rdep['kasir'] . ")"; ?></p>
                         <small class="text-muted"><?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";

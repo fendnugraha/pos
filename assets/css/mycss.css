@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 /* ROOT VARIABLES */
 :root {
-  --color-primary: #7380ec;
-  --color-danger: #ff7782;
-  --color-success: #41f1b6;
-  --color-warning: #ffbb55;
+  --color-primary: #5f1183;
+  --color-danger: #dd3442;
+  --color-success: #09a16f;
+  --color-warning: #f3a42c;
   --color-white: #fff;
   --color-info-dark: #7d8da1;
   --color-info-light: #dce1eb;

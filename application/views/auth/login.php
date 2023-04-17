@@ -82,7 +82,7 @@
             <p class="text-dark">Tidak punya akun? Daftar <a href="<?= base_url('auth/register'); ?>">disini!</a></p>
         </div>
         <br>
-        <p class="text-center text-dark">&copy 2012 - 2025 <img src="<?= base_url('assets/img/'); ?>dna-logo.svg" alt="DNA" class="dev-logo-cpy" height="15rem"> DNA Network | All rights reserved.</p>
+        <p class="text-center text-dark">&copy 2022 - 2027 <img src="<?= base_url('assets/img/'); ?>8nite-logo-h-blk.svg" alt="eightnite" class="dev-logo-cpy" height="30rem"> | All rights reserved.</p>
     </div>
 
 </body>
