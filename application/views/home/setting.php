@@ -23,17 +23,33 @@
                             <label for="telepon" class="form-label">Telepon</label>
                             <input type="text" name="telepon" id="telepon" class="form-control form-control-sm" value="<?= $setting['telepon']; ?>">
                         </div>
-                        <div class="mb-3">
-                            <label for="saldoawal" class="form-label">Saldo Awal IRS</label>
-                            <input type="number" name="saldoawal" id="saldoawal" class="form-control form-control-sm" value="<?= $setting['saldoawal']; ?>">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="saldoawal" class="form-label">Saldo Awal IRS</label>
+                                <input type="number" name="saldoawal" id="saldoawal" class="form-control form-control-sm" value="<?= $setting['saldoawal']; ?>">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="saldoawalok" class="form-label">Saldo Awal OKELINK</label>
+                                <input type="number" name="saldoawalok" id="saldoawalok" class="form-control form-control-sm" value="<?= $setting['saldoawalok']; ?>">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="kasawal" class="form-label">Kas Awal</label>
+                                <input type="number" name="kasawal" id="kasawal" class="form-control form-control-sm" value="<?= $setting['kasawal']; ?>">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="saldoawalok" class="form-label">Saldo Awal OKELINK</label>
-                            <input type="number" name="saldoawalok" id="saldoawalok" class="form-control form-control-sm" value="<?= $setting['saldoawalok']; ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="kasawal" class="form-label">Kas Awal</label>
-                            <input type="number" name="kasawal" id="kasawal" class="form-control form-control-sm" value="<?= $setting['kasawal']; ?>">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="cash_account_id" class="form-label">Cash Account ID</label>
+                                <input type="text" name="cash_account_id" id="cash_account_id" class="form-control form-control-sm" value="<?= $setting['cash_account_id']; ?>">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="pr_start" class="form-label">Periode Awal</label>
+                                <input type="text" name="pr_start" id="pr_start" class="form-control form-control-sm" value="<?= $setting['pr_start']; ?>">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="pr_end" class="form-label">Periode Akhir</label>
+                                <input type="text" name="pr_end" id="pr_end" class="form-control form-control-sm" value="<?= $setting['pr_end']; ?>">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="akhirkata" class="form-label">Akhir Kata</label>
@@ -51,7 +67,7 @@
             </div>
         </div>
         <div class="col-sm-7">
-            <div class="card">
+            <div class="card mb-3">
                 <h5 class="card-header">Tambah Agen</h5>
                 <div class="card-body">
                     <form action="<?= base_url('home/tambahagen'); ?>" method="post">
@@ -69,7 +85,34 @@
                     </form>
                 </div>
             </div>
+            <table class="table display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Account Code</th>
+                        <th>Account Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $accountlist = $accountlist['accounts'][0]['children'];
+                    foreach ($accountlist as $ac) {
+                    ?>
+                        <tr>
+                            <td><?= $ac['account']['id']; ?></td>
+                            <td><?= $ac['account']['number']; ?></td>
+                            <td><?= $ac['account']['name']; ?></td>
+                            <td><?= $ac['account']['description']; ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
+
+
     </div>
 
     <!-- <div class="row mt-4">

@@ -18,6 +18,62 @@ class Home extends CI_Controller
         $uname = $this->session->userdata('uname');
         $sql = "SELECT * FROM user WHERE uname ='$uname'";
         // $data['tanggal'] = date('Y-m-d');
+        if (null !== $this->input->post('tanggal')) {
+            $data['tanggal'] = $this->input->post('tanggal');
+        } else {
+            $data['tanggal'] = date('Y-m-d');
+        };
+        $data['user'] = $this->db->query($sql)->row_array();
+        $data['setting'] = $this->db->get('setting')->row_array();
+        $cash_id = $data['setting']['cash_account_id'];
+        $pr_start = $data['setting']['pr_start'];
+        $pr_end = $data['setting']['pr_end'];
+
+        $data["result"] = $this->getCurl('https://api.jurnal.id/core/api/v1/general_ledger?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc&account_id=' . $cash_id . '&start_date=' . $pr_start . '&end_date=' . $pr_end);
+
+        // $data['dep_recapirs'] = $this->home_model->depositRecap($data['tanggal'], "IRS");
+        // $data['dep_recapoto'] = $this->home_model->depositRecap($data['tanggal'], "OKELINK");
+        // $data['dep_recapkas'] = $this->home_model->recapKasTunai($data['tanggal']);
+        $data['kontak'] = $this->db->get('contact')->result_array();
+
+        $this->form_validation->set_rules('saldoirs', 'Saldo IRS', 'numeric');
+        $this->form_validation->set_rules('saldookelink', 'Saldo OKKELINK', 'numeric');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'GSM - Home';
+            $this->load->view('include/header', $data);
+            $this->load->view('home/home', $data);
+            $this->load->view('include/footer');
+        } else {
+
+            $udpatesaldo = [
+                'saldo_actual_irs' => $this->input->post('saldoirs'),
+                'saldo_actual_ox' => $this->input->post('saldookelink')
+            ];
+
+            $this->db->set($udpatesaldo);
+            $this->db->where('id', 1);
+            $this->db->update('setting');
+            redirect('home');
+        }
+    }
+
+    public function getCurl($url)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, true);
+    }
+
+    public function home2()
+    {
+        $uname = $this->session->userdata('uname');
+        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        // $data['tanggal'] = date('Y-m-d');
 
         if (null !== $this->input->post('tanggal')) {
             $data['tanggal'] = $this->input->post('tanggal');
@@ -34,7 +90,7 @@ class Home extends CI_Controller
 
         $data['title'] = 'GSM - Home';
         $this->load->view('include/header', $data);
-        $this->load->view('home/home', $data);
+        $this->load->view('home/home2', $data);
         $this->load->view('include/footer');
     }
 
@@ -99,6 +155,9 @@ class Home extends CI_Controller
             'saldoawal' => $this->input->post('saldoawal'),
             'saldoawalok' => $this->input->post('saldoawalok'),
             'kasawal' => $this->input->post('kasawal'),
+            'cash_account_id' => $this->input->post('cash_account_id'),
+            'pr_start' => $this->input->post('pr_start'),
+            'pr_end' => $this->input->post('pr_end'),
             'akhirkata' => $this->input->post('akhirkata'),
             'manager' => $this->input->post('manager')
         ];
@@ -374,6 +433,8 @@ class Home extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
         $data['setting'] = $this->db->get('setting')->row_array();
+
+        $data['accountlist'] = $this->getCurl('https://api.jurnal.id/core/api/v1/accounts?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc');
 
         $data['title'] = 'GSM - Setting';
         $this->load->view('include/header', $data);

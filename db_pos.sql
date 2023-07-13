@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 31, 2023 at 10:44 AM
+-- Host: 127.0.0.1
+-- Generation Time: Jul 13, 2023 at 07:16 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -4401,15 +4401,20 @@ CREATE TABLE `setting` (
   `saldoawalok` int(11) NOT NULL,
   `kasawal` int(11) NOT NULL,
   `akhirkata` varchar(50) NOT NULL,
-  `manager` varchar(160) NOT NULL
+  `manager` varchar(160) NOT NULL,
+  `cash_account_id` int(11) NOT NULL,
+  `pr_start` varchar(60) DEFAULT NULL,
+  `pr_end` varchar(60) DEFAULT NULL,
+  `saldo_actual_irs` int(11) NOT NULL,
+  `saldo_actual_ox` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `namakonter`, `prefik`, `alamat`, `telepon`, `saldoawal`, `saldoawalok`, `kasawal`, `akhirkata`, `manager`) VALUES
-(1, 'SINDY CELLULAR 3', 'SD3', 'Jl. Bhayangkara No. 327 Ciwidey', '022 5928765', 50000000, 0, 0, 'TERIMA KASIH SUDAH BERKUNJUNG', 'Fend');
+INSERT INTO `setting` (`id`, `namakonter`, `prefik`, `alamat`, `telepon`, `saldoawal`, `saldoawalok`, `kasawal`, `akhirkata`, `manager`, `cash_account_id`, `pr_start`, `pr_end`, `saldo_actual_irs`, `saldo_actual_ox`) VALUES
+(1, 'SINDYCELLULAR 3', 'SD3', 'JL BHAYANGKARA NO 327', '0225928765', 0, 0, 0, 'TERIMA KASIH', 'FEND', 74026612, '01/07/2023', '30/07/2023', 50000000, 50000000);
 
 -- --------------------------------------------------------
 
@@ -4470,8 +4475,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `uname`, `image`, `password`, `role_id`, `is_active`, `date_created`, `last_login`, `last_logout`, `sisasaldo`, `kasakhir`) VALUES
-(1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1676702225, 1676702330, 47900000, -10292131),
-(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1680251510, 1673684630, 47900000, -10292131),
+(1, 'administrator', 'administrator', 'default.jpg', '$2y$10$qbM/H6hd8tHtofoBUz2eG.HCCJHkyXKgJPiHOoERpnju2jEYKLkR.', 1, 1, 1562274637, 1689216783, 1676702330, 47900000, -10292131),
+(6, 'Fend Nugraha', 'fend', 'default.jpg', '$2y$10$JHeXbrtmYwgUCRSzNFDaWeUGaN0vtt0.rlOonPSAYPMCFGwV/DoMm', 1, 1, 1567316139, 1689164593, 1680622408, 47900000, -10292131),
 (30, 'Kuswani', 'Kuswani', 'default.jpg', '$2y$10$YX1EQ21VWmF81Japr2w.XOKni6c3ixkEF55/0YLReo76p8nFpzEMK', 2, 1, 1619006301, 1619006308, 0, 0, 0),
 (31, 'ferdy', 'ferdy0132', 'default.jpg', '$2y$10$c3rOIFLArRsiMRj8WXSNPud08/ONVm95LjInCCmzgelMoHKoDuGx2', 2, 1, 1619006734, 1619006747, 0, 0, 0),
 (32, 'Deni', 'Deni', 'default.jpg', '$2y$10$tmzKfM/8W6K5jLIYvdkX9.V32BL56mz8V8aJI6uOwmyD.KR59gA86', 2, 1, 1619011219, 1619011235, 0, 0, 0),
