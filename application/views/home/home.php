@@ -49,7 +49,7 @@ $result = $result["general_ledger"];
                     <h5 class="text-end"><?= number_format($result["report"]["accounts"][0]["ending_balance"]["balance_raw"]); ?></h5>
                     <p class="mb-0">Pendapatan IRS</p>
                     <h5 class="text-end"><?= number_format($setting['saldo_actual_irs']); ?></h5>
-                    <p class="mb-0">Pendapatan IRS</p>
+                    <p class="mb-0">Pendapatan OKELINK</p>
                     <h5 class="text-end"><?= number_format($setting['saldo_actual_ox']); ?></h5>
                     <hr>
                     <p>Total Pendapatan (Rp)</p>
