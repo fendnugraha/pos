@@ -96,7 +96,7 @@ table.display tr {
   grid-area: 3/4/6/6;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 991.98px) {
   .container .parent {
     display: flex;
     flex-direction: column;
