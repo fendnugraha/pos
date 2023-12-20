@@ -1,94 +1,159 @@
-<?php
-$result = $result["general_ledger"];
-
-?>
-<div class="container">
-    <div class="row">
-        <div class="col-9">
-            <div class="card">
+<?php error_reporting(0); ?>
+<div class="container mt-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">IRS GSM-EPAY</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">OTOMAX OKELINK</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="kastunai-tab" data-bs-toggle="tab" data-bs-target="#kastunai" type="button" role="tab" aria-controls="kastunai" aria-selected="false">KAS TUNAI</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="d-flex justify-content-around mt-3">
+                <p class="text-center">SALDO AWAL<br>Rp. <?= number_format($this->home_model->saldoAwal(date("Y-m-d"), "IRS")); ?></p>
+                <p class="text-center">PENAMBAHAN<br>Rp. <?= number_format($this->home_model->saldoMasuk(date("Y-m-d"), "IRS")); ?></p>
+                <p class="text-center">TRANSFER SALDO<br>Rp. <?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "IRS")); ?></p>
+                <p class="text-center">SALDO AKHIR<br>Rp. <?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "IRS")); ?></p>
+            </div>
+            <div class="card text-white bg-dark">
                 <div class="card-body">
-                    <h4 class="card-title"><?= $result["report"]["accounts"][0]["subheader"]; ?></h4>
-                    <h1 class="card-text text-end">Rp. <?= $result["report"]["accounts"][0]["ending_balance"]["balance"]; ?></h1>
-                </div>
-                <?= $result["header"]["period"]; ?>
-                <table class="table display">
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>Memo</th>
-                            <th>Masuk</th>
-                            <th>Keluar</th>
-                            <th>Saldo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $transaction = $result["report"]["accounts"][0]["content"];
-                        foreach ($transaction as $tr) {
-                        ?>
+                    <h1 class="text-primary">IRS GSM-EPAY</h1>
+                    <table class="table table-hover display table-dark nowrap">
+                        <thead>
                             <tr>
-                                <td><?= $tr["transaction"]["date"]; ?></td>
-                                <td>
-                                    <small><?= $tr["transaction"]["transaction_type"]; ?></small><br>
-                                    <?= $tr["transaction"]["description"]; ?>
-                                </td>
-                                <td><?= $tr["transaction"]["debit"]; ?></td>
-                                <td><?= $tr["transaction"]["credit"]; ?></td>
-                                <td><?= $tr["transaction"]["balance"]; ?></td>
+                                <th>ID</th>
+                                <th>TANGGAL</th>
+                                <th>DESKRIPSI</th>
+                                <th>I / O</th>
+                                <th>JUMLAH</th>
+                                <th>KASIR</th>
+                                <th>ACTION</th>
                             </tr>
-                        <?php
-                        } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($dep_recapirs as $irs) {
+                            ?>
+                                <tr>
+                                    <td><?= $irs['id']; ?></td>
+                                    <td><?= $irs['waktu']; ?></td>
+                                    <td><span class="text-warning"><?= $irs['idagen']; ?></span><br><?= $irs['produk']; ?> / <?= $irs['tujuan']; ?> / <?= $irs['keterangan']; ?></td>
+                                    <td><?= $irs['status']; ?></td>
+                                    <td><?= number_format($irs['jumlah']); ?></td>
+                                    <td><?= $irs['kasir']; ?></td>
+                                    <td><button data-id="<?= $irs['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                                        <button data-id="<?= $irs['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col">
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="d-flex justify-content-around mt-3">
+                <p class="text-center">SALDO AWAL<br>Rp. <?= number_format($this->home_model->saldoAwal(date("Y-m-d"), "OKELINK")); ?></p>
+                <p class="text-center">PENAMBAHAN<br>Rp. <?= number_format($this->home_model->saldoMasuk(date("Y-m-d"), "OKELINK")); ?></p>
+                <p class="text-center">TRANSFER SALDO<br>Rp. <?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "OKELINK")); ?></p>
+                <p class="text-center">SALDO AKHIR<br>Rp. <?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "OKELINK")); ?></p>
+            </div>
             <div class="card">
                 <div class="card-body">
-                    <p class="mb-0">Pendapatan Konter</p>
-                    <h5 class="text-end"><?= number_format($result["report"]["accounts"][0]["ending_balance"]["balance_raw"]); ?></h5>
-                    <p class="mb-0">Pendapatan IRS</p>
-                    <h5 class="text-end"><?= number_format($setting['saldo_actual_irs']); ?></h5>
-                    <p class="mb-0">Pendapatan OKELINK</p>
-                    <h5 class="text-end"><?= number_format($setting['saldo_actual_ox']); ?></h5>
-                    <hr>
-                    <p>Total Pendapatan (Rp)</p>
-                    <h4 class="text-end fw-bold"><sup>Rp. </sup><?= number_format($result["report"]["accounts"][0]["ending_balance"]["balance_raw"] + $setting['saldo_actual_irs'] + $setting['saldo_actual_ox']); ?></h4>
+                    <h1 class="text-danger">OKELINK OTOMAX</h1>
+                    <table class="table table-hover display text-danger">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TANGGAL</th>
+                                <th>DESKRIPSI</th>
+                                <th>I / O</th>
+                                <th>JUMLAH</th>
+                                <th>KASIR</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($dep_recapoto as $oto) {
+                            ?>
+                                <tr>
+                                    <td><?= $oto['id']; ?></td>
+                                    <td><?= $oto['waktu']; ?></td>
+                                    <td><span class="text-warning"><?= $oto['idagen']; ?></span><br><?= $oto['produk']; ?> / <?= $oto['tujuan']; ?> / <?= $oto['keterangan']; ?></td>
+                                    <td><?= $oto['status']; ?></td>
+                                    <td><?= number_format($oto['jumlah']); ?></td>
+                                    <td><?= $oto['kasir']; ?></td>
+                                    <td><button data-id="<?= $oto['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                                        <button data-id="<?= $oto['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col">
-            <div class="card pb-0">
+        <div class="tab-pane fade" id="kastunai" role="tabpanel" aria-labelledby="kastunai-tab">
+            <div class="d-flex justify-content-around mt-3">
+                <p class="text-center">SALDO AWAL<br>Rp. <?= number_format($this->home_model->kasAwal(date("Y-m-d"))); ?></p>
+                <p class="text-center">PENAMBAHAN<br>Rp. <?= number_format($this->home_model->kasMasuk(date("Y-m-d"))); ?></p>
+                <p class="text-center">TRANSFER KAS<br>Rp. <?= number_format($this->home_model->kasKeluar(date("Y-m-d"))); ?></p>
+                <p class="text-center">KAS AKHIR<br>Rp. <?= number_format($this->home_model->kasAkhir(date("Y-m-d"))); ?></p>
+            </div>
+            <div class="card">
                 <div class="card-body">
-                    <form action="<?= base_url('home'); ?>" method="post">
-                        <div class="row">
-
-                            <div class="mb-3 col">
-                                <label for="saldoirs" class="form-label">Total Pendapatan IRS</label>
-                                <input type="text" name="saldoirs" id="saldoirs" class="form-control form-control-sm" value="<?= $setting['saldo_actual_irs']; ?>">
-                                <p class="text-end">Rp. <?= number_format($setting['saldo_actual_irs']); ?></p>
-                            </div>
-                            <div class="mb-3 col">
-                                <label for="saldookelink" class="form-label">Total Pendapatan Okelink</label>
-                                <input type="text" name="saldookelink" id="saldookelink" class="form-control form-control-sm" value="<?= $setting['saldo_actual_ox']; ?>">
-                                <p class="text-end">Rp. <?= number_format($setting['saldo_actual_ox']); ?></p>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-sm btn-success">Update</button>
-                        </div>
-                    </form>
+                    <h1 class="text-info">REKAP KAS TUNAI</h1>
+                    <table class="table table-hover display text-primary">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TANGGAL</th>
+                                <th>DESKRIPSI</th>
+                                <th>I / O</th>
+                                <th>JUMLAH</th>
+                                <th>KASIR</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($dep_recapkas as $kas) {
+                            ?>
+                                <tr>
+                                    <td><?= $kas['id']; ?></td>
+                                    <td><?= $kas['waktu']; ?></td>
+                                    <td><?= $kas['idagen']; ?><br><?= $kas['produk']; ?> / <?= $kas['tujuan']; ?> / <?= $kas['keterangan']; ?></td>
+                                    <td><?= $kas['status']; ?></td>
+                                    <td><?= number_format($kas['jumlah']); ?></td>
+                                    <td><?= $kas['kasir']; ?></td>
+                                    <td><?php
+                                        if ($kas['jalur'] == "KAS" && $kas['status'] == "Out") {
+                                        ?>
+                                            <button data-id="<?= $kas['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
+                                        <?php
+                                        }
+                                        ?> /
+                                        <button data-id="<?= $kas['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-        </div>
-        <div class="col">
-
         </div>
     </div>
+</div>
+
 
 
 </div>

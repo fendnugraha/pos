@@ -29,7 +29,7 @@ class Transact extends CI_Controller
         $data['user'] = $this->db->query($sql)->row_array();
 
         $data['lastRec'] = $this->home_model->depositLastByUser($uname);
-        $data['recentdep'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
+        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
 
         $this->form_validation->set_rules('idagen', 'ID Agen', 'max_length[5]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
@@ -37,7 +37,7 @@ class Transact extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['title'] = 'GSM - Transaction';
             $this->load->view('include/header', $data);
-            $this->load->view('transact/transaksi', $data);
+            $this->load->view('transact/transact', $data);
             $this->load->view('include/footer');
         } else {
             $this->_inputDeposit();

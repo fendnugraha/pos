@@ -1,13 +1,47 @@
-<script src="<?= base_url('assets/js/'); ?>bootstrap.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>jquery-1.12.4.js"></script>
-<script src="<?= base_url('assets/js/'); ?>jquery-ui.js"></script>
-<script src="<?= base_url('assets/js/'); ?>jquery-3.4.1.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>all.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>fontawesome.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>datatables.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>jquery.dataTables.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>dataTables.bootstrap5.min.js"></script>
-<script src="<?= base_url('assets/js/'); ?>popper.min.js"></script>
+<div class="card user-login">
+    <div class="card-body d-flex justify-content-center align-items-center">
+        <!-- <h2><i class="fa-solid fa-masks-theater"></i> @fendnugraha</h2> -->
+        <div class="dropdown">
+            <a class="user-name text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-masks-theater"></i> @<?= ucwords($user['name']); ?>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="card latest-input">
+    <div class="card-body overflow-y-auto">
+        <?php foreach ($recentdep as $rdep) {
+            if ($rdep['jalur'] == "IRS") {
+                $awalan = "TL.";
+            } else {
+                $awalan = "ADD.";
+            } ?>
+            <div class="latest-post border-bottom pb-2">
+                <small class="text-muted d-block" style="font-size: 0.6em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?></small>
+                <p class=" mb-0" style="font-size: 0.8em;"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " Rp. " . number_format($rdep['jumlah']) . " (" . $rdep['kasir'] . ")"; ?></p>
+                <span class="badge bg-secondary" style="font-size: 0.6em;">
+                    <?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
+                    ?>
+                </span>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+</div>
+</div>
+
+
+<script src="<?= base_url('assets'); ?>/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('assets'); ?>/js/jquery-3.7.0.js"></script>
+<script src="<?= base_url('assets'); ?>/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets'); ?>/js/dataTables.bootstrap5.min.js"></script>
+<script src="<?= base_url('assets'); ?>/js/jquery-ui.js"></script>
+<script src="<?= base_url('assets'); ?>/js/fontawesome.min.js"></script>
+<script src="<?= base_url('assets'); ?>/js/all.min.js"></script>
+<!-- <script src="<?= base_url('assets'); ?>/js/myjs.js"></script> -->
 <script src="<?= base_url('assets/js/'); ?>myjs.js"></script>
 <script>
     function copyToClipboard(element) {
@@ -77,7 +111,7 @@
                     transferId: transferId,
                 },
                 success: function() {
-                    document.location.href = "<?= base_url('home'); ?>";
+                    document.location.href = "<?= base_url('home/home2'); ?>";
                 }
             });
         }
@@ -130,7 +164,7 @@
                     transferId: transferId,
                 },
                 success: function() {
-                    document.location.href = "<?= base_url('home'); ?>";
+                    document.location.href = "<?= base_url('home/home2'); ?>";
                 }
             });
         }

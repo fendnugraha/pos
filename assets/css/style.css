@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: rgb(228, 228, 228);
+}
+
+.card, .btn {
+  border-radius: 10px;
+  border: none;
+}
+
+table.display tr {
+  font-size: 0.7em;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+.container .slide-menu-toggle {
+  height: 100vh;
+  width: 35vw;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: -35vw;
+  z-index: 10;
+  padding: 15px;
+  transition: left 0.3s;
+}
+.container .slide-menu-toggle ul.list-menutrx a {
+  text-decoration: none;
+  color: rgb(85, 85, 85);
+}
+.container .slide-menu-toggle.active {
+  top: 0;
+  left: 0;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.7);
+}
+.container .parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 0.5fr) repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  min-height: 98%;
+  min-width: 98%;
+}
+.container .main-menu {
+  grid-area: 1/1/2/6;
+}
+.container .main-menu .nav {
+  display: flex;
+  justify-content: space-between;
+}
+.container .main-menu .nav .nav-item {
+  width: 19%;
+}
+.container .main-menu .nav .nav-item a.nav-link {
+  font-size: 1.3em;
+  background-color: rgb(52, 83, 255);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.container .main-menu .nav .nav-item a.nav-link:hover, .container .main-menu .nav .nav-item a.nav-link.active {
+  background-color: rgb(39, 60, 182);
+  color: white;
+  font-weight: 600;
+}
+.container .main-page {
+  grid-area: 2/1/6/4;
+}
+.container .main-page .btn-clipboard {
+  font-size: 2em;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.container .user-login {
+  grid-area: 2/4/3/6;
+  background-color: rgb(250, 38, 84);
+  color: white;
+}
+.container .user-login a.user-name {
+  font-size: 1.5em;
+  text-transform: lowercase;
+  color: white;
+  font-weight: 700;
+}
+.container .latest-input {
+  grid-area: 3/4/6/6;
+}/*# sourceMappingURL=style.css.map */

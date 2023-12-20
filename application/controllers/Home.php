@@ -25,9 +25,6 @@ class Home extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
         $data['setting'] = $this->db->get('setting')->row_array();
-        $cash_id = $data['setting']['cash_account_id'];
-        $pr_start = $data['setting']['pr_start'];
-        $pr_end = $data['setting']['pr_end'];
 
         $data["result"] = $this->getCurl('https://api.jurnal.id/core/api/v1/general_ledger?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc&account_id=' . $cash_id . '&start_date=' . $pr_start . '&end_date=' . $pr_end);
 
@@ -87,6 +84,7 @@ class Home extends CI_Controller
         $data['dep_recapkas'] = $this->home_model->recapKasTunai($data['tanggal']);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
+        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
 
         $data['title'] = 'GSM - Home';
         $this->load->view('include/header', $data);
@@ -155,9 +153,6 @@ class Home extends CI_Controller
             'saldoawal' => $this->input->post('saldoawal'),
             'saldoawalok' => $this->input->post('saldoawalok'),
             'kasawal' => $this->input->post('kasawal'),
-            'cash_account_id' => $this->input->post('cash_account_id'),
-            'pr_start' => $this->input->post('pr_start'),
-            'pr_end' => $this->input->post('pr_end'),
             'akhirkata' => $this->input->post('akhirkata'),
             'manager' => $this->input->post('manager')
         ];
@@ -435,6 +430,7 @@ class Home extends CI_Controller
         $data['setting'] = $this->db->get('setting')->row_array();
 
         $data['accountlist'] = $this->getCurl('https://api.jurnal.id/core/api/v1/accounts?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc');
+        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
 
         $data['title'] = 'GSM - Setting';
         $this->load->view('include/header', $data);
@@ -450,7 +446,7 @@ class Home extends CI_Controller
             'name' => $this->input->post('namaagen')
         ];
         $this->db->insert('contact', $data);
-        redirect('home/setting');
+        redirect('transact');
     }
 
     public function report()
