@@ -112,4 +112,18 @@ table.display tr{
 
   }
 }
+
+@media screen and (max-width: 576px) { 
+  .container {
+  .parent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .main-page {
+      height: 80vh;
+    }
+  }
+}
+ }
 // End Dashboard GRID

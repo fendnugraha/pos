@@ -41,7 +41,7 @@
                     <input class="form-check-input" type="radio" name="jalur" id="okelink" value="OKELINK">
                     <label class="form-check-label" for="inlineRadio2">OKeLiNK</label>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-4 gap-2">
                     <div class="col-sm">
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary d-block">Submit</button>
