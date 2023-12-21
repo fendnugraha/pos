@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="card latest-input">
-    <div class="card-body overflow-y-auto">
+    <div class="card-body overflow-x-auto">
         <?php foreach ($recentdep as $rdep) {
             if ($rdep['jalur'] == "IRS") {
                 $awalan = "TL.";
@@ -21,11 +21,12 @@
             } ?>
             <div class="latest-post border-bottom pb-2">
                 <small class="text-muted d-block" style="font-size: 0.6em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?></small>
-                <p class=" mb-0" style="font-size: 0.8em;"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " Rp. " . number_format($rdep['jumlah']) . " (" . $rdep['kasir'] . ")"; ?></p>
-                <span class="badge bg-secondary" style="font-size: 0.6em;">
+                <p class=" mb-0" style="font-size: 1em;"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " <sup>Rp</sup>" . number_format($rdep['jumlah']); ?></p>
+                <span class="badge text-bg-success" style="font-size: 0.6em;">
                     <?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
                     ?>
                 </span>
+                <span class="badge text-bg-warning" style="font-size: 0.6em;"><?= $rdep['kasir']; ?></span>
             </div>
         <?php } ?>
     </div>

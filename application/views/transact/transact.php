@@ -1,5 +1,5 @@
 <div class="main-page d-flex flex-column justify-content-between">
-    <div class="card overflow-y-auto" style="height: 58%;">
+    <div class="card overflow-x-auto" style="height: 60%;">
         <div class="card-body">
             <h5 class="card-title border-bottom p-2">Form Input Deposit</h5>
             <form action="<?= base_url('transact'); ?>" method="post">
@@ -59,7 +59,7 @@
             </form>
         </div>
     </div>
-    <div class="card d-flex align-items-center flex-row" style="height: 25%;">
+    <div class="card d-flex align-items-center flex-row overflow-x-auto" style="height: 24%;">
         <div class="card-body">
             <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
                 <small class="text-muted">Latest Record at <?= $lastRec['waktu']; ?></small>
@@ -78,7 +78,7 @@
     ?>
         <h1 class="text-center text-warning fw-bold" id="text" hidden><?= $awalan . "<span class='text-light'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
                                                                         ?></h1>
-        <div class="d-grid" style="height: 15%;">
+        <div class="d-grid" style="height: 14%;">
             <button class="btn btn-sm btn-warning btn-clipboard" id="btn-copy" onclick="copyToClipboard('#text')"><?= $awalan . "<span class='text-danger'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
                                                                                                                     ?>
             </button>

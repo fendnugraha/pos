@@ -24,7 +24,7 @@
                         <a class="nav-link" data-bs-toggle="offcanvas" href="#" id="slide-menu-toggle"><i class="fa-solid fa-bars"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= base_url('home/home2'); ?>"><i class="fa-solid fa-house"></i></a>
+                        <a class="nav-link" aria-current="page" href="<?= base_url('home/home2'); ?>"><i class="fa-solid fa-house"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('transact'); ?>"><i class="fa-solid fa-coins"></i></a>
@@ -36,6 +36,7 @@
                         <a class="nav-link" href="<?= base_url('home/setting'); ?>"><i class="fa-solid fa-gear"></i></a>
                     </li>
                 </ul>
+                <span><?= $title; ?></span>
             </div>
             <div class="slide-menu-toggle">
                 <div class="offcanvas-header mb-3">
