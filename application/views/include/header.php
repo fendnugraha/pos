@@ -33,7 +33,15 @@
                         <a class="nav-link" href="#"><i class="fa-solid fa-newspaper"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('home/setting'); ?>"><i class="fa-solid fa-gear"></i></a>
+                        <!-- <a class="nav-link" href="<?= base_url('home/setting'); ?>"><i class="fa-solid fa-gear"></i></a> -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-masks-theater"></i> <small class="font-size:0.2em" id="user-name-text">@<?= ucwords($user['name']); ?></small>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
                 <span><?= $title; ?></span>
@@ -44,6 +52,32 @@
                     <button type="button" class="btn-close" id="close-slide-menu" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="slide-menu-items">
+                    <ul class="nav nav-side">
+                        <li class="nav-item nav-item-side">
+                            <a class="nav-link" data-bs-toggle="offcanvas" href="#" id="slide-menu-toggle"><i class="fa-solid fa-bars"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-side">
+                            <a class="nav-link" aria-current="page" href="<?= base_url('home/home2'); ?>"><i class="fa-solid fa-house"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-side">
+                            <a class="nav-link" href="<?= base_url('transact'); ?>"><i class="fa-solid fa-cart-shopping"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-side">
+                            <a class="nav-link" href="#"><i class="fa-solid fa-newspaper"></i></a>
+                        </li>
+                        <li class="nav-item nav-item-side">
+                            <!-- <a class="nav-link" href="<?= base_url('home/setting'); ?>"><i class="fa-solid fa-gear"></i></a> -->
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-masks-theater"></i> <small class="font-size:0.2em" id="user-name-text">@<?= ucwords($user['name']); ?></small>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <hr>
+                    </ul>
                     <ul class="list-group list-menutrx">
                         <li class="list-group-item"><a href="<?= base_url('transact/kasmasuk'); ?>" class=""><i class="fa-solid fa-cash-register"></i> Kas Masuk</a></li>
                         <li class="list-group-item"><a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a></li>

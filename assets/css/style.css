@@ -9,6 +9,11 @@ body {
   border: none;
 }
 
+.card {
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+
 table.display tr {
   font-size: 0.7em;
 }
@@ -24,13 +29,18 @@ table.display tr {
 .container .slide-menu-toggle {
   height: 100vh;
   width: 35vw;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
   position: absolute;
   top: 0;
   left: -35vw;
   z-index: 10;
   padding: 15px;
   transition: left 0.3s;
+}
+.container .slide-menu-toggle ul.nav.nav-side {
+  display: none;
 }
 .container .slide-menu-toggle ul.list-menutrx a {
   text-decoration: none;
@@ -39,7 +49,7 @@ table.display tr {
 .container .slide-menu-toggle.active {
   top: 0;
   left: 0;
-  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.7);
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
 }
 .container .parent {
   display: grid;
@@ -58,7 +68,11 @@ table.display tr {
   justify-content: space-between;
 }
 .container .main-menu .nav .nav-item {
-  width: 19%;
+  width: 17%;
+}
+.container .main-menu .nav .nav-item:nth-last-child(1) {
+  width: 27%;
+  background-color: rgb(252, 217, 103);
 }
 .container .main-menu .nav .nav-item a.nav-link {
   font-size: 1.3em;
@@ -67,6 +81,9 @@ table.display tr {
   border-radius: 10px;
   text-align: center;
   transition: background-color 0.3s;
+}
+.container .main-menu .nav .nav-item a.nav-link #user-name-text {
+  text-transform: lowercase;
 }
 .container .main-menu .nav .nav-item a.nav-link:hover, .container .main-menu .nav .nav-item a.nav-link.active {
   background-color: rgb(39, 60, 182);
@@ -87,8 +104,7 @@ table.display tr {
   color: white;
 }
 .container .user-login a.user-name {
-  font-size: 1.5em;
-  text-transform: lowercase;
+  font-size: 1.6em;
   color: white;
   font-weight: 700;
 }
@@ -97,6 +113,14 @@ table.display tr {
 }
 
 @media screen and (max-width: 991.98px) {
+  .container .slide-menu-toggle {
+    height: 100%;
+    width: 100vw;
+    left: -100vw;
+  }
+  .container #user-name-text {
+    display: none;
+  }
   .container .parent {
     display: flex;
     flex-direction: column;

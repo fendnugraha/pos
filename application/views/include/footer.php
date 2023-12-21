@@ -1,14 +1,9 @@
 <div class="card user-login">
     <div class="card-body d-flex justify-content-center align-items-center">
         <!-- <h2><i class="fa-solid fa-masks-theater"></i> @fendnugraha</h2> -->
-        <div class="dropdown">
-            <a class="user-name text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-masks-theater"></i> @<?= ucwords($user['name']); ?>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
-            </ul>
-        </div>
+        <a class="user-name text-decoration-none">
+            <?= $setting['namakonter']; ?>
+        </a>
     </div>
 </div>
 <div class="card latest-input">

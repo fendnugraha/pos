@@ -17,6 +17,10 @@ body {
   border: none;
 }
 
+.card {
+  backdrop-filter: blur(2px);
+}
+
 table.display tr{
   font-size: 0.7em;
 }
@@ -32,13 +36,18 @@ table.display tr{
   .slide-menu-toggle {
     height: 100vh;
     width: 35vw;
-    background-color: white;
+    background-color: rgba($color: #ffffff, $alpha: 0.9);
+    backdrop-filter: blur(2px);
     position: absolute;
     top:0;
     left:-35vw;
     z-index: 10;
     padding: 15px;
     transition: left 0.3s;
+
+    ul.nav.nav-side {
+      display: none;
+    }
 
     ul.list-menutrx {
       a {
@@ -51,7 +60,7 @@ table.display tr{
   .slide-menu-toggle.active {
     top:0;
     left: 0;
-    box-shadow: 5px 10px 15px rgba($color: #000000, $alpha: 0.7);
+    box-shadow: 5px 10px 15px rgba($color: #000000, $alpha: 0.2);
   }
 
 .parent {
@@ -70,7 +79,13 @@ table.display tr{
       justify-content: space-between;
       .nav-item {
         // padding: 0;
-        width: 19%;
+        width: 17%;
+
+        &:nth-last-child(1){
+          width: 27%;
+          background-color: $mywarning-color;
+        }
+
         a.nav-link {
           font-size: 1.3em;
           background-color: $myprimary-color;
@@ -78,6 +93,10 @@ table.display tr{
           border-radius: 10px;
           text-align: center;
           transition: background-color 0.3s;
+
+          #user-name-text {
+            text-transform: lowercase;
+          }
         }
 
         a.nav-link:hover, a.nav-link.active {
@@ -101,8 +120,7 @@ table.display tr{
     background-color: $mydanger-color;
     color: white;
     a.user-name {
-      font-size: 1.5em;
-      text-transform: lowercase;
+      font-size: 1.6em;
       color: white;
       font-weight: 700;
     }
@@ -115,6 +133,15 @@ table.display tr{
 
 @media screen and (max-width: 991.98px) { 
   .container {
+    .slide-menu-toggle {
+      height: 100%;
+      width: 100vw;
+      left: -100vw;
+    }
+    #user-name-text {
+      display:none;
+    }
+
   .parent {
     display: flex;
     flex-direction: column;
@@ -122,6 +149,7 @@ table.display tr{
 
     .main-page {
       height: 80vh;
+
     }
   }
 }
