@@ -4,6 +4,22 @@ body {
   background-color: rgb(228, 228, 228);
 }
 
+.cover-body-blur {
+  visibility: hidden;
+  position: absolute;
+  z-index: 9;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.1s;
+}
+
+.cover-body-blur.active {
+  visibility: visible;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
 .card, .btn {
   border-radius: 10px;
   border: none;
@@ -42,9 +58,17 @@ table.display tr {
 .container .slide-menu-toggle ul.nav.nav-side {
   display: none;
 }
-.container .slide-menu-toggle ul.list-menutrx a {
+.container .slide-menu-toggle ul.list-group.list-menutrx li.list-group-item {
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+.container .slide-menu-toggle ul.list-group.list-menutrx li.list-group-item a {
   text-decoration: none;
   color: rgb(85, 85, 85);
+  font-size: 1.5em;
 }
 .container .slide-menu-toggle.active {
   top: 0;

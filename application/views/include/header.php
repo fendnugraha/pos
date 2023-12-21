@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <div class="cover-body-blur"></div>
     <div class="container flex-column">
         <div class="parent">
             <div class="main-menu">
@@ -53,6 +54,27 @@
                     <button type="button" class="btn-close" id="close-slide-menu" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="slide-menu-items">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Tambah agen baru</h5>
+                            <form action="<?= base_url('home/tambahagen'); ?>" method="post">
+                                <div class="mb-3">
+                                    <label for="idagen" class="form-label">ID Agen</label>
+                                    <input type="text" name="idagen" id="idagen" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="namaagen" class="form-label">Nama Agen</label>
+                                    <input type="text" name="namaagen" id="namaagen" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+
                     <ul class="nav nav-side">
                         <li class="nav-item nav-item-side">
                             <a class="nav-link" data-bs-toggle="offcanvas" href="#" id="slide-menu-toggle"><i class="fa-solid fa-bars"></i></a>
@@ -80,28 +102,9 @@
                         <hr>
                     </ul>
                     <ul class="list-group list-menutrx">
-                        <li class="list-group-item"><a href="<?= base_url('transact/kasmasuk'); ?>" class=""><i class="fa-solid fa-cash-register"></i> Kas Masuk</a></li>
-                        <li class="list-group-item"><a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a></li>
+                        <li class="list-group-item"><a href="<?= base_url('transact/kasmasuk'); ?>" class=""><i class="fa-solid fa-circle-left text-success"></i> Kas Masuk</a></li>
+                        <li class="list-group-item"><a href="<?= base_url('transact/kaskeluar'); ?>" class="">Kas Keluar <i class="fa-solid fa-circle-right text-danger"></i></a></li>
                     </ul>
-                    <hr>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Tambah agen baru</h5>
-                            <form action="<?= base_url('home/tambahagen'); ?>" method="post">
-                                <div class="mb-3">
-                                    <label for="idagen" class="form-label">ID Agen</label>
-                                    <input type="text" name="idagen" id="idagen" class="form-control form-control-sm" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="namaagen" class="form-label">Nama Agen</label>
-                                    <input type="text" name="namaagen" id="namaagen" class="form-control form-control-sm" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
                 </div>
 

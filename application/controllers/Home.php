@@ -51,7 +51,7 @@ class Home extends CI_Controller
             $this->db->set($udpatesaldo);
             $this->db->where('id', 1);
             $this->db->update('setting');
-            redirect('home');
+            redirect('home/home2');
         }
     }
 
@@ -318,7 +318,7 @@ class Home extends CI_Controller
         $printer->cut();
         $printer->close();
 
-        redirect('home');
+        redirect('home/home2');
     }
 
     public function kas_keluar_cetak()
@@ -396,7 +396,7 @@ class Home extends CI_Controller
         $printer->cut();
         $printer->close();
 
-        redirect('home');
+        redirect('home/home2');
     }
 
     public function sendMessage($chatID, $messaggio, $token)

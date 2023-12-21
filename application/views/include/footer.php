@@ -143,7 +143,7 @@
                     transferId: transferId,
                 },
                 success: function() {
-                    document.location.href = "<?= base_url('home'); ?>";
+                    document.location.href = "<?= base_url('home/home2'); ?>";
                 }
             });
         }
