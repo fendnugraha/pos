@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM POS</title>
+    <title>POS - <?= $title; ?></title>
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/jquery-ui.css" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dataTables.bootstrap5.min.css" />
@@ -27,7 +27,7 @@
                         <a class="nav-link" aria-current="page" href="<?= base_url('home/home2'); ?>"><i class="fa-solid fa-house"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('transact'); ?>"><i class="fa-solid fa-coins"></i></a>
+                        <a class="nav-link" href="<?= base_url('transact'); ?>"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-newspaper"></i></a>
