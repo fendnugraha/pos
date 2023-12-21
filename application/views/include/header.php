@@ -39,6 +39,7 @@
                                 <i class="fa-solid fa-masks-theater"></i> <small class="font-size:0.2em" id="user-name-text">@<?= ucwords($user['name']); ?></small>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="<?= base_url('home/setting'); ?>">Setting</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Logout</a></li>
                             </ul>
                         </div>
@@ -83,20 +84,25 @@
                         <li class="list-group-item"><a href="<?= base_url('transact/kaskeluar'); ?>" class=""><i class="fa-solid fa-file-invoice-dollar"></i> Kas Keluar</a></li>
                     </ul>
                     <hr>
-                    <h5>Tambah agen baru</h5>
-                    <form action="<?= base_url('home/tambahagen'); ?>" method="post">
-                        <div class="mb-3">
-                            <label for="idagen" class="form-label">ID Agen</label>
-                            <input type="text" name="idagen" id="idagen" class="form-control form-control-sm" value="">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Tambah agen baru</h5>
+                            <form action="<?= base_url('home/tambahagen'); ?>" method="post">
+                                <div class="mb-3">
+                                    <label for="idagen" class="form-label">ID Agen</label>
+                                    <input type="text" name="idagen" id="idagen" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="namaagen" class="form-label">Nama Agen</label>
+                                    <input type="text" name="namaagen" id="namaagen" class="form-control form-control-sm" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                            <label for="namaagen" class="form-label">Nama Agen</label>
-                            <input type="text" name="namaagen" id="namaagen" class="form-control form-control-sm" value="">
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
-                        </div>
-                    </form>
+                    </div>
+
                 </div>
 
             </div>
