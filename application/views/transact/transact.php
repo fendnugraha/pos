@@ -49,9 +49,9 @@
                     </div>
                     <div class="col-sm">
                         <div class="d-grid">
-                            <button data-id="<?= $lastRec['id']; ?>" class="cetak_struk_form btn btn-success" <?php if (null == $lastRec['id']) {
-                                                                                                                    echo "disabled";
-                                                                                                                }; ?>>Print</button>
+                            <button data-id="<?= $lastID = isset($lastRec['id']) ? $lastRec['id'] : 0; ?>" class="cetak_struk_form btn btn-success" <?php if (!isset($lastRec['id'])) {
+                                                                                                                                                        echo "disabled";
+                                                                                                                                                    }; ?>>Print</button>
                         </div>
                     </div>
                 </div>
@@ -59,30 +59,37 @@
             </form>
         </div>
     </div>
+    <?php $hidden = isset($lastRec['id']) ? "" : "hidden"; ?>
+
     <div class="card d-flex align-items-center flex-row overflow-x-auto" style="height: 24%;">
         <div class="card-body">
-            <?php if ($lastRec['produk'] == "Isi Saldo Deposit") { ?>
-                <small class="text-muted">Latest Record at <?= $lastRec['waktu']; ?></small>
-                <h3><?= $lastRec['idagen']; ?> Rp. <?= number_format($lastRec['jumlah']);
-                                                    ?></h3>
-                <small>By <?= $lastRec['kasir']; ?></small>
+            <?php
+            if (isset($lastRec['id'])) {
+                if ($lastRec['produk'] == "Isi Saldo Deposit") {
+                    if ($lastRec['jalur'] == "IRS") {
+                        $awalan = "TL.";
+                    } else {
+                        $awalan = "ADD.";
+                    }
+            ?>
+                    <small class="text-muted">Latest Record at <?= $lastRec['waktu']; ?></small>
+                    <h3><?= $lastRec['idagen']; ?> Rp. <?= number_format($lastRec['jumlah']); ?></h3>
+                    <small>By <?= $lastRec['kasir']; ?></small>
+                <?php }; ?>
             <?php }; ?>
         </div>
     </div>
-    <?php if ($lastRec['produk'] == "Isi Saldo Deposit") {
-        if ($lastRec['jalur'] == "IRS") {
-            $awalan = "TL.";
-        } else {
-            $awalan = "ADD.";
-        }
-    ?>
-        <h1 class="text-center text-warning fw-bold" id="text" hidden><?= $awalan . "<span class='text-light'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
-                                                                        ?></h1>
-        <div class="d-grid" style="height: 14%;">
-            <button class="btn btn-sm btn-warning btn-clipboard" id="btn-copy" onclick="copyToClipboard('#text')"><?= $awalan . "<span class='text-danger'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
-                                                                                                                    ?>
+    <div class="d-grid" style="height: 14%;">
+        <?php
+        if (isset($lastRec['id'])) { ?>
+            <h1 class="text-center text-warning fw-bold" id="text" hidden>
+                <?= $awalan . "<span class='text-light'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
+                ?>
+            </h1>
+            <button class="btn btn-sm btn-warning btn-clipboard" id="btn-copy" onclick="copyToClipboard('#text')">
+                <?= $awalan . "<span class='text-danger'>" . preg_replace("/-/", "", substr($lastRec['idagen'], 0, 7)) . "</span>." . $lastRec['jumlah'] . ".1";
+                ?>
             </button>
-
-        </div>
-    <?php }; ?>
+        <?php }; ?>
+    </div>
 </div>
