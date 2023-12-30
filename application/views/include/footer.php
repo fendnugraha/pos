@@ -14,14 +14,23 @@
             } else {
                 $awalan = "ADD.";
             } ?>
-            <div class="latest-post border-bottom pb-2">
-                <small class="text-muted d-block" style="font-size: 0.6em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?></small>
+            <div class="latest-post border-bottom pb-2 mb-2">
+                <small class="text-muted d-block" style="font-size: 0.6em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?> <span class="badge text-bg-warning"><?= $rdep['kasir']; ?></span></small>
                 <p class=" mb-0" style="font-size: 1em;"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " <sup>Rp</sup>" . number_format($rdep['jumlah']); ?></p>
-                <span class="badge text-bg-success" style="font-size: 0.6em;">
+                <p style="font-size: 0.8em;" <?php if ($rdep['produk'] == "---") {
+                                                    echo "hidden";
+                                                }; ?>>
+
                     <?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
                     ?>
-                </span>
-                <span class="badge text-bg-warning" style="font-size: 0.6em;"><?= $rdep['kasir']; ?></span>
+
+                </p>
+                <?php if ($rdep['status'] == "Out" && $rdep['metode'] == 1) {
+                ?>
+                    <button data-id="<?= $rdep['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-danger"><i class="fa-solid fa-print"></i> Print</button>
+                <?php } else {; ?>
+                    <button data-id="<?= $rdep['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fa-solid fa-print"></i> Print</button>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>
@@ -48,24 +57,9 @@
         $temp.remove();
     }
 
-    $(document).ready(function() {
-        $("#idagen").autocomplete({
-            source: function(request, response) {
-                $.ajax({
-                    url: "<?php echo base_url('transact/cariAgen'); ?>",
-                    data: {
-                        term: request.term
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        response(data);
-                    }
-                });
-            },
-            minLength: 2
-        });
-
-
+    $("#idagen").autocomplete({
+        source: '<?= base_url('transact/cariAgen'); ?> ',
+        minLength: 2
     });
 
     $('.status_thr').on('click', function() {

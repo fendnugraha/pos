@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Transact extends CI_Controller
 {
+    protected $uname;
 
     public function __construct()
     {
@@ -12,12 +13,14 @@ class Transact extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('home_model');
         $this->load->model('transact_model');
+
+        $this->uname = $this->session->userdata('uname');
     }
 
     public function index()
     {
-        $uname = $this->session->userdata('uname');
-        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+
+        $sql = "SELECT * FROM user WHERE uname ='$this->uname'";
         // $data['tanggal'] = date('Y-m-d');
         $data['setting'] = $this->db->get('setting')->row_array();
 
@@ -28,8 +31,8 @@ class Transact extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $data['lastRec'] = $this->home_model->depositLastByUser($uname);
-        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
+        $data['lastRec'] = $this->home_model->depositLastByUser($this->uname);
+        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get('deposit')->result_array();
 
         $this->form_validation->set_rules('idagen', 'ID Agen', 'max_length[5]|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
@@ -46,8 +49,7 @@ class Transact extends CI_Controller
 
     public function trxpulsa()
     {
-        $uname = $this->session->userdata('uname');
-        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        $sql = "SELECT * FROM user WHERE uname ='$this->uname'";
         // $data['tanggal'] = date('Y-m-d');
         $data['setting'] = $this->db->get('setting')->row_array();
 
@@ -58,7 +60,7 @@ class Transact extends CI_Controller
         };
         $data['user'] = $this->db->query($sql)->row_array();
 
-        $data['lastRec'] = $this->home_model->depositLastByUser($uname);
+        $data['lastRec'] = $this->home_model->depositLastByUser($this->uname);
         $data['recentpulsa'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['idagen' => 'CUSTOMER'])->result_array();
 
         $this->form_validation->set_rules('produk', 'Kode Produk', 'min_length[2]|trim');
@@ -218,8 +220,7 @@ class Transact extends CI_Controller
 
     public function kasmasuk()
     {
-        $uname = $this->session->userdata('uname');
-        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        $sql = "SELECT * FROM user WHERE uname ='$this->uname'";
         // $data['tanggal'] = date('Y-m-d');
         $data['setting'] = $this->db->get('setting')->row_array();
 
@@ -232,8 +233,8 @@ class Transact extends CI_Controller
 
         $data['nobukti'] = $this->home_model->nomorbukti();
 
-        $data['lastRec'] = $this->home_model->kasOutLastByUser($uname);
-        $data['recentkas'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur' => 'KAS'])->result_array();
+        $data['lastRec'] = $this->home_model->kasOutLastByUser($this->uname);
+        $data['recentdep'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur' => 'KAS'])->result_array();
 
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
@@ -250,8 +251,7 @@ class Transact extends CI_Controller
 
     public function kaskeluar()
     {
-        $uname = $this->session->userdata('uname');
-        $sql = "SELECT * FROM user WHERE uname ='$uname'";
+        $sql = "SELECT * FROM user WHERE uname ='$this->uname'";
         // $data['tanggal'] = date('Y-m-d');
         $data['setting'] = $this->db->get('setting')->row_array();
 
@@ -264,8 +264,8 @@ class Transact extends CI_Controller
 
         $data['nobukti'] = $this->home_model->nomorbukti();
 
-        $data['lastRec'] = $this->home_model->kasOutLastByUser($uname);
-        $data['recentkas'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur' => 'KAS'])->result_array();
+        $data['lastRec'] = $this->home_model->kasOutLastByUser($this->uname);
+        $data['recentdep'] = $this->db->limit(5)->order_by('id', 'desc')->get_where('deposit', ['jalur' => 'KAS'])->result_array();
 
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|alpha_numeric_spaces|trim|min_length[5]');
         $this->form_validation->set_rules('nobukti', 'Nomor Bukti', 'required|trim');
@@ -284,9 +284,19 @@ class Transact extends CI_Controller
 
     public function cariAgen()
     {
-        $idagen = $this->input->get('idagen');
-        $data = $this->db->query("SELECT * FROM contact WHERE idagen like '%$idagen%'")->result_array();
-
-        echo json_encode($data);
+        // $idagen = $this->input->get('term');
+        if (isset($_GET['term'])) {
+            $idagen = $_GET['term'];
+            $data = $this->db->query("SELECT * FROM contact WHERE idagen like '%$idagen%'");
+            if ($data) {
+                foreach ($data->result() as $d) {
+                    $agen[] = [
+                        'idagen' => $d->idagen,
+                        'name' => $d->name
+                    ];
+                }
+                echo json_encode($agen);
+            }
+        }
     }
 }

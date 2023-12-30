@@ -26,7 +26,7 @@ class Home extends CI_Controller
         $data['user'] = $this->db->query($sql)->row_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 
-        $data["result"] = $this->getCurl('https://api.jurnal.id/core/api/v1/general_ledger?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc&account_id=' . $cash_id . '&start_date=' . $pr_start . '&end_date=' . $pr_end);
+        // $data["result"] = $this->getCurl('https://api.jurnal.id/core/api/v1/general_ledger?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc&account_id=' . $cash_id . '&start_date=' . $pr_start . '&end_date=' . $pr_end);
 
         // $data['dep_recapirs'] = $this->home_model->depositRecap($data['tanggal'], "IRS");
         // $data['dep_recapoto'] = $this->home_model->depositRecap($data['tanggal'], "OKELINK");
@@ -84,7 +84,7 @@ class Home extends CI_Controller
         $data['dep_recapkas'] = $this->home_model->recapKasTunai($data['tanggal']);
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
-        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
+        $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get('deposit')->result_array();
 
         $data['title'] = 'GSM - Home';
         $this->load->view('include/header', $data);
