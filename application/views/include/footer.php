@@ -15,22 +15,28 @@
                 $awalan = "ADD.";
             } ?>
             <div class="latest-post border-bottom pb-2 mb-2">
-                <small class="text-muted d-block" style="font-size: 0.6em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?> <span class="badge text-bg-warning"><?= $rdep['kasir']; ?></span></small>
+                <div class="d-flex justify-content-between >
+                    <small class=" text-muted d-block" style="font-size: 0.7em;"><?= $rdep['waktu'] ?> | <?= ucwords($rdep['idagen']) ?> </small>
+
+                    <?php if ($rdep['status'] == "Out" && $rdep['metode'] == 1) {
+                    ?>
+                        <button data-id="<?= $rdep['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-danger"><i class="fa-solid fa-print"></i> Print</button>
+                    <?php } else {; ?>
+                        <button data-id="<?= $rdep['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fa-solid fa-print"></i> Print</button>
+                    <?php } ?>
+                </div>
                 <p class=" mb-0" style="font-size: 1em;"><?= ucwords($rdep['produk'] . " " . $rdep['keterangan']) . " <sup>Rp</sup>" . number_format($rdep['jumlah']); ?></p>
-                <p style="font-size: 0.8em;" <?php if ($rdep['produk'] == "---") {
-                                                    echo "hidden";
-                                                }; ?>>
+                <p class="mb-0" style="font-size: 0.8em;" <?php if ($rdep['produk'] == "---") {
+                                                                echo "hidden";
+                                                            }; ?>>
 
                     <?= $awalan . preg_replace("/-/", "", substr($rdep['idagen'], 0, 7)) . "." . $rdep['jumlah'] . ".1";
                     ?>
 
                 </p>
-                <?php if ($rdep['status'] == "Out" && $rdep['metode'] == 1) {
-                ?>
-                    <button data-id="<?= $rdep['id']; ?>" class="cetak_kas_keluar btn btn-sm btn-danger"><i class="fa-solid fa-print"></i> Print</button>
-                <?php } else {; ?>
-                    <button data-id="<?= $rdep['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fa-solid fa-print"></i> Print</button>
-                <?php } ?>
+                <span class="badge text-bg-warning"><?= $rdep['kasir']; ?></span>
+                <span class="badge text-bg-dark"><?= $rdep['jalur']; ?></span>
+
             </div>
         <?php } ?>
     </div>

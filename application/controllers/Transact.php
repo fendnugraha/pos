@@ -38,7 +38,7 @@ class Transact extends CI_Controller
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'GSM - Transaction';
+            $data['title'] = 'POS - Transaction';
             $this->load->view('include/header', $data);
             $this->load->view('transact/transact', $data);
             $this->load->view('include/footer');

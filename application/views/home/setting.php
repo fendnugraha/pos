@@ -1,6 +1,6 @@
 <div class="main-page overflow-y-auto">
     <div class="card" style="height: 100%;">
-        <div class="card-body">
+        <div class="card-body overflow-x-auto">
             <form action="<?= base_url('home/update_setting'); ?>" method="post">
                 <div class="row mb-3">
                     <div class="col-sm">

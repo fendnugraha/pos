@@ -36,8 +36,9 @@ body {
   backdrop-filter: blur(2px);
 }
 
-table.display tr{
-  font-size: 0.7em;
+table.display tr, table.display-no-order tr{
+  font-size: 0.65em;
+  vertical-align: middle;
 }
 
 .container {

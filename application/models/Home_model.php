@@ -4,7 +4,7 @@ class Home_model extends CI_Model
 {
     public function depositRecap($tanggal, $jalur)
     {
-        return $this->db->get_where('deposit', ['date(waktu)' => $tanggal, 'jalur' => $jalur])->result_array();
+        return $this->db->order_by('id', 'DESC')->get_where('deposit', ['date(waktu)' => $tanggal, 'jalur' => $jalur])->result_array();
     }
 
     public function depositRecapByID($id)
@@ -42,7 +42,7 @@ class Home_model extends CI_Model
         $data = [
             'date(waktu)' => $tanggal,
         ];
-        return $this->db->get_where('deposit', $data)->result_array();
+        return $this->db->order_by('id', 'DESC')->get_where('deposit', $data)->result_array();
     }
 
     public function saldoAwal($tanggal, $jalur)

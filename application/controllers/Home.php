@@ -37,7 +37,7 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('saldookelink', 'Saldo OKKELINK', 'numeric');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'GSM - Home';
+            $data['title'] = 'POS - Home';
             $this->load->view('include/header', $data);
             $this->load->view('home/home', $data);
             $this->load->view('include/footer');
@@ -86,7 +86,7 @@ class Home extends CI_Controller
         $data['setting'] = $this->db->get('setting')->row_array();
         $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get('deposit')->result_array();
 
-        $data['title'] = 'GSM - Home';
+        $data['title'] = 'POS - Home';
         $this->load->view('include/header', $data);
         $this->load->view('home/home2', $data);
         $this->load->view('include/footer');
@@ -108,7 +108,7 @@ class Home extends CI_Controller
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 
-        $data['title'] = 'GSM - Home';
+        $data['title'] = 'POS - Home';
         $this->load->view('include/header', $data);
         $this->load->view('home/okelink', $data);
         $this->load->view('include/footer');
@@ -130,7 +130,7 @@ class Home extends CI_Controller
         $data['kontak'] = $this->db->get('contact')->result_array();
         $data['setting'] = $this->db->get('setting')->row_array();
 
-        $data['title'] = 'GSM - Home';
+        $data['title'] = 'POS - Home';
         $this->load->view('include/header', $data);
         $this->load->view('home/kastunai', $data);
         $this->load->view('include/footer');
@@ -432,7 +432,7 @@ class Home extends CI_Controller
         $data['accountlist'] = $this->getCurl('https://api.jurnal.id/core/api/v1/accounts?apikey=82fd37ff4acf0fc74a16a7a60eee5ccc');
         $data['recentdep'] = $this->db->limit(10)->order_by('id', 'desc')->get_where('deposit', ['jalur !=' => 'KAS'])->result_array();
 
-        $data['title'] = 'GSM - Setting';
+        $data['title'] = 'POS - Setting';
         $this->load->view('include/header', $data);
         $this->load->view('home/setting', $data);
         $this->load->view('include/footer');
@@ -466,7 +466,7 @@ class Home extends CI_Controller
         $data['nonDepOut'] = $this->home_model->recapNonDeposit($tanggal, 'Out');
         $data['nonDepBon'] = $this->db->get_where('deposit', ['date(waktu)' => $tanggal, 'metode' => 3])->result_array();
         $data['userlogin'] = $this->db->get('user')->result_array();
-        $data['title'] = 'GSM - Report';
+        $data['title'] = 'POS - Report';
         $this->load->view('include/header', $data);
         $this->load->view('home/report', $data);
         $this->load->view('include/footer');
@@ -488,7 +488,7 @@ class Home extends CI_Controller
         $data['setting'] = $this->db->get('setting')->row_array();
         $data['tb_thr'] = $this->db->query("SELECT a.*,b.name FROM tb_thr a LEFT JOIN contact b ON b.idagen = a.id_agen")->result_array();
 
-        $data['title'] = 'GSM - THR AGEN 2023';
+        $data['title'] = 'POS - THR AGEN 2023';
         $this->load->view('include/header', $data);
         $this->load->view('home/thragen', $data);
         $this->load->view('include/footer');
@@ -531,7 +531,7 @@ class Home extends CI_Controller
         $data['provider'] = $this->db->get('provider')->result_array();
 
         $data['tanggal'] = $tanggal;
-        $data['title'] = 'GSM - Stok Barang';
+        $data['title'] = 'POS - Stok Barang';
         $this->load->view('include/header', $data);
         $this->load->view('home/stokbarang', $data);
         $this->load->view('include/footer');
@@ -550,7 +550,7 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('type', 'Type', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'GSM - Stok Barang - Add Items';
+            $data['title'] = 'POS - Stok Barang - Add Items';
             $this->load->view('include/header', $data);
             $this->load->view('home/additem', $data);
             $this->load->view('include/footer');

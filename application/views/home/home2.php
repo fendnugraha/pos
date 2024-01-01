@@ -17,7 +17,7 @@
                         <p class="text-center">TRANSFER SALDO<br>Rp. <?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "IRS")); ?></p>
                         <p class="text-center">SALDO AKHIR<br>Rp. <?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "IRS")); ?></p>
                     </div>
-                    <table class="table table-hover display table-dark nowrap">
+                    <table class="table table-hover display-no-order table-dark nowrap">
                         <thead>
                             <tr>
                                 <th>TANGGAL</th>
@@ -36,7 +36,7 @@
                                     <td><span class="text-warning"><?= $irs['idagen']; ?></span><br><?= $irs['produk']; ?> / <?= $irs['tujuan']; ?> / <?= $irs['keterangan']; ?></td>
                                     <td><?= $irs['status']; ?></td>
                                     <td><?= number_format($irs['jumlah']); ?></td>
-                                    <td><button data-id="<?= $irs['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                                    <td><button data-id="<?= $irs['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                                         <button data-id="<?= $irs['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
@@ -51,7 +51,7 @@
                         <p class="text-center">TRANSFER SALDO<br>Rp. <?= number_format($this->home_model->saldoKeluar(date("Y-m-d"), "OKELINK")); ?></p>
                         <p class="text-center">SALDO AKHIR<br>Rp. <?= number_format($this->home_model->saldoAkhir(date("Y-m-d"), "OKELINK")); ?></p>
                     </div>
-                    <table class="table table-hover display text-danger">
+                    <table class="table table-hover display-no-order text-danger">
                         <thead>
                             <tr>
                                 <th>TANGGAL</th>
@@ -70,7 +70,7 @@
                                     <td><span class="text-warning"><?= $oto['idagen']; ?></span><br><?= $oto['produk']; ?> / <?= $oto['tujuan']; ?> / <?= $oto['keterangan']; ?></td>
                                     <td><?= $oto['status']; ?></td>
                                     <td><?= number_format($oto['jumlah']); ?></td>
-                                    <td><button data-id="<?= $oto['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button> /
+                                    <td><button data-id="<?= $oto['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                                         <button data-id="<?= $oto['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -85,7 +85,7 @@
                         <p class="text-center">TRANSFER KAS<br>Rp. <?= number_format($this->home_model->kasKeluar(date("Y-m-d"))); ?></p>
                         <p class="text-center">KAS AKHIR<br>Rp. <?= number_format($this->home_model->kasAkhir(date("Y-m-d"))); ?></p>
                     </div>
-                    <table class="table table-hover display text-primary">
+                    <table class="table table-hover display-no-order text-primary">
                         <thead>
                             <tr>
                                 <th>TANGGAL</th>
@@ -114,7 +114,7 @@
                                             <button data-id="<?= $kas['id']; ?>" class="cetak_struk btn btn-sm btn-success"><i class="fas fa-print"></i></button>
                                         <?php
                                         }
-                                        ?> /
+                                        ?>
                                         <button data-id="<?= $kas['id']; ?>" class="hapus_record btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>

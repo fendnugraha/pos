@@ -35,11 +35,11 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="jalur" id="irs" value="IRS" checked>
-                    <label class="form-check-label" for="inlineRadio1">GSM e-Pay (IRS)</label>
+                    <label class="form-check-label" for="irs">GSM e-Pay (IRS)</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="jalur" id="okelink" value="OKELINK">
-                    <label class="form-check-label" for="inlineRadio2">OKeLiNK</label>
+                    <label class="form-check-label" for="okelink">OKeLiNK</label>
                 </div>
                 <div class="row mt-4 gap-2">
                     <div class="col-sm">
